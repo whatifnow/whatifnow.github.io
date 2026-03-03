@@ -1,0 +1,53 @@
+---
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-navy/90 backdrop-blur-sm border-b border-navy-light">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="text-xl font-bold tracking-tight">
+      <span class="text-white">what </span><span class="text-teal">if</span><span class="text-white"> now</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="text-slate-light hover:text-white transition-colors">Services</a>
+      <a href="#how-it-works" class="text-slate-light hover:text-white transition-colors">How It Works</a>
+      <a href="#about" class="text-slate-light hover:text-white transition-colors">About</a>
+      <a href="#compliance" class="text-slate-light hover:text-white transition-colors">Compliance</a>
+      <a href="#contact" class="bg-teal text-white px-5 py-2 rounded-full font-medium hover:bg-teal-dark transition-colors">
+        Book a Call
+      </a>
+    </div>
+    <button id="mobile-menu-btn" class="md:hidden text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-navy-light">
+    <div class="px-6 py-4 flex flex-col gap-4">
+      <a href="#services" class="text-slate-light hover:text-white transition-colors">Services</a>
+      <a href="#how-it-works" class="text-slate-light hover:text-white transition-colors">How It Works</a>
+      <a href="#about" class="text-slate-light hover:text-white transition-colors">About</a>
+      <a href="#compliance" class="text-slate-light hover:text-white transition-colors">Compliance</a>
+      <a href="#contact" class="bg-teal text-white px-5 py-2 rounded-full font-medium hover:bg-teal-dark transition-colors text-center">
+        Book a Call
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking a link
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+    });
+  });
+</script>

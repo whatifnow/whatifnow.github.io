@@ -1,0 +1,40 @@
+---
+const painPoints = [
+  {
+    icon: `<svg class="w-10 h-10 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+    title: "\"Where do we even start with AI?\"",
+    description: "New tools launch every week. Your team is overwhelmed by options and paralysed by choice. You need a clear starting point, not more noise."
+  },
+  {
+    icon: `<svg class="w-10 h-10 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    title: "\"We don't have time to experiment\"",
+    description: "You're running a business, not a research lab. Every hour spent on the wrong tool is an hour lost. You need guidance that respects your time."
+  },
+  {
+    icon: `<svg class="w-10 h-10 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+    title: "\"What about compliance and risk?\"",
+    description: "GDPR, the EU AI Act, data governance — the regulatory landscape is shifting. You need AI adoption that's compliant from day one, not an afterthought."
+  }
+];
+---
+
+<section class="py-20 px-6 bg-off-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-navy">
+      AI Sounds Great. Until You Try to Actually Use It.
+    </h2>
+    <p class="text-slate text-center text-lg mb-12 max-w-2xl mx-auto">
+      Sound familiar? You're not alone. These are the questions we hear from Irish businesses every day.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {painPoints.map((point) => (
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+          <div class="mb-4" set:html={point.icon} />
+          <h3 class="text-xl font-bold mb-3 text-navy">{point.title}</h3>
+          <p class="text-slate leading-relaxed">{point.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

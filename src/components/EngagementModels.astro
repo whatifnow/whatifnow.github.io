@@ -1,0 +1,82 @@
+---
+const models = [
+  {
+    title: "DIY",
+    subtitle: "Self-Guided",
+    description: "Access our resources, templates, and newsletter to upskill your team at your own pace. Perfect for businesses just getting started.",
+    features: ["Weekly newsletter with AI insights", "Template library access", "Community Q&A", "Self-paced learning paths"],
+    cta: "Join the Newsletter",
+    ctaLink: "#newsletter",
+    featured: false
+  },
+  {
+    title: "Done With You",
+    subtitle: "Most Popular",
+    description: "We work alongside your team — auditing workflows, designing solutions, and building capability so you can run AI independently.",
+    features: ["Full workflow audit", "Hands-on workshops", "Custom AI roadmap", "Implementation coaching", "Ongoing advisory support"],
+    cta: "Book a Scoping Call",
+    ctaLink: "#contact",
+    featured: true
+  },
+  {
+    title: "Done For You",
+    subtitle: "Full Service",
+    description: "We handle everything — from strategy to build to deployment. You get production-ready AI solutions without the learning curve.",
+    features: ["End-to-end delivery", "Custom AI solutions", "Integration & testing", "Training & handover", "Post-launch support"],
+    cta: "Book a Scoping Call",
+    ctaLink: "#contact",
+    featured: false
+  }
+];
+---
+
+<section class="py-20 px-6 bg-off-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-navy">
+      Choose Your Level of Support
+    </h2>
+    <p class="text-slate text-center text-lg mb-12 max-w-2xl mx-auto">
+      From self-guided learning to full implementation — pick what fits your pace and budget.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 items-start">
+      {models.map((model) => (
+        <div class={`p-8 rounded-2xl transition-shadow ${
+          model.featured
+            ? 'bg-navy text-white shadow-xl scale-105'
+            : 'bg-white hover:shadow-md'
+        }`}>
+          <span class={`text-sm font-medium ${model.featured ? 'text-teal' : 'text-teal-dark'}`}>
+            {model.subtitle}
+          </span>
+          <h3 class={`text-2xl font-bold mt-2 mb-4 ${model.featured ? 'text-white' : 'text-navy'}`}>
+            {model.title}
+          </h3>
+          <p class={`mb-6 leading-relaxed ${model.featured ? 'text-slate-light' : 'text-slate'}`}>
+            {model.description}
+          </p>
+          <ul class="space-y-2 mb-8">
+            {model.features.map((feature) => (
+              <li class={`flex items-start gap-2 ${model.featured ? 'text-slate-light' : 'text-slate'}`}>
+                <svg class={`w-5 h-5 mt-0.5 flex-shrink-0 ${model.featured ? 'text-teal' : 'text-teal-dark'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={model.ctaLink}
+            class={`block text-center py-3 px-6 rounded-full font-semibold transition-colors ${
+              model.featured
+                ? 'bg-teal text-white hover:bg-teal-dark'
+                : 'bg-navy text-white hover:bg-navy-light'
+            }`}
+          >
+            {model.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

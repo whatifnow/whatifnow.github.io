@@ -1,0 +1,50 @@
+---
+const regulations = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>`,
+    abbr: "GDPR",
+    fullName: "General Data Protection Regulation",
+    description: "We ensure your AI tools handle personal data correctly — consent management, data minimisation, and privacy by design built into every workflow."
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"/></svg>`,
+    abbr: "AML/KYC",
+    fullName: "Anti-Money Laundering & Know Your Customer",
+    description: "For financial services and regulated industries, we design AI solutions that enhance compliance processes without creating new risk."
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>`,
+    abbr: "NIS2",
+    fullName: "Network & Information Security Directive",
+    description: "We help you meet the EU's cybersecurity requirements, ensuring your AI infrastructure and data pipelines are secure and resilient."
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>`,
+    abbr: "EU AI Act",
+    fullName: "EU Artificial Intelligence Act",
+    description: "We classify your AI use cases by risk level and ensure your implementations meet the EU's new requirements before they're enforced."
+  }
+];
+---
+
+<section id="compliance" class="py-20 px-6 bg-off-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-navy">
+      AI Adoption That's Compliant From Day One
+    </h2>
+    <p class="text-slate text-center text-lg mb-12 max-w-2xl mx-auto">
+      Regulation shouldn't slow you down. We build compliance into every recommendation so you can move fast — and stay safe.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {regulations.map((reg) => (
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-teal mb-4" set:html={reg.icon} />
+          <h3 class="text-xl font-bold text-navy">{reg.abbr}</h3>
+          <p class="text-teal-dark text-sm font-medium mb-3">{reg.fullName}</p>
+          <p class="text-slate leading-relaxed">{reg.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+---
+const steps = [
+  {
+    number: "1",
+    title: "Observe",
+    description: "We shadow your team, map your workflows, and understand how work actually flows — not how it's supposed to."
+  },
+  {
+    number: "2",
+    title: "Diagnose",
+    description: "We identify the real friction points, data gaps, and automation opportunities hiding in your day-to-day operations."
+  },
+  {
+    number: "3",
+    title: "Prescribe",
+    description: "You get a prioritised action plan with specific tools, timelines, and expected ROI — tailored to your budget and team."
+  }
+];
+---
+
+<section class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+      The Forensic Audit
+    </h2>
+    <p class="text-slate-light text-center text-lg mb-16 max-w-2xl mx-auto">
+      We don't guess. We observe your operations, diagnose the real bottlenecks, and prescribe solutions that actually fit.
+    </p>
+
+    <div class="relative">
+      <!-- Connecting line (desktop) -->
+      <div class="hidden md:block absolute top-8 left-[16.67%] right-[16.67%] h-0.5 bg-gradient-to-r from-teal/20 via-teal to-teal/20"></div>
+
+      <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+        {steps.map((step) => (
+          <div class="relative text-center">
+            <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-teal text-white flex items-center justify-center text-2xl font-bold relative z-10">
+              {step.number}
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-white">{step.title}</h3>
+            <p class="text-slate-light leading-relaxed">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Scope indicator -->
+    <div class="mt-12 text-center">
+      <div class="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-6 bg-navy-light px-8 py-4 rounded-full">
+        <span class="text-slate-light text-sm">
+          <span class="text-teal font-semibold">Focused Audit:</span> 1–2 weeks
+        </span>
+        <span class="hidden sm:block text-slate">|</span>
+        <span class="text-slate-light text-sm">
+          <span class="text-teal font-semibold">Comprehensive Audit:</span> 6–10 weeks
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
