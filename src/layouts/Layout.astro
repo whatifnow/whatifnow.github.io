@@ -6,7 +6,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "AI consulting for Irish businesses. Get AI-ready with What If Now — strategy, training, and implementation." } = Astro.props;
+const { title, description = "AI consulting for businesses. Get AI-ready with What If Now — strategy, training, and implementation." } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -48,19 +48,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "Organization",
       "name": "What If Now",
-      "description": "AI consulting for Irish businesses — strategy, training, and implementation.",
+      "description": "AI consulting for businesses — strategy, training, and implementation.",
       "url": "https://whatifnow.github.io",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Dublin",
-        "addressCountry": "IE"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Ireland"
-      },
       "serviceType": ["AI Consulting", "AI Training", "AI Implementation", "AI Readiness Assessment"]
     })} />
   </head>
