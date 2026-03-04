@@ -60,12 +60,13 @@
     .nav-links { display: none; align-items: center; gap: 2rem; }
     .nav-links a { color: var(--slate-light); transition: color 0.2s; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; }
     .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      background: var(--amber); color: var(--charcoal); padding: 0.6rem 1.5rem;
-      border-radius: 9999px; font-weight: 700; font-family: 'DM Sans', sans-serif;
+    .nav-links a.nav-cta {
+      background: var(--amber); color: #1a1a2e; padding: 0.65rem 1.6rem;
+      border-radius: 9999px; font-weight: 800; font-family: 'DM Sans', sans-serif;
       transition: background 0.2s; font-size: 1rem; text-decoration: none;
+      letter-spacing: 0.01em; -webkit-font-smoothing: antialiased;
     }
-    .nav-cta:hover { background: var(--amber-dark); }
+    .nav-links a.nav-cta:hover { background: var(--amber-dark); color: #1a1a2e; }
     .mobile-btn { color: var(--white); display: block; }
     .mobile-menu {
       display: none; background: var(--navy); border-top: 1px solid var(--navy-light);
