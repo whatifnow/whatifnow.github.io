@@ -23,9 +23,9 @@
       --brown: #3C2415;
       --green: #2D6A4F;
       --green-dark: #245a42;
-      --cta: #C05746;
-      --cta-dark: #a84b3d;
-      --mint: #F0F7F4;
+      --cta: #A84A3B;
+      --cta-dark: #8f3e32;
+      --mint: #E4EDE8;
       --white: #ffffff;
       --slate: #6b7280;
       --slate-light: #9ca3af;
@@ -39,7 +39,8 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3 { font-family: 'Fraunces', serif; line-height: 1.2; }
+    h1, h2 { font-family: 'Fraunces', serif; line-height: 1.2; font-variation-settings: 'opsz' 144; }
+    h3 { font-family: 'Source Sans 3', sans-serif; font-weight: 700; line-height: 1.2; }
 
     .container { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
 
@@ -48,15 +49,15 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 50;
       background: rgba(250, 246, 241, 0.95);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(60, 36, 21, 0.08);
+      border-bottom: 1px solid rgba(60, 36, 21, 0.15);
     }
     .nav-inner {
       max-width: 72rem; margin: 0 auto; padding: 1rem 1.5rem;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .logo { font-family: 'Fraunces', serif; font-size: 1.25rem; color: var(--brown); }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.4rem; font-variation-settings: 'opsz' 144; color: var(--brown); }
     .logo-accent { color: var(--green); font-style: italic; }
-    .logo-dot { font-size: 1.4em; font-weight: 700; color: var(--green); text-shadow: 0 0 8px rgba(45, 106, 79, 0.3); }
+    .logo-dot { font-size: 1.5em; font-weight: 700; color: var(--green); text-shadow: 0 0 12px rgba(45, 106, 79, 0.5); }
     .nav-links { display: none; align-items: center; gap: 2rem; }
     .nav-links a { color: var(--slate); transition: color 0.2s; font-family: 'Source Sans 3', sans-serif; font-size: 0.95rem; }
     .nav-links a:hover { color: var(--brown); }
@@ -122,7 +123,7 @@
     /* Sections */
     .section { padding: 5rem 1.5rem; }
     .section-cream { background: var(--cream); color: var(--brown); }
-    .section-mint { background: var(--mint); color: var(--brown); }
+    .section-mint { background: var(--mint); color: var(--brown); border-top: 1px solid rgba(45,106,79,0.1); }
     .section-green { background: var(--green); color: var(--white); }
     .section-brown { background: var(--brown); color: var(--white); }
     .section-header { font-size: 1.875rem; font-weight: 600; text-align: center; margin-bottom: 1rem; color: var(--brown); }
@@ -147,16 +148,16 @@
     /* Cards */
     .card {
       background: var(--white); padding: 2rem; border-radius: 1.5rem;
-      box-shadow: 0 2px 8px rgba(60,36,21,0.06); transition: box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(60,36,21,0.12); transition: box-shadow 0.2s;
     }
-    .card:hover { box-shadow: 0 6px 16px rgba(60,36,21,0.1); }
+    .card:hover { box-shadow: 0 6px 16px rgba(60,36,21,0.16); }
     .card-icon { color: var(--green); margin-bottom: 1rem; }
     .card-icon svg { width: 2.5rem; height: 2.5rem; }
     .card h3 { font-size: 1.25rem; color: var(--brown); margin-bottom: 0.75rem; }
     .card p { color: var(--slate); line-height: 1.7; }
     .card-warm {
       background: var(--white); padding: 1.5rem; border-radius: 1.5rem;
-      box-shadow: 0 2px 8px rgba(60,36,21,0.06);
+      box-shadow: 0 2px 8px rgba(60,36,21,0.12);
     }
     .card-warm h3 { font-size: 1.1rem; color: var(--brown); margin-bottom: 0.5rem; }
     .card-warm p { color: var(--slate); font-size: 0.9rem; line-height: 1.6; }
@@ -167,7 +168,7 @@
     /* Stage icons */
     .stage-icon {
       width: 3rem; height: 3rem; border-radius: 9999px;
-      background: var(--mint); border: 2px solid var(--green);
+      background: var(--white); border: 2px solid var(--green);
       display: flex; align-items: center; justify-content: center;
       color: var(--green); position: relative; z-index: 10;
     }
@@ -198,12 +199,12 @@
     }
     .engage-card.light {
       background: var(--white);
-      box-shadow: 0 2px 8px rgba(60,36,21,0.06);
+      box-shadow: 0 2px 8px rgba(60,36,21,0.12);
     }
-    .engage-card.light:hover { box-shadow: 0 6px 16px rgba(60,36,21,0.1); }
+    .engage-card.light:hover { box-shadow: 0 6px 16px rgba(60,36,21,0.16); }
     .engage-card.featured {
       background: var(--green); color: var(--white);
-      box-shadow: 0 8px 24px rgba(45,106,79,0.2); transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(45,106,79,0.25); transform: scale(1.03);
     }
     .engage-tag { font-size: 0.875rem; font-weight: 500; font-family: 'Source Sans 3', sans-serif; }
     .engage-tag.green { color: var(--green); }
@@ -263,7 +264,7 @@
     .scope-inner {
       display: inline-flex; flex-direction: column; align-items: center; gap: 0.5rem;
       background: var(--white); padding: 1rem 2rem; border-radius: 9999px;
-      box-shadow: 0 2px 8px rgba(60,36,21,0.06);
+      box-shadow: 0 2px 8px rgba(60,36,21,0.10);
     }
     .scope-inner .label { color: var(--green); font-weight: 600; }
     .scope-inner span { color: var(--slate); font-size: 0.875rem; }
@@ -286,8 +287,8 @@
     .about-content strong { color: var(--brown); }
     .about-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
     .about-tag {
-      background: var(--mint); padding: 0.75rem 1.5rem; border-radius: 9999px;
-      border: 1px solid rgba(45,106,79,0.15);
+      background: var(--white); padding: 0.75rem 1.5rem; border-radius: 9999px;
+      border: 1px solid rgba(45,106,79,0.2);
     }
     .about-tag .label { font-weight: 600; color: var(--green); }
     .about-tag .detail { color: var(--slate); }
@@ -371,6 +372,17 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .fade-in { animation: fadeInUp 0.6s ease-out both; }
+
+    /* Focus states */
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+    }
+    .nav-cta:focus-visible, .btn-primary:focus-visible, .engage-cta:focus-visible,
+    .final-cta .cta-btn:focus-visible, .newsletter-btn:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>

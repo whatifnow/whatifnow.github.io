@@ -26,7 +26,7 @@
       --coral: #F72585;
       --coral-dark: #d91f74;
       --cool-white: #F8F9FC;
-      --text-dark: #1A1A2E;
+      --text-dark: #2D3748;
       --white: #ffffff;
       --slate-light: #a0aec0;
       --slate: #718096;
@@ -47,6 +47,7 @@
     /* Nav */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: #1e2444;
       background: rgba(26, 26, 46, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -61,6 +62,7 @@
       letter-spacing: 0.1em;
     }
     .logo-accent {
+      color: var(--cyan);
       background: linear-gradient(135deg, #4CC9F0, #F72585);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -124,11 +126,11 @@
     }
     .btn-primary:hover { background: var(--coral-dark); }
     .btn-secondary {
-      border: 2px solid var(--slate); color: var(--white); padding: 1rem 2rem;
+      border: 2px solid var(--cyan); color: var(--white); padding: 1rem 2rem;
       border-radius: 9999px; font-weight: 600; font-size: 1.1rem;
       transition: background 0.2s; text-align: center; font-family: 'Space Grotesk', sans-serif;
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.05); }
+    .btn-secondary:hover { background: rgba(76,201,240,0.1); }
     .hero-visual { display: none; position: relative; }
 
     @media (min-width: 640px) {
@@ -147,9 +149,8 @@
     .section-dark-alt { background: var(--deep-space-light); }
     .section-header {
       font-size: 1.875rem; font-weight: 700; text-align: center; margin-bottom: 1rem;
-      text-transform: uppercase; letter-spacing: 0.04em;
     }
-    .section-light .section-header { color: var(--text-dark); }
+    .section-light .section-header { color: #1A1A2E; }
     .section-dark .section-header { color: var(--white); }
     .section-subtitle { text-align: center; font-size: 1.1rem; margin-bottom: 3rem; max-width: 40rem; margin-left: auto; margin-right: auto; }
     .section-light .section-subtitle { color: var(--slate); }
@@ -181,9 +182,10 @@
 
     /* Cards - dark section (glassmorphism) */
     .card-dark {
-      background: rgba(255,255,255,0.05);
+      background: #1e2444;
+      background: rgba(255,255,255,0.08);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
       padding: 1.5rem; border-radius: 1rem;
     }
     .card-dark h3 { font-size: 1.1rem; color: var(--white); margin-bottom: 0.5rem; }
@@ -205,11 +207,11 @@
     .stages-line {
       display: none; position: absolute; top: 1.5rem;
       left: 12.5%; right: 12.5%; height: 2px;
-      background: linear-gradient(to right, rgba(76,201,240,0.2), var(--cyan), rgba(76,201,240,0.2));
+      background: var(--cyan);
     }
     .stages-line-mobile {
       position: absolute; top: 0; bottom: 0; left: 1.5rem; width: 2px;
-      background: linear-gradient(to bottom, rgba(76,201,240,0.2), var(--cyan), rgba(76,201,240,0.2));
+      background: var(--cyan);
     }
     .stage-item { position: relative; padding-left: 3rem; }
     .stage-item .stage-icon { position: absolute; left: 0; }
@@ -258,8 +260,8 @@
     }
     .engage-cta.primary { background: var(--coral); color: var(--white); }
     .engage-cta.primary:hover { background: var(--coral-dark); }
-    .engage-cta.dark { background: var(--deep-space); color: var(--white); }
-    .engage-cta.dark:hover { background: var(--deep-space-light); }
+    .engage-cta.dark { background: transparent; color: var(--cyan-dark); border: 2px solid var(--cyan); }
+    .engage-cta.dark:hover { background: rgba(76,201,240,0.08); }
 
     @media (min-width: 768px) {
       .engage-grid { align-items: flex-start; }
@@ -270,12 +272,12 @@
     .steps-line {
       display: none; position: absolute; top: 2rem;
       left: 16.67%; right: 16.67%; height: 2px;
-      background: linear-gradient(to right, rgba(76,201,240,0.2), var(--cyan), rgba(76,201,240,0.2));
+      background: var(--cyan);
     }
     .step-item { position: relative; text-align: center; }
     .step-number {
       width: 4rem; height: 4rem; margin: 0 auto 1.5rem;
-      border-radius: 9999px; background: linear-gradient(135deg, #4CC9F0, #F72585);
+      border-radius: 9999px; background: #4CC9F0;
       color: var(--white);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.5rem; font-weight: 700; position: relative; z-index: 10;
@@ -294,9 +296,10 @@
     }
     .scope-inner {
       display: inline-flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      background: rgba(255,255,255,0.05);
+      background: #1e2444;
+      background: rgba(255,255,255,0.08);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
       padding: 1rem 2rem; border-radius: 9999px;
     }
     .scope-inner .label { color: var(--cyan); font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
@@ -320,9 +323,10 @@
     .about-content strong { color: var(--white); }
     .about-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
     .about-tag {
-      background: rgba(255,255,255,0.05);
+      background: #1e2444;
+      background: rgba(255,255,255,0.08);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
       padding: 0.75rem 1.5rem; border-radius: 9999px;
     }
     .about-tag .label { font-weight: 600; color: var(--cyan); font-family: 'IBM Plex Mono', monospace; }
@@ -360,9 +364,10 @@
     /* Final CTA */
     .final-cta {
       padding: 6rem 1.5rem; text-align: center;
-      background: var(--deep-space-light);
+      background: #0f1629;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
-    .final-cta h2 { font-size: 2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .final-cta h2 { font-size: 2rem; margin-bottom: 1.5rem; }
     .final-cta p { color: var(--slate-light); font-size: 1.1rem; max-width: 32rem; margin: 0 auto 2.5rem; line-height: 1.7; }
     .final-cta .cta-btn {
       display: inline-block; background: var(--coral); color: var(--white);
@@ -408,7 +413,7 @@
     /* Gradient decorative line */
     .gradient-line {
       height: 3px; width: 4rem; margin: 0 auto 2rem;
-      background: linear-gradient(135deg, #4CC9F0, #F72585);
+      background: var(--cyan);
       border-radius: 9999px;
     }
 
@@ -418,6 +423,25 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .fade-in { animation: fadeInUp 0.6s ease-out both; }
+
+    /* Featured card responsive fix */
+    @media (max-width: 767px) {
+      .engage-card.featured { transform: none; }
+    }
+
+    /* Focus-visible styles */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+
+    /* Keep headings at full dark on light sections */
+    .card h3,
+    .engage-card.light .engage-title,
+    .compliance-abbr,
+    .section-light h3 { color: #1A1A2E; }
   </style>
 </head>
 <body>
@@ -769,7 +793,7 @@
       <h2 class="section-header">Three Steps. Real Results. No Fluff.</h2>
       <p class="section-subtitle">Here's how working with us actually works.</p>
       <div class="steps-wrapper">
-        <div class="steps-line" style="background: linear-gradient(to right, rgba(76,201,240,0.2), #4CC9F0, rgba(76,201,240,0.2));"></div>
+        <div class="steps-line"></div>
         <div class="grid-3">
           <div class="step-item">
             <div class="step-number">1</div>
