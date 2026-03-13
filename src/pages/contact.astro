@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Contact Us | What If Now">
+  <Navigation />
+  <main class="bg-off-white pt-32 pb-24 px-6">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4 font-serif">Let's Talk</h1>
+      <p class="text-slate text-lg mb-10 leading-relaxed">
+        Tell us a little about what you're working on and we'll get back to you within 24 hours.
+      </p>
+
+      <form action="https://formspree.io/f/mvzwrded" method="POST" class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="block text-navy font-semibold mb-1">
+              Full Name <span class="text-amber">*</span>
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+            />
+          </div>
+          <div>
+            <label for="company" class="block text-navy font-semibold mb-1">
+              Company Name <span class="text-amber">*</span>
+            </label>
+            <input
+              type="text"
+              name="company"
+              id="company"
+              required
+              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+            />
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="email" class="block text-navy font-semibold mb-1">
+              Email <span class="text-amber">*</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+            />
+          </div>
+          <div>
+            <label for="phone" class="block text-navy font-semibold mb-1">
+              Phone Number <span class="text-amber">*</span>
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              required
+              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+            />
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="preferred_contact" class="block text-navy font-semibold mb-1">
+              Preferred Contact Method <span class="text-amber">*</span>
+            </label>
+            <select
+              name="preferred_contact"
+              id="preferred_contact"
+              required
+              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy bg-white"
+            >
+              <option value="" disabled selected>Select preferred method...</option>
+              <option value="Email">Email</option>
+              <option value="Phone">Phone</option>
+              <option value="Video Call">Video Call</option>
+            </select>
+          </div>
+          <div>
+            <label for="subject" class="block text-navy font-semibold mb-1">
+              Subject <span class="text-amber">*</span>
+            </label>
+            <input
+              type="text"
+              name="subject"
+              id="subject"
+              required
+              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="message" class="block text-navy font-semibold mb-1">
+            Message <span class="text-amber">*</span>
+          </label>
+          <textarea
+            name="message"
+            id="message"
+            rows="5"
+            required
+            class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+          ></textarea>
+        </div>
+
+        <div class="text-center">
+          <button
+            type="submit"
+            class="bg-amber text-navy font-bold py-3 px-8 rounded-xl hover:bg-amber/90 transition"
+          >
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const subject = params.get('subject');
+  if (subject) document.getElementById('subject').value = subject;
+</script>
