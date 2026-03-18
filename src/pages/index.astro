@@ -18,9 +18,6 @@ import Footer from '../components/Footer.astro';
   <Navigation />
   <main>
     <Hero />
-    <section class="monkey-section">
-      <img src="/monkey.jpg" alt="A monkey" width="800" height="530" />
-    </section>
     <PainPoints />
     <ServiceStages />
     <EngagementModels />
@@ -47,17 +44,5 @@ import Footer from '../components/Footer.astro';
 
   section {
     animation: fadeInUp 0.6s ease-out;
-  }
-
-  .monkey-section {
-    display: flex;
-    justify-content: center;
-    padding: 2rem 1rem;
-  }
-
-  .monkey-section img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
   }
 </style>
