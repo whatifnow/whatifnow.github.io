@@ -415,7 +415,7 @@ export default function SARDemo() {
       <div className="dn" style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none", borderBottom: `1px solid ${C.border}`, background: C.white, padding: "0 22px" }}>
         {views.map(v => <button key={v.id} onClick={() => setActiveView(v.id)} style={{ all: "unset", cursor: "pointer", padding: "12px 16px", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap", color: activeView === v.id ? C.navy : C.muted, borderBottom: activeView === v.id ? `2.5px solid ${C.teal}` : "2.5px solid transparent", transition: "all 0.15s" }}>{v.label}</button>)}
       </div>
-      <div key={activeView} className="df" style={{ padding: "24px 22px", maxHeight: "calc(100vh - 155px)", overflowY: "auto" }}><Comp /></div>
+      <div key={activeView} className="df" style={{ padding: "24px 22px", maxHeight: "calc(100vh - 155px)", overflowY: "auto" }}><div style={{ maxWidth: 860, margin: "0 auto" }}><Comp /></div></div>
     </div>
   );
 }
