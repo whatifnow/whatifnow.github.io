@@ -6,7 +6,7 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   site: 'https://whatifnow.github.io',
-  integrations: [sitemap(), react()],
+  integrations: [sitemap({ filter: (page) => !page.includes('threshold-sar-demo') }), react()],
   vite: {
     plugins: [tailwindcss()]
   }
