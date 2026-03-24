@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Your AI Readiness Toolkit | What If Now"
+  description="Download your free AI Readiness Toolkit from What If Now."
+  noindex={true}
+>
+  <Navigation />
+  <main class="bg-off-white pt-32 pb-24 px-6 min-h-screen">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-teal/10 mb-8">
+        <svg class="w-10 h-10 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4 font-serif">
+        Your Toolkit Is Ready
+      </h1>
+      <p class="text-slate text-lg mb-10 leading-relaxed">
+        Thank you for completing the assessment. Your free AI Ready Business Toolkit is below — practical frameworks to act on your results today.
+      </p>
+
+      <a
+        href="/toolkit/ai-ready-business-toolkit.pdf"
+        download="WIN-AI-Ready-Business-Toolkit.pdf"
+        class="inline-block bg-teal text-white font-bold py-4 px-10 rounded-xl hover:bg-teal-dark transition text-lg mb-8"
+      >
+        Download Your Free Toolkit
+      </a>
+
+      <div class="border-t border-slate/20 pt-8 mt-4">
+        <p class="text-slate mb-4">Want to talk through your results with one of our experts?</p>
+        <a
+          href="/contact?subject=AI Readiness Assessment - Book a Call"
+          class="inline-block bg-navy text-white font-bold py-3 px-8 rounded-xl hover:bg-navy-light transition"
+        >
+          Book a Free 30-Minute Call
+        </a>
+        <p class="text-slate/60 text-sm mt-3">No obligation. No hard sell.</p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

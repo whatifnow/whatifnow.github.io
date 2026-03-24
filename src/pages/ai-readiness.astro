@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import AIReadinessQuiz from '../components/AIReadinessQuiz.jsx';
+---
+
+<Layout
+  title="AI Readiness Assessment | What If Now"
+  description="Find out how AI-ready your business really is. 18 questions, 3 minutes. Get your free personalised report and sector benchmark instantly."
+>
+  <Navigation />
+  <main class="bg-off-white min-h-screen">
+    <AIReadinessQuiz client:only="react" />
+  </main>
+  <Footer />
+</Layout>
