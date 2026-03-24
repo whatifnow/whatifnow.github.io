@@ -664,7 +664,7 @@ function ResultsScreen({ lead, answers, scores }) {
       {/* Hidden Formspree form */}
       <form
         ref={formRef}
-        action="https://formspree.io/f/mwvrgqgb"
+        action="https://formspree.io/f/xbdznqoo"
         method="POST"
         style={{ display: 'none' }}
       >
