@@ -45,12 +45,12 @@ const stages = [
 
       <div class="grid md:grid-cols-4 gap-8">
         {stages.map((stage, index) => (
-          <div class="relative pl-12 md:pl-0 md:text-center">
+          <div class="relative pl-12 md:pl-0 md:text-center md:flex md:flex-col">
             <!-- Stage number badge (mobile: left side, desktop: centered) -->
             <div class="absolute left-0 md:relative md:left-auto w-12 h-12 mx-auto mb-4 rounded-full bg-navy-light border-2 border-teal flex items-center justify-center text-teal relative z-10">
               <div set:html={stage.icon} />
             </div>
-            <div class="bg-navy-light p-6 rounded-2xl mt-2 md:mt-0">
+            <div class="bg-navy-light p-6 rounded-2xl mt-2 md:mt-0 md:flex-1">
               <h3 class="text-lg font-bold mb-2 text-white">{stage.title}</h3>
               <p class="text-slate-light text-sm mb-4 leading-relaxed">{stage.description}</p>
               <ul class="space-y-1">
