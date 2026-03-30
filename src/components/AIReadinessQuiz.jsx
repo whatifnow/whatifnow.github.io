@@ -362,7 +362,7 @@ function HeroScreen({ onStart }) {
     <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 py-24">
       <div className="max-w-3xl mx-auto text-center">
         <span className="inline-block text-teal font-semibold text-sm tracking-widest uppercase mb-6">
-          Free · 3 Minutes · Results by Email
+          Free · 3 Minutes · Instant On-Screen Results
         </span>
 
         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 font-serif leading-tight">
@@ -370,7 +370,7 @@ function HeroScreen({ onStart }) {
         </h1>
 
         <p className="text-slate-300 text-xl mb-10 leading-relaxed max-w-2xl mx-auto">
-          18 questions across 6 dimensions. Get your personalised readiness score, sector benchmark, and a free toolkit — emailed to you instantly.
+          18 questions across 6 dimensions. Get your AI readiness score and sector benchmark on screen — plus a free toolkit emailed to you at the end.
         </p>
 
         <div className="flex flex-wrap justify-center gap-8 mb-12 text-center">
@@ -394,7 +394,7 @@ function HeroScreen({ onStart }) {
           Start My Free Assessment
         </button>
 
-        <p className="text-slate-500 text-sm mt-4">No account needed. Your score and free toolkit are emailed to you at the end.</p>
+        <p className="text-slate-500 text-sm mt-4">No account needed. Results shown instantly. We'll email you a summary and toolkit link at the end.</p>
       </div>
     </div>
   );
@@ -512,7 +512,7 @@ function LeadScreen({ lead, setLead, onNext }) {
               Start the Assessment →
             </button>
             <p className="text-slate-400 text-xs mt-3">
-              We'll email your score and free toolkit when you finish. Your data is used only to personalise your results.{' '}
+              Your answers are used to calculate your score. We'll email you a results summary and toolkit link when you finish.{' '}
               <a href="/privacy" className="underline hover:text-slate-300">Privacy Policy</a>.
             </p>
           </div>
@@ -870,7 +870,7 @@ function ResultsScreen({ lead, answers, scores, setScreen }) {
             Take action on your results
           </h2>
           <p className="text-slate-300 mb-8 max-w-xl mx-auto">
-            Download your free AI Ready Business Toolkit — practical frameworks to act on everything you've just learned.
+            Download your free AI Ready Business Toolkit — practical frameworks to help your team start using AI with confidence.
           </p>
           <button
             onClick={handleDownload}
