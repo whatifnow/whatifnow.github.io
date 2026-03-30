@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # brand PDF output (binary)
 brand/output/
+
+# git worktrees
+.worktrees/
