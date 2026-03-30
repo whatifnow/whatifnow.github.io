@@ -694,6 +694,9 @@ function ResultsScreen({ lead, answers, scores, setScreen }) {
         ...Object.fromEntries(
           DIMENSIONS.map(dim => [`score_${dim.id}`, Math.round(dimPct[dim.id])])
         ),
+        ...Object.fromEntries(
+          DIMENSIONS.flatMap(dim => dim.questions.map(q => [q.id, answers[q.id] ?? '']))
+        ),
       };
 
       const [emailRes, formspreeRes] = await Promise.all([
