@@ -1,0 +1,8 @@
+{
+  "name": "send-toolkit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}

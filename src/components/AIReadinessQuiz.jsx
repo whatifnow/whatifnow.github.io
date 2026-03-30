@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -641,13 +641,17 @@ function QuizScreen({ answers, setAnswers, currentDim, setCurrentDim, currentQ, 
 
 // ─── ResultsScreen ────────────────────────────────────────────────────────────
 
-function ResultsScreen({ lead, answers, scores }) {
+const CLOUD_FUNCTION_URL = 'https://europe-west1-whatifnow-production.cloudfunctions.net/send-toolkit';
+const FORMSPREE_URL = 'https://formspree.io/f/mwvrgqgb';
+
+function ResultsScreen({ lead, answers, scores, setScreen }) {
   const { dimPct, overall, tier, topStrength, priorityGap } = scores;
   const tierData = TIERS[tier];
   const sectorData = SECTOR_DATA[lead.sector] || SECTOR_DATA['Other'];
   const sectorBenchmark = sectorData.benchmark;
   const vsAvg = Math.round(overall) - sectorBenchmark;
-  const formRef = useRef(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   function barColor(pct) {
     if (pct < 35) return '#E8913A';
@@ -655,36 +659,68 @@ function ResultsScreen({ lead, answers, scores }) {
     return '#2A4365';
   }
 
-  function handleDownload() {
-    formRef.current.submit();
+  async function handleDownload() {
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const emailPayload = {
+        name: lead.name,
+        email: lead.email,
+        company: lead.company,
+        sector: lead.sector,
+        size: lead.size,
+        overall: Math.round(overall),
+        tier,
+        topStrength: topStrength.label,
+        topStrengthScore: Math.round(dimPct[topStrength.id]),
+        priorityGap: priorityGap.label,
+        priorityGapScore: Math.round(dimPct[priorityGap.id]),
+        quickWin: sectorData.quickWin,
+      };
+
+      const formspreePayload = {
+        name: lead.name,
+        email: lead.email,
+        company: lead.company,
+        sector: lead.sector,
+        size: lead.size,
+        overall_score: Math.round(overall),
+        tier,
+        top_strength: topStrength.label,
+        top_strength_score: Math.round(dimPct[topStrength.id]),
+        priority_gap: priorityGap.label,
+        priority_gap_score: Math.round(dimPct[priorityGap.id]),
+        subject: `AI Readiness Assessment — ${lead.company} — ${tier} (${Math.round(overall)}%)`,
+        ...Object.fromEntries(
+          DIMENSIONS.map(dim => [`score_${dim.id}`, Math.round(dimPct[dim.id])])
+        ),
+      };
+
+      const [emailRes, formspreeRes] = await Promise.all([
+        fetch(CLOUD_FUNCTION_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(emailPayload),
+        }),
+        fetch(FORMSPREE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(formspreePayload),
+        }),
+      ]);
+
+      if (!emailRes.ok) throw new Error('Failed to send email');
+      if (!formspreeRes.ok) throw new Error('Failed to save submission');
+      setScreen('sent');
+    } catch (err) {
+      setSubmitError('Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
     <div className="bg-off-white min-h-screen pb-24">
-      {/* Hidden Formspree form */}
-      <form
-        ref={formRef}
-        action="https://formspree.io/f/mwvrgqgb"
-        method="POST"
-        style={{ display: 'none' }}
-      >
-        <input type="hidden" name="_next" value="https://whatifnow.ie/toolkit" />
-        <input type="hidden" name="name" value={lead.name} />
-        <input type="hidden" name="email" value={lead.email} />
-        <input type="hidden" name="company" value={lead.company} />
-        <input type="hidden" name="sector" value={lead.sector} />
-        <input type="hidden" name="size" value={lead.size} />
-        <input type="hidden" name="overall_score" value={Math.round(overall)} />
-        <input type="hidden" name="tier" value={tier} />
-        {DIMENSIONS.map(dim => (
-          <input key={dim.id} type="hidden" name={`score_${dim.id}`} value={Math.round(dimPct[dim.id])} />
-        ))}
-        {Object.entries(answers).map(([qid, val]) => (
-          <input key={qid} type="hidden" name={qid} value={val} />
-        ))}
-        <input type="hidden" name="subject" value={`AI Readiness Assessment — ${lead.company} — ${tier} (${Math.round(overall)}%)`} />
-      </form>
-
       {/* 1. Tier Hero */}
       <div className="py-16 px-6" style={{ background: 'linear-gradient(135deg, #2A4365, #3B5680)' }}>
         <div className="max-w-3xl mx-auto text-center">
@@ -834,11 +870,15 @@ function ResultsScreen({ lead, answers, scores }) {
           </p>
           <button
             onClick={handleDownload}
-            className="inline-block bg-teal text-white font-bold py-4 px-10 rounded-xl hover:opacity-90 transition text-lg mb-4"
+            disabled={submitting}
+            className="inline-block bg-teal text-white font-bold py-4 px-10 rounded-xl hover:opacity-90 transition text-lg mb-2 disabled:opacity-50"
           >
-            Download Your Free Toolkit
+            {submitting ? 'Sending…' : 'Get My Free Toolkit →'}
           </button>
-          <p className="text-slate-400 text-sm mb-6">Submits your results — then instantly takes you to your download.</p>
+          {submitError && (
+            <p className="text-red-400 text-sm mt-1">{submitError}</p>
+          )}
+          <p className="text-slate-400 text-sm mb-6">We'll email your results and toolkit — check your inbox.</p>
 
           <div className="border-t pt-6" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
             <p className="text-slate-300 mb-4">Want expert guidance on your results?</p>
@@ -853,6 +893,37 @@ function ResultsScreen({ lead, answers, scores }) {
           </div>
         </div>
 
+      </div>
+    </div>
+  );
+}
+
+// ─── SentScreen ───────────────────────────────────────────────────────────────
+
+function SentScreen({ lead }) {
+  return (
+    <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 py-24">
+      <div className="max-w-xl mx-auto text-center">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-teal/10 mb-8">
+          <svg className="w-10 h-10 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-serif">Check your inbox</h1>
+        <p className="text-slate-300 text-lg mb-2 leading-relaxed">
+          We've sent your results and toolkit to{' '}
+          <strong className="text-white">{lead.email}</strong>.
+        </p>
+        <p className="text-slate-400 text-sm mb-10">
+          Check your spam folder if it doesn't arrive within a minute.
+        </p>
+        <a
+          href="/contact?subject=AI Readiness Assessment - Book a Call"
+          className="inline-block bg-teal text-white font-bold py-4 px-10 rounded-xl hover:opacity-90 transition text-lg"
+        >
+          Book a Free 30-Minute Call
+        </a>
+        <p className="text-slate-500 text-xs mt-3">No obligation. No hard sell.</p>
       </div>
     </div>
   );
@@ -895,8 +966,10 @@ export default function AIReadinessQuiz() {
   }
 
   if (screen === 'results') {
-    return <ResultsScreen lead={lead} answers={answers} scores={scores} />;
+    return <ResultsScreen lead={lead} answers={answers} scores={scores} setScreen={setScreen} />;
   }
+
+  if (screen === 'sent') return <SentScreen lead={lead} />;
 
   return null;
 }
