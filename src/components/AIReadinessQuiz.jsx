@@ -362,7 +362,7 @@ function HeroScreen({ onStart }) {
     <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 py-24">
       <div className="max-w-3xl mx-auto text-center">
         <span className="inline-block text-teal font-semibold text-sm tracking-widest uppercase mb-6">
-          Free · 3 Minutes · Instant Results
+          Free · 3 Minutes · Results by Email
         </span>
 
         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 font-serif leading-tight">
@@ -370,7 +370,7 @@ function HeroScreen({ onStart }) {
         </h1>
 
         <p className="text-slate-300 text-xl mb-10 leading-relaxed max-w-2xl mx-auto">
-          18 questions across 6 dimensions. Get your personalised readiness score, sector benchmark, and a clear action plan — instantly.
+          18 questions across 6 dimensions. Get your personalised readiness score, sector benchmark, and a free toolkit — emailed to you instantly.
         </p>
 
         <div className="flex flex-wrap justify-center gap-8 mb-12 text-center">
@@ -394,7 +394,7 @@ function HeroScreen({ onStart }) {
           Start My Free Assessment
         </button>
 
-        <p className="text-slate-500 text-sm mt-4">No account needed. Results shown instantly.</p>
+        <p className="text-slate-500 text-sm mt-4">No account needed. Your score and free toolkit are emailed to you at the end.</p>
       </div>
     </div>
   );
@@ -512,7 +512,8 @@ function LeadScreen({ lead, setLead, onNext }) {
               Start the Assessment →
             </button>
             <p className="text-slate-400 text-xs mt-3">
-              Your data is used only to personalise your results and send your report. No spam.
+              We'll email your score and free toolkit when you finish. Your data is used only to personalise your results.{' '}
+              <a href="/privacy" className="underline hover:text-slate-300">Privacy Policy</a>.
             </p>
           </div>
         </form>
@@ -881,7 +882,8 @@ function ResultsScreen({ lead, answers, scores, setScreen }) {
           {submitError && (
             <p className="text-red-400 text-sm mt-1">{submitError}</p>
           )}
-          <p className="text-slate-400 text-sm mb-6">We'll email your results and toolkit — check your inbox.</p>
+          <p className="text-slate-400 text-sm mb-2">We'll email your results and toolkit to <strong className="text-slate-300">{lead.email}</strong>.</p>
+          <p className="text-slate-500 text-xs mb-6"><a href="/privacy" className="underline hover:text-slate-400">Privacy Policy</a></p>
 
           <div className="border-t pt-6" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
             <p className="text-slate-300 mb-4">Want expert guidance on your results?</p>
