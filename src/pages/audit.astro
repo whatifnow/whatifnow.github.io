@@ -1,0 +1,1235 @@
+---
+// WIN Audit — whatifnow.ie
+// High-fidelity audit report · 8 reviewers · 5 tabs
+// noindex: this is an internal-facing deliverable
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>WIN Audit — whatifnow.ie</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#2A4365; --navy-light:#3B5680; --navy-deep:#1F3350;
+    --teal:#2EC4B6; --teal-dark:#1A7D73;
+    --amber:#E8913A; --amber-dark:#d4802e;
+    --off:#F2EEE9; --slate:#475569; --slate-light:#C4D2E0; --charcoal:#2D3142;
+    --red:#D64545; --red-soft:#F8E4E4;
+    --green:#2F9E6C; --green-soft:#DDF0E6;
+    --yellow:#E8B13A; --yellow-soft:#FAEFD2;
+    --line:rgba(255,255,255,.08);
+    --line-dark:rgba(42,67,101,.12);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--navy);
+    color:#fff;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'DM Serif Display',Georgia,serif; font-weight:400}
+  .ui{font-family:'DM Sans',system-ui,sans-serif}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .teal{color:var(--teal)}
+  .amber{color:var(--amber)}
+  .red{color:var(--red)}
+  .green{color:var(--green)}
+
+  /* Top bar */
+  .topbar{
+    position:sticky;top:0;z-index:30;
+    background:rgba(30,48,73,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1280px;margin:0 auto;
+    display:flex;align-items:center;gap:24px;
+    padding:14px 28px;
+  }
+  .wordmark{font-weight:700;letter-spacing:-.025em;font-size:17px}
+  .wordmark .if{color:var(--teal)}
+  .tag{
+    font-family:'DM Sans',sans-serif;font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--slate-light);
+    padding:4px 10px;border:1px solid var(--line);border-radius:999px;
+  }
+  .spacer{flex:1}
+  .tabs{display:flex;gap:4px;flex-wrap:wrap}
+  .tabs button{
+    font-family:'DM Sans',sans-serif;
+    background:transparent;color:var(--slate-light);
+    border:1px solid transparent;border-radius:999px;
+    padding:7px 14px;font-size:13px;cursor:pointer;
+    transition:all .15s;
+  }
+  .tabs button:hover{color:#fff}
+  .tabs button.active{color:var(--navy);background:var(--teal);border-color:var(--teal)}
+
+  /* Shell */
+  .shell{max-width:1280px;margin:0 auto;padding:48px 28px 120px}
+  .view{display:none;animation:fade .25s ease-out}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* HEADERS */
+  .eyebrow{
+    font-family:'DM Sans',sans-serif;font-size:11px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--teal);
+    margin-bottom:12px;
+  }
+  h1.page{font-family:'DM Serif Display',serif;font-size:56px;line-height:1.05;letter-spacing:-.01em;margin:0 0 12px}
+  .lede{font-size:19px;color:var(--slate-light);max-width:720px;margin:0 0 40px;line-height:1.5}
+
+  /* DASHBOARD */
+  .hero-card{
+    background:linear-gradient(180deg,#2F4A71,#223857);
+    border:1px solid var(--line);border-radius:28px;
+    padding:40px 44px;
+    display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;
+    margin-bottom:40px;
+  }
+  .score-ring{
+    position:relative;width:260px;height:260px;margin:0 auto;
+  }
+  .score-num{
+    font-family:'DM Serif Display',serif;font-size:96px;line-height:1;
+    color:#fff;
+  }
+  .score-den{color:var(--slate-light);font-size:22px;margin-left:4px;font-family:'DM Sans',sans-serif}
+  .ring-label{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    text-align:center;
+  }
+  .ring-sub{
+    font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--teal);margin-top:8px;
+  }
+  .verdict h2{font-family:'DM Serif Display',serif;font-size:40px;line-height:1.1;margin:0 0 16px}
+  .verdict p{color:var(--slate-light);font-size:17px;line-height:1.55;margin:0 0 12px}
+
+  .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .pill{
+    font-family:'DM Sans',sans-serif;font-size:12px;
+    padding:6px 12px;border-radius:999px;
+    background:rgba(255,255,255,.08);color:var(--slate-light);
+    border:1px solid var(--line);
+  }
+  .pill.red{background:rgba(214,69,69,.15);color:#ffb5b5;border-color:rgba(214,69,69,.3)}
+  .pill.amber{background:rgba(232,145,58,.15);color:#ffc98e;border-color:rgba(232,145,58,.3)}
+
+  /* Scorecard grid */
+  .grid-scores{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    margin-bottom:48px;
+  }
+  .score-card{
+    background:var(--navy-light);border:1px solid var(--line);
+    border-radius:18px;padding:22px;
+    display:flex;flex-direction:column;gap:10px;
+    cursor:pointer;transition:all .15s;
+  }
+  .score-card:hover{transform:translateY(-2px);border-color:var(--teal)}
+  .score-head{display:flex;align-items:center;justify-content:space-between}
+  .score-agent{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--slate-light);letter-spacing:.04em}
+  .score-lens{font-family:'DM Serif Display',serif;font-size:22px;line-height:1.15}
+  .score-big{font-family:'DM Serif Display',serif;font-size:44px;line-height:1}
+  .score-big span{font-size:16px;color:var(--slate-light);font-family:'DM Sans',sans-serif;margin-left:2px}
+  .bar{height:4px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--teal)}
+  .bar i.red{background:var(--red)}
+  .bar i.amber{background:var(--amber)}
+  .bar i.green{background:var(--green)}
+  .score-note{font-size:13px;color:var(--slate-light);line-height:1.45}
+
+  /* Priority block */
+  .priority{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;
+    margin-bottom:48px;
+  }
+  .pri-col{
+    background:var(--navy-light);border-radius:20px;padding:24px;
+    border:1px solid var(--line);
+  }
+  .pri-col h3{font-family:'DM Serif Display',serif;font-size:24px;margin:0 0 4px}
+  .pri-col .cnt{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--slate-light);letter-spacing:.14em;text-transform:uppercase}
+  .pri-col ul{list-style:none;padding:0;margin:16px 0 0}
+  .pri-col li{
+    padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08);
+    font-size:14px;color:var(--slate-light);line-height:1.45;
+    display:flex;gap:10px;
+  }
+  .pri-col li:last-child{border-bottom:none}
+  .pri-col li .num{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);
+    flex-shrink:0;min-width:32px;
+  }
+  .pri-col.p0{border-top:3px solid var(--red)}
+  .pri-col.p1{border-top:3px solid var(--amber)}
+  .pri-col.p2{border-top:3px solid var(--teal)}
+
+  /* Agent pages */
+  .agent-hero{
+    background:linear-gradient(180deg,#2F4A71,#223857);
+    border-radius:28px;padding:40px;margin-bottom:32px;
+    display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;
+    border:1px solid var(--line);
+  }
+  .avatar{
+    width:100px;height:100px;border-radius:26px;
+    background:var(--teal);color:var(--navy-deep);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'DM Serif Display',serif;font-size:46px;line-height:1;
+    flex-shrink:0;
+  }
+  .avatar.v2{background:var(--amber)}
+  .avatar.v3{background:#E8913A}
+  .avatar.v4{background:#7BB7F0}
+  .avatar.v5{background:#C084FC}
+  .avatar.v6{background:#F87171}
+  .avatar.v7{background:#34D399}
+  .avatar.v8{background:#FBBF24}
+  .agent-hero .name-block h2{font-family:'DM Serif Display',serif;font-size:40px;margin:0 0 4px;line-height:1.05}
+  .agent-hero .role{color:var(--slate-light);font-size:15px;font-family:'DM Sans',sans-serif}
+  .agent-hero .quote{font-style:italic;color:#fff;margin-top:10px;font-size:16px;line-height:1.4;max-width:560px}
+  .agent-hero .agent-score{text-align:center}
+  .agent-hero .agent-score .n{font-family:'DM Serif Display',serif;font-size:72px;line-height:1}
+  .agent-hero .agent-score .d{color:var(--slate-light);font-family:'DM Sans',sans-serif;font-size:14px}
+  .agent-hero .agent-score .g{margin-top:8px;padding:6px 14px;border-radius:999px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700}
+
+  /* Findings */
+  .findings{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .finding{
+    background:var(--navy-light);border:1px solid var(--line);border-radius:18px;
+    padding:24px;display:flex;flex-direction:column;gap:12px;
+  }
+  .finding.full{grid-column:1/-1}
+  .fi-head{display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .sev{
+    font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;
+    padding:4px 10px;border-radius:6px;text-transform:uppercase;
+  }
+  .sev.p0{background:rgba(214,69,69,.18);color:#ff9898}
+  .sev.p1{background:rgba(232,145,58,.2);color:#ffc089}
+  .sev.p2{background:rgba(46,196,182,.18);color:var(--teal)}
+  .fi-id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--slate-light)}
+  .finding h4{font-family:'DM Serif Display',serif;font-size:22px;margin:0;line-height:1.2}
+  .finding p{margin:0;color:var(--slate-light);font-size:14.5px;line-height:1.55}
+  .finding .quote-block{
+    background:rgba(0,0,0,.2);border-left:3px solid var(--teal);
+    padding:12px 14px;border-radius:0 8px 8px 0;
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#cfe6e4;
+    white-space:pre-wrap;
+  }
+  .fi-fix{
+    background:rgba(46,196,182,.08);border:1px solid rgba(46,196,182,.25);
+    border-radius:12px;padding:12px 14px;
+  }
+  .fi-fix .fix-label{
+    font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:4px;font-weight:700;
+  }
+  .fi-fix p{color:#e8f6f4;font-size:13.5px}
+  .page-ref{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--slate-light);
+    padding:2px 8px;border-radius:4px;background:rgba(0,0,0,.25);
+  }
+
+  /* Annotated view */
+  .screen-card{
+    background:var(--off);color:var(--navy);
+    border-radius:24px;padding:32px;margin-bottom:32px;
+    border:1px solid rgba(0,0,0,.08);
+  }
+  .screen-card h3{font-family:'DM Serif Display',serif;font-size:30px;margin:0 0 4px;color:var(--navy)}
+  .screen-card .subtitle{color:var(--slate);font-size:14px;margin-bottom:24px}
+  .mock{
+    position:relative;background:var(--navy);border-radius:18px;overflow:hidden;
+    border:1px solid rgba(0,0,0,.1);
+  }
+  .annot{
+    position:absolute;
+    background:var(--red);color:#fff;
+    width:28px;height:28px;border-radius:50%;
+    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 14px rgba(214,69,69,.55);
+    cursor:pointer;z-index:2;
+  }
+  .annot::before{
+    content:"";position:absolute;inset:-6px;border-radius:50%;
+    border:2px solid rgba(214,69,69,.35);animation:ping 2s infinite;
+  }
+  @keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.4);opacity:0}}
+  .annot-list{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .annot-item{
+    background:#fff;border-radius:14px;padding:16px;
+    display:flex;gap:12px;border:1px solid rgba(0,0,0,.08);
+  }
+  .annot-item .bubble{
+    width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;flex-shrink:0;
+  }
+  .annot-item .ann-body h5{font-family:'DM Serif Display',serif;font-size:17px;margin:0 0 4px;color:var(--navy)}
+  .annot-item .ann-body p{margin:0;color:var(--slate);font-size:13.5px;line-height:1.45}
+
+  /* Fake hero mock */
+  .hero-mock{padding:72px 48px 64px;min-height:420px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;position:relative}
+  .hero-mock h2{font-family:'DM Serif Display',serif;font-size:48px;line-height:1.05;margin:0 0 18px;color:#fff}
+  .hero-mock h2 em{font-style:normal;color:var(--teal)}
+  .hero-mock p{color:var(--slate-light);font-size:18px;max-width:520px;margin:0 0 24px}
+  .btn-amber{background:var(--amber);color:var(--charcoal);padding:14px 24px;border-radius:999px;display:inline-block;font-family:'DM Sans',sans-serif;font-weight:700;margin-right:8px}
+  .btn-ghost{border:2px solid var(--slate-light);color:#fff;padding:12px 24px;border-radius:999px;display:inline-block;font-family:'DM Sans',sans-serif;font-weight:700}
+  .hero-mock nav{position:absolute;top:18px;left:48px;right:48px;display:flex;align-items:center;gap:28px}
+  .hero-mock nav .wm{font-weight:700;font-size:15px;letter-spacing:-.025em}
+  .hero-mock nav a{color:var(--slate-light);font-size:13px}
+  .hero-mock nav .nav-cta{background:var(--amber);color:var(--charcoal);font-weight:700;padding:6px 14px;border-radius:999px;font-size:13px;margin-left:auto}
+
+  /* Redesign canvas */
+  .redesign-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+  .rd-card{background:#fff;color:var(--navy);border-radius:24px;padding:28px;border:1px solid rgba(0,0,0,.08)}
+  .rd-card.dark{background:var(--navy-deep);color:#fff;border-color:var(--line)}
+  .rd-label{
+    display:inline-block;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:8px;font-weight:700;
+  }
+  .rd-label.red{color:var(--red)}
+  .rd-title{font-family:'DM Serif Display',serif;font-size:22px;margin:0 0 14px;line-height:1.2}
+  .rd-card.dark .rd-title{color:#fff}
+  .rd-card p{font-size:14px;color:var(--slate);margin:0 0 12px;line-height:1.5}
+  .rd-card.dark p{color:var(--slate-light)}
+  .full-wide{grid-column:1/-1}
+
+  /* Hero redesign variants */
+  .variant{
+    background:var(--navy);color:#fff;
+    border-radius:20px;padding:48px 40px;
+    border:1px solid var(--line);
+    min-height:360px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .variant.amber-bg{background:var(--amber);color:var(--navy)}
+  .variant.off-bg{background:var(--off);color:var(--navy)}
+
+  /* Deck */
+  .deck-wrap{position:relative;background:#000;border-radius:20px;padding:24px;overflow:hidden}
+  .deck-frame{
+    aspect-ratio:16/9;background:var(--navy);
+    border-radius:14px;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    padding:64px;
+  }
+  .deck-nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 8px 0;color:var(--slate-light);font-family:'DM Sans',sans-serif;font-size:13px;
+  }
+  .deck-nav button{
+    background:var(--navy-light);border:1px solid var(--line);color:#fff;
+    padding:8px 16px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;
+  }
+  .deck-nav button:hover{background:var(--navy)}
+  .slide{display:none;width:100%;height:100%;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide .eyebrow-l{font-family:'DM Sans',sans-serif;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:24px}
+  .slide h3{font-family:'DM Serif Display',serif;font-size:54px;line-height:1.05;margin:0 0 20px;letter-spacing:-.005em}
+  .slide p.big{font-size:24px;color:var(--slate-light);line-height:1.45;max-width:900px}
+  .slide ul.lst{list-style:none;padding:0;margin:20px 0 0;font-size:20px;color:var(--slate-light);display:grid;gap:10px}
+  .slide ul.lst li::before{content:"—";color:var(--teal);margin-right:12px}
+  .slide .num-big{font-family:'DM Serif Display',serif;font-size:220px;line-height:1;color:var(--teal)}
+  .slide .mono-foot{position:absolute;bottom:24px;left:64px;right:64px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--slate-light);letter-spacing:.1em}
+
+  /* Footer strip */
+  .foot{margin-top:80px;padding-top:32px;border-top:1px solid var(--line);color:var(--slate-light);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* misc */
+  .section-title{
+    font-family:'DM Serif Display',serif;font-size:32px;margin:48px 0 8px;line-height:1.1;
+  }
+  .section-sub{color:var(--slate-light);font-size:15px;margin-bottom:24px;max-width:720px}
+
+  .nav-prevnext{
+    display:flex;justify-content:space-between;margin-top:48px;padding-top:32px;border-top:1px solid var(--line);
+  }
+  .nav-prevnext a{color:var(--slate-light);font-family:'DM Sans',sans-serif;font-size:14px;text-decoration:none}
+  .nav-prevnext a:hover{color:var(--teal)}
+
+  /* Responsive */
+  @media (max-width:1000px){
+    .grid-scores{grid-template-columns:repeat(2,1fr)}
+    .priority{grid-template-columns:1fr}
+    .hero-card{grid-template-columns:1fr;padding:32px}
+    .score-ring{width:200px;height:200px}
+    .score-num{font-size:72px}
+    .verdict h2{font-size:30px}
+    h1.page{font-size:40px}
+    .findings{grid-template-columns:1fr}
+    .redesign-grid{grid-template-columns:1fr}
+    .hero-mock{grid-template-columns:1fr;padding:64px 28px 36px}
+    .hero-mock h2{font-size:32px}
+    .slide h3{font-size:32px}
+    .slide p.big{font-size:18px}
+    .slide .num-big{font-size:120px}
+    .agent-hero{grid-template-columns:1fr;text-align:center}
+    .avatar{margin:0 auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="/" style="text-decoration:none;color:#fff" class="wordmark">what <span class="if">if</span> now</a>
+    <span class="tag">Brutal audit · 8 reviewers</span>
+    <span class="spacer"></span>
+    <nav class="tabs" id="tabs">
+      <button data-view="dash" class="active">Dashboard</button>
+      <button data-view="agents">Reviewers</button>
+      <button data-view="annot">Annotated</button>
+      <button data-view="redesign">Redesigns</button>
+      <button data-view="deck">Deck</button>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+
+<!-- =================== DASHBOARD =================== -->
+<section class="view active" id="view-dash">
+
+  <div class="eyebrow">Audit · v1.0 · April 2026</div>
+  <h1 class="page">whatifnow.ie — torn apart, gently put back.</h1>
+  <p class="lede">Eight reviewers, eight lenses, one verdict: you've built a competent, tastefully designed brochure site that under-sells a sharply differentiated product — and is leaking the leads you explicitly said you want to capture. Here's what needs fixing, in priority order.</p>
+
+  <div class="hero-card">
+    <div>
+      <div class="score-ring" id="ring">
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <circle cx="130" cy="130" r="112" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="18"/>
+          <circle cx="130" cy="130" r="112" fill="none" stroke="#2EC4B6" stroke-width="18"
+            stroke-linecap="round"
+            stroke-dasharray="703.7"
+            stroke-dashoffset="260"
+            transform="rotate(-90 130 130)"/>
+        </svg>
+        <div class="ring-label">
+          <div><span class="score-num">62</span><span class="score-den">/100</span></div>
+          <div class="ring-sub">Overall</div>
+        </div>
+      </div>
+    </div>
+    <div class="verdict">
+      <h2 class="serif">Good bones. Dull delivery. Bleeds leads.</h2>
+      <p>The brand system is legitimately strong. The codebase is clean. But the homepage reads like every other mid-tier agency site in Dublin — generic pain points, four identical stage cards, a hero that says "Do what only you can" and then talks about AI. The moment a visitor wants to take the one action you care about — the contact form — they're hit with six required fields including <em>phone number</em>. For a first conversation. You're turning away warm leads at the door.</p>
+      <div class="pill-row">
+        <span class="pill red">12 P0 issues</span>
+        <span class="pill amber">21 P1 issues</span>
+        <span class="pill">14 P2 issues</span>
+        <span class="pill">9 pages reviewed</span>
+        <span class="pill">11 components</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title serif">Scorecard by lens</h2>
+  <div class="section-sub">Click any card to jump to that reviewer's full critique. Grades are against peer Irish / EU SME consultancy sites, not against Apple.</div>
+
+  <div class="grid-scores" id="scoreGrid">
+    <!-- cards inserted by JS -->
+  </div>
+
+  <h2 class="section-title serif">Do these in this order</h2>
+  <div class="section-sub">If you only read one thing in this document, read this. Fix the P0 list before anyone sees the site again.</div>
+  <div class="priority">
+    <div class="pri-col p0">
+      <div class="cnt">Priority 0 · This week</div>
+      <h3>Stop leaking leads</h3>
+      <ul>
+        <li><span class="num">P0·1</span>Cut contact form to 3 fields (name, email, message). Remove required phone + preferred-contact-method.</li>
+        <li><span class="num">P0·2</span>Rewrite hero. Name the audience in the first line. "Do what only you can" is a riddle, not a value prop.</li>
+        <li><span class="num">P0·3</span>Fix Organization schema — <span class="mono">url</span> points at <span class="mono">whatifnow.github.io</span>, not <span class="mono">whatifnow.ie</span>. You're confusing Google.</li>
+        <li><span class="num">P0·4</span>Add the August 2026 EU AI Act deadline above the fold. This is your single sharpest hook and it's buried.</li>
+        <li><span class="num">P0·5</span>Fix <span class="mono">privacy.astro</span> — <span class="mono">text-slate-300</span> and <span class="mono">text-slate-500</span> don't exist in your theme. Those classes render invisibly.</li>
+        <li><span class="num">P0·6</span>Put a price, a price range, or "from €" on the engagement tiers. "Fixed-fee, not day-rate" is your differentiator; hiding the number erases it.</li>
+      </ul>
+    </div>
+    <div class="pri-col p1">
+      <div class="cnt">Priority 1 · This sprint</div>
+      <h3>Earn the trust you're claiming</h3>
+      <ul>
+        <li><span class="num">P1·1</span>Add at least one named person. "Our team brings decades of experience" is anonymous hearsay.</li>
+        <li><span class="num">P1·2</span>Add one real case study or anonymised engagement summary — hours saved, tool, sector.</li>
+        <li><span class="num">P1·3</span>Replace the dots-and-circles SVG hero visual. Every consultancy site has this; it signals nothing.</li>
+        <li><span class="num">P1·4</span>Collapse ServiceStages + ForensicAudit + HowItWorks. They are three process sections saying similar things.</li>
+        <li><span class="num">P1·5</span>Ship an OG image. <span class="mono">/images/og-image.jpg</span> is referenced but not present in <span class="mono">public/images/</span>.</li>
+        <li><span class="num">P1·6</span>Surface the interactive demos (SAR, RTB, Quiz) on the homepage. They're your strongest proof-of-competence and they're hidden behind direct URLs.</li>
+        <li><span class="num">P1·7</span>Add a sticky "Book a call" CTA that follows on scroll — your nav CTA is the only path.</li>
+      </ul>
+    </div>
+    <div class="pri-col p2">
+      <div class="cnt">Priority 2 · Next month</div>
+      <h3>Grow into the positioning</h3>
+      <ul>
+        <li><span class="num">P2·1</span>Publish 3–5 SEO-targeted articles: "EU AI Act for Irish SMEs", "AI inventory template", "AML KYC + LLMs".</li>
+        <li><span class="num">P2·2</span>Add a /clients or /engagements page with 2–4 story cards once you have them.</li>
+        <li><span class="num">P2·3</span>Add FAQ schema + Article schema to the toolkit and quiz pages.</li>
+        <li><span class="num">P2·4</span>Unify typography — the site mixes <span class="mono">font-bold</span>, <span class="mono">font-extrabold</span>, and <span class="mono">font-serif</span> inconsistently.</li>
+        <li><span class="num">P2·5</span>Build a small testimonial-lite component: logos of sectors you've served, not fake quotes.</li>
+        <li><span class="num">P2·6</span>Set up Plausible or similar. You cannot improve what you do not measure.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section-title serif">What's actually working</h2>
+  <div class="section-sub">Because a brutal audit without this is just rude.</div>
+  <div class="findings">
+    <div class="finding">
+      <div class="fi-head"><span class="sev p2">Strength</span><span class="fi-id">WIN·W1</span></div>
+      <h4>The brand system is genuinely good</h4>
+      <p>Navy/teal/amber with DM Serif Display over Inter is a confident, grown-up system. The wordmark treatment — "what <em style="color:var(--teal);font-style:normal">if</em> now" — is memorable. Keep this. Most of this audit is about living up to it.</p>
+    </div>
+    <div class="finding">
+      <div class="fi-head"><span class="sev p2">Strength</span><span class="fi-id">WIN·W2</span></div>
+      <h4>The privacy page earns the "honest" claim</h4>
+      <p>Plain-English data inventory, named sub-processors (Resend, Formspree), the six GDPR rights, DPC escalation route, and a 2-year retention window. For a consultancy that claims GDPR expertise, this is table stakes executed well.</p>
+    </div>
+    <div class="finding">
+      <div class="fi-head"><span class="sev p2">Strength</span><span class="fi-id">WIN·W3</span></div>
+      <h4>The interactive demos are a serious asset</h4>
+      <p>A working SAR threshold demo, an RTB precedent tool, and an 18-question readiness quiz. Most competitors have a PDF download. You have working software. You are massively under-promoting it.</p>
+    </div>
+    <div class="finding">
+      <div class="fi-head"><span class="sev p2">Strength</span><span class="fi-id">WIN·W4</span></div>
+      <h4>The engagement-model tiering is smart</h4>
+      <p>DIY / Done With You / Done For You is a clear mental ladder. The "Most Popular" framing on DWY correctly nudges toward the middle tier. Just add prices.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================== AGENTS =================== -->
+<section class="view" id="view-agents">
+  <div class="eyebrow">The reviewers</div>
+  <h1 class="page">Eight opinions. No sugar.</h1>
+  <p class="lede">Each reviewer covers one lens. Scores are independent. Findings are ordered by severity: P0 = fix now, P1 = fix soon, P2 = worth doing.</p>
+
+  <div id="agentContainer"></div>
+</section>
+
+<!-- =================== ANNOTATED =================== -->
+<section class="view" id="view-annot">
+  <div class="eyebrow">Annotated pages</div>
+  <h1 class="page">Red pen on the live frames.</h1>
+  <p class="lede">High-fidelity mocks of the actual page structure with numbered callouts. Hover the red dots. Each mock is built from the real component code, not a screenshot.</p>
+
+  <!-- HERO MOCK -->
+  <div class="screen-card">
+    <h3>Home · Hero</h3>
+    <p class="subtitle">src/components/Hero.astro — the single most important 400 pixels on the site.</p>
+    <div class="mock">
+      <div class="annot" style="top:86px;left:56px;">1</div>
+      <div class="annot" style="top:140px;left:300px;">2</div>
+      <div class="annot" style="top:238px;left:56px;">3</div>
+      <div class="annot" style="top:308px;left:56px;">4</div>
+      <div class="annot" style="top:72px;right:90px;">5</div>
+      <div class="annot" style="bottom:60px;right:160px;">6</div>
+      <div class="hero-mock">
+        <nav>
+          <span class="wm">what <span style="color:var(--teal)">if</span> now</span>
+          <a>Services</a><a>How It Works</a><a>About</a><a>Compliance</a>
+          <span class="nav-cta">Let's Talk</span>
+        </nav>
+        <div>
+          <h2>Do what <em>only you can</em>.</h2>
+          <p>We find what's eating your team's time and build tools to handle it — so your people can get back to the work that actually needs them.</p>
+          <div>
+            <span class="btn-amber">Let's Talk</span>
+            <span class="btn-ghost">See How It Works</span>
+          </div>
+          <div style="color:var(--teal);font-size:13px;margin-top:22px">→ Not sure where to start? Take the free AI Readiness Assessment</div>
+        </div>
+        <div style="position:relative;width:280px;height:280px;justify-self:center">
+          <svg viewBox="0 0 280 280" style="width:100%;height:100%">
+            <circle cx="140" cy="140" r="90" fill="none" stroke="#3B5680" stroke-width="2"/>
+            <circle cx="140" cy="140" r="60" fill="none" stroke="#2EC4B6" stroke-width="2" opacity=".6"/>
+            <circle cx="140" cy="140" r="30" fill="#2EC4B6" opacity=".15"/>
+            <circle cx="140" cy="50" r="6" fill="#2EC4B6"/>
+            <circle cx="220" cy="100" r="5" fill="#2EC4B6" opacity=".7"/>
+            <circle cx="220" cy="180" r="5" fill="#2EC4B6" opacity=".7"/>
+            <circle cx="140" cy="230" r="6" fill="#2EC4B6"/>
+            <circle cx="60" cy="180" r="5" fill="#2EC4B6" opacity=".7"/>
+            <circle cx="60" cy="100" r="5" fill="#2EC4B6" opacity=".7"/>
+            <circle cx="140" cy="140" r="8" fill="#2EC4B6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="annot-list">
+      <div class="annot-item"><div class="bubble">1</div><div class="ann-body"><h5>Audience invisible</h5><p>Nothing says "SME" or "charity" or "Europe". Someone skimming on LinkedIn has no reason to believe this is for them.</p></div></div>
+      <div class="annot-item"><div class="bubble">2</div><div class="ann-body"><h5>Riddle headline</h5><p>"Do what only you can" sounds profound and means nothing. Test: cover the subhead — can a stranger tell what you sell? No.</p></div></div>
+      <div class="annot-item"><div class="bubble">3</div><div class="ann-body"><h5>Two primary CTAs of equal weight</h5><p>Amber solid + bordered ghost next to each other dilutes each other. Pick one hero action; demote the other to a text link.</p></div></div>
+      <div class="annot-item"><div class="bubble">4</div><div class="ann-body"><h5>Tertiary link is your best hook</h5><p>The free assessment is the lowest-friction conversion on the site and it's below the buttons in smaller, lighter text. Flip the hierarchy.</p></div></div>
+      <div class="annot-item"><div class="bubble">5</div><div class="ann-body"><h5>Nav CTA repeats the hero CTA</h5><p>Two "Let's Talk" buttons 120px apart. Diversify: "Book a call" in nav, "Start the free assessment" in hero.</p></div></div>
+      <div class="annot-item"><div class="bubble">6</div><div class="ann-body"><h5>The circles-and-dots visual</h5><p>Stock "AI / connectivity" signifier. Replace with a concrete product shot: the quiz, the SAR tool, or an AI inventory screenshot.</p></div></div>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM MOCK -->
+  <div class="screen-card">
+    <h3>Contact · The form that's eating your leads</h3>
+    <p class="subtitle">src/pages/contact.astro — six required fields to ask a question.</p>
+    <div class="mock" style="background:var(--off);padding:48px;color:var(--navy)">
+      <div class="annot" style="top:140px;left:50%;">1</div>
+      <div class="annot" style="top:216px;left:50%;">2</div>
+      <div class="annot" style="top:290px;left:50%;">3</div>
+      <div class="annot" style="top:446px;left:50%;">4</div>
+      <div style="max-width:560px;margin:0 auto">
+        <h2 style="font-family:'DM Serif Display',serif;font-size:38px;margin:0 0 8px">Let's Talk</h2>
+        <p style="color:var(--slate);font-size:15px;margin:0 0 24px">Tell us a little about what you're working on and we'll get back within 24 hours.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div><label style="display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Full Name <span style="color:var(--amber)">*</span></label><div style="background:#fff;border:2px solid rgba(71,85,105,.2);border-radius:10px;height:36px"></div></div>
+          <div><label style="display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Company Name <span style="color:var(--amber)">*</span></label><div style="background:#fff;border:2px solid rgba(71,85,105,.2);border-radius:10px;height:36px"></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div><label style="display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Email <span style="color:var(--amber)">*</span></label><div style="background:#fff;border:2px solid rgba(71,85,105,.2);border-radius:10px;height:36px"></div></div>
+          <div><label style="display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Phone <span style="color:var(--amber)">*</span></label><div style="background:#fff;border:2px solid var(--red);border-radius:10px;height:36px"></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div><label style="display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Preferred Contact <span style="color:var(--amber)">*</span></label><div style="background:#fff;border:2px solid var(--red);border-radius:10px;height:36px"></div></div>
+          <div><label style="display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Subject <span style="color:var(--amber)">*</span></label><div style="background:#fff;border:2px solid rgba(71,85,105,.2);border-radius:10px;height:36px"></div></div>
+        </div>
+        <div><label style="display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Message <span style="color:var(--amber)">*</span></label><div style="background:#fff;border:2px solid rgba(71,85,105,.2);border-radius:10px;height:90px"></div></div>
+        <div style="text-align:center;margin-top:16px"><span style="display:inline-block;background:var(--amber);color:var(--navy);font-weight:700;padding:10px 22px;border-radius:10px">Send Message</span></div>
+      </div>
+    </div>
+    <div class="annot-list">
+      <div class="annot-item"><div class="bubble">1</div><div class="ann-body"><h5>Six required fields, zero optional</h5><p>Industry-standard for B2B first-touch is 3 fields. Every extra required field cuts conversion ~10%. You're doing this to yourself.</p></div></div>
+      <div class="annot-item"><div class="bubble">2</div><div class="ann-body"><h5>Phone is required</h5><p>For an initial enquiry from a GDPR consultancy? You're telling cautious prospects you'll call them before they ask.</p></div></div>
+      <div class="annot-item"><div class="bubble">3</div><div class="ann-body"><h5>"Preferred contact method" required</h5><p>Most of these are trivially inferable. Remove the field; default to email; add a single optional checkbox "prefer a call".</p></div></div>
+      <div class="annot-item"><div class="bubble">4</div><div class="ann-body"><h5>No honeypot, no reCAPTCHA-lite</h5><p>With Formspree this form is going to fill with spam the moment it's indexed. Add a hidden honeypot field as a bare minimum.</p></div></div>
+    </div>
+  </div>
+
+  <!-- ENGAGEMENT MODELS -->
+  <div class="screen-card">
+    <h3>Engagement Models · The pricing that isn't</h3>
+    <p class="subtitle">src/components/EngagementModels.astro — three tiers, zero numbers.</p>
+    <div class="mock" style="background:var(--off);padding:48px;color:var(--navy)">
+      <div class="annot" style="top:36px;left:50%">1</div>
+      <div class="annot" style="top:170px;left:14%">2</div>
+      <div class="annot" style="top:170px;left:50%">3</div>
+      <div class="annot" style="bottom:30px;left:50%">4</div>
+      <div style="max-width:900px;margin:0 auto">
+        <h2 style="font-family:'DM Serif Display',serif;font-size:32px;text-align:center;margin:0 0 32px">Work With Us Your Way</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <div style="background:#fff;border-radius:14px;padding:20px">
+            <div style="color:var(--teal-dark);font-size:11px;font-weight:700">Self-Guided</div>
+            <h4 style="font-family:'DM Serif Display',serif;font-size:22px;margin:6px 0 12px">DIY</h4>
+            <div style="color:var(--slate);font-size:12px;line-height:1.5">Templates, community Q&A, self-paced.</div>
+            <div style="margin-top:14px;background:var(--navy);color:#fff;text-align:center;padding:8px;border-radius:999px;font-size:12px;font-weight:700">Book a Scoping Call</div>
+          </div>
+          <div style="background:#1A3D54;color:#fff;border-radius:14px;padding:20px;transform:scale(1.05)">
+            <div style="color:var(--teal);font-size:11px;font-weight:700">Most Popular</div>
+            <h4 style="font-family:'DM Serif Display',serif;font-size:22px;margin:6px 0 12px">Done With You</h4>
+            <div style="color:var(--slate-light);font-size:12px;line-height:1.5">Audit, workshops, roadmap, coaching.</div>
+            <div style="margin-top:14px;background:var(--teal);color:#fff;text-align:center;padding:8px;border-radius:999px;font-size:12px;font-weight:700">Book a Scoping Call</div>
+          </div>
+          <div style="background:#fff;border-radius:14px;padding:20px">
+            <div style="color:var(--teal-dark);font-size:11px;font-weight:700">Full Service</div>
+            <h4 style="font-family:'DM Serif Display',serif;font-size:22px;margin:6px 0 12px">Done For You</h4>
+            <div style="color:var(--slate);font-size:12px;line-height:1.5">End-to-end, integration, training.</div>
+            <div style="margin-top:14px;background:var(--navy);color:#fff;text-align:center;padding:8px;border-radius:999px;font-size:12px;font-weight:700">Book a Scoping Call</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annot-list">
+      <div class="annot-item"><div class="bubble">1</div><div class="ann-body"><h5>"Work With Us Your Way" is a corporate shrug</h5><p>Your brand voice is "Confident · Clear · Practical". This headline is none of those. Try "One engagement. Three depths."</p></div></div>
+      <div class="annot-item"><div class="bubble">2</div><div class="ann-body"><h5>No prices, ranges, or anchors</h5><p>Fixed-fee is a real differentiator — your guidelines say so. By not naming a number you hide your best weapon against day-rate competitors.</p></div></div>
+      <div class="annot-item"><div class="bubble">3</div><div class="ann-body"><h5>Every tier has the same CTA</h5><p>"Book a Scoping Call" × 3. DIY should link to a free resource; DWY to a scoping call; DFY to a deeper qualification form.</p></div></div>
+      <div class="annot-item"><div class="bubble">4</div><div class="ann-body"><h5>No "what happens next"</h5><p>After the call, what? 15 min / 30 min? Free? With whom? A one-line timeline would convert more than another feature bullet.</p></div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- =================== REDESIGN =================== -->
+<section class="view" id="view-redesign">
+  <div class="eyebrow">Redesigns</div>
+  <h1 class="page">Three sharper angles.</h1>
+  <p class="lede">Not throw-it-all-out redesigns. These rework the three highest-leverage sections with the same brand system, demonstrating the tone you said you wanted.</p>
+
+  <!-- Hero variants -->
+  <h2 class="section-title serif">Hero — three rewrites, same grid</h2>
+  <div class="section-sub">All three use your existing nav, tokens, and type. Only the copy and visual focus change. Pick the one that matches the appetite of the week.</div>
+
+  <div class="redesign-grid">
+    <div class="variant">
+      <div class="rd-label">Option A · The deadline</div>
+      <h2 class="serif" style="font-size:40px;line-height:1.05;margin:0 0 18px">The <span style="color:var(--teal)">EU AI Act</span> is enforced in August.<br/>Most Irish SMEs don't even have an AI inventory.</h2>
+      <p style="color:var(--slate-light);margin:0 0 22px;font-size:16px;max-width:520px">Fixed-fee AI Act readiness for small businesses and charities. From inventory to classification to EU-hosted deployment — without the Big Four invoice.</p>
+      <div>
+        <span class="btn-amber">Start the 3-minute assessment</span>
+        <span style="color:var(--teal);margin-left:14px;font-size:14px;font-family:'DM Sans',sans-serif">or book a 20-min call →</span>
+      </div>
+      <div style="margin-top:24px;display:flex;gap:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--slate-light);letter-spacing:.1em">
+        <span>· EU-HOSTED</span><span>· FIXED FEE</span><span>· AMNESTY BEFORE AUDIT</span>
+      </div>
+    </div>
+    <div class="variant amber-bg">
+      <div class="rd-label red" style="color:var(--navy)">Option B · The promise</div>
+      <h2 class="serif" style="font-size:44px;line-height:1.02;margin:0 0 18px;color:var(--navy)">Eight hours back.<br/>Per person. Per week.</h2>
+      <p style="color:var(--navy);opacity:.85;margin:0 0 22px;font-size:16px;max-width:520px">We find the manual, repetitive work eating your team's time. We automate it — with EU AI Act compliance built in. Your people do what only they can.</p>
+      <div>
+        <span style="background:var(--navy);color:#fff;padding:14px 24px;border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:700">See a real audit</span>
+        <span style="color:var(--navy);margin-left:14px;font-size:14px;font-family:'DM Sans',sans-serif;opacity:.75">or take the assessment →</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="redesign-grid">
+    <div class="variant off-bg" style="grid-column:1/-1;min-height:320px">
+      <div class="rd-label" style="color:var(--teal-dark)">Option C · The contrarian</div>
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center">
+        <div>
+          <h2 class="serif" style="font-size:52px;line-height:1.0;margin:0 0 18px;color:var(--navy)">Illumination before enforcement.</h2>
+          <p style="color:var(--slate);margin:0 0 24px;font-size:17px;max-width:520px">We audit the AI your team is <em>already using</em> — the quiet ChatGPT tabs, the Copilot transcripts, the rogue Zapier jobs — map them to the EU AI Act, and turn them into compliant, owned infrastructure. Amnesty, not audit.</p>
+          <div>
+            <span style="background:var(--navy);color:#fff;padding:14px 24px;border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:700">Start your AI amnesty</span>
+            <span style="color:var(--teal-dark);margin-left:14px;font-size:14px;font-family:'DM Sans',sans-serif">20 min · free · no sales call</span>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--navy);line-height:1.7">
+          <div style="color:var(--teal-dark);font-weight:700;margin-bottom:8px">Sample AI inventory · 14 staff</div>
+          <div>▸ ChatGPT Plus × 6 users <span style="color:var(--slate)">· risk: limited</span></div>
+          <div>▸ Copilot (M365) × 11 users <span style="color:var(--slate)">· risk: limited</span></div>
+          <div>▸ Zapier + Claude (email triage) <span style="color:var(--amber);font-weight:700">· risk: HIGH</span></div>
+          <div>▸ Custom GPT (customer summaries) <span style="color:var(--amber);font-weight:700">· risk: HIGH</span></div>
+          <div>▸ Otter.ai meeting notes <span style="color:var(--slate)">· risk: limited</span></div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px dashed rgba(0,0,0,.15);color:var(--teal-dark);font-weight:700">2 high-risk systems need Article 9 review by Aug.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title serif">Engagement tiers — with numbers</h2>
+  <div class="section-sub">Same three-tier structure. Prices added (placeholders — you confirm). "Most Popular" keeps its pride of place; DIY CTA drops to a real self-serve link; DFY has a qualification filter.</div>
+
+  <div class="redesign-grid">
+    <div class="rd-card">
+      <div class="rd-label">Self-guided</div>
+      <div class="rd-title">DIY</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:36px;margin-bottom:4px">Free</div>
+      <p style="font-size:13px;color:var(--slate)">Substack, templates, community. For teams who want to learn in public.</p>
+      <ul style="list-style:none;padding:0;margin:0 0 16px;font-size:13.5px;color:var(--slate);line-height:1.7">
+        <li>— Weekly Substack</li>
+        <li>— AI inventory template (Excel)</li>
+        <li>— EU AI Act cheat sheet</li>
+        <li>— Slack community</li>
+      </ul>
+      <a style="display:block;text-align:center;padding:10px;border:1.5px solid var(--navy);color:var(--navy);border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;text-decoration:none">Subscribe free →</a>
+    </div>
+    <div class="rd-card dark" style="border:2px solid var(--teal);position:relative">
+      <span style="position:absolute;top:-12px;right:20px;background:var(--teal);color:var(--navy);font-size:11px;font-family:'DM Sans',sans-serif;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.1em">MOST POPULAR</span>
+      <div class="rd-label">Done with you · 6–10 weeks</div>
+      <div class="rd-title" style="color:#fff">Guided adoption</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:36px;margin-bottom:4px;color:#fff">from €12,000</div>
+      <p style="font-size:13px;color:var(--slate-light)">Fixed fee. EU-hosted. Shadow + audit + workflow build. We run the engagement; your team keeps the keys.</p>
+      <ul style="list-style:none;padding:0;margin:0 0 16px;font-size:13.5px;color:var(--slate-light);line-height:1.7">
+        <li><span style="color:var(--teal)">✓</span> Full AI inventory &amp; Act mapping</li>
+        <li><span style="color:var(--teal)">✓</span> 2–3 workflows automated</li>
+        <li><span style="color:var(--teal)">✓</span> Team training (2 half-days)</li>
+        <li><span style="color:var(--teal)">✓</span> 60-day support window</li>
+      </ul>
+      <a style="display:block;text-align:center;padding:10px;background:var(--teal);color:var(--navy);border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;text-decoration:none">Book a 20-min scoping call</a>
+    </div>
+    <div class="rd-card">
+      <div class="rd-label">Full service · 3–6 months</div>
+      <div class="rd-title">Done for you</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:36px;margin-bottom:4px">from €35,000</div>
+      <p style="font-size:13px;color:var(--slate)">For organisations with 20+ staff and a clear automation target. End-to-end delivery, integration, handover.</p>
+      <ul style="list-style:none;padding:0;margin:0 0 16px;font-size:13.5px;color:var(--slate);line-height:1.7">
+        <li>— Everything in DWY</li>
+        <li>— Custom-built AI tooling</li>
+        <li>— Full Art. 9/10 documentation</li>
+        <li>— 6-month post-launch support</li>
+      </ul>
+      <a style="display:block;text-align:center;padding:10px;background:var(--navy);color:#fff;border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;text-decoration:none">Request a proposal →</a>
+    </div>
+  </div>
+
+  <h2 class="section-title serif">Contact form — 3 fields, not 6</h2>
+  <div class="section-sub">Minimum-viable first touch. Everything else you learn on the call.</div>
+  <div class="rd-card full-wide" style="background:var(--off);max-width:720px;margin:0 auto">
+    <h3 style="font-family:'DM Serif Display',serif;font-size:32px;margin:0 0 8px">Start a conversation</h3>
+    <p>Tell us what's on your plate. We reply within one working day. No forms, no sales sequence.</p>
+    <div style="margin-bottom:12px"><label style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:var(--navy)">Your name</label><div style="background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:10px;height:40px;margin-top:4px"></div></div>
+    <div style="margin-bottom:12px"><label style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:var(--navy)">Work email</label><div style="background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:10px;height:40px;margin-top:4px"></div></div>
+    <div style="margin-bottom:14px"><label style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:var(--navy)">What's on your mind?</label><div style="background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:10px;height:96px;margin-top:4px"></div></div>
+    <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px">
+      <input type="checkbox" style="width:16px;height:16px"/>
+      <span style="font-size:13px;color:var(--slate)">I'd prefer a call — leave a number and we'll arrange one.</span>
+    </div>
+    <a style="display:inline-block;background:var(--amber);color:var(--navy);padding:12px 24px;border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:700;text-decoration:none">Send →</a>
+    <div style="font-size:12px;color:var(--slate);margin-top:10px">Stored with Formspree. Retained 2 years max. <a href="/privacy" style="color:var(--teal-dark)">Privacy policy</a>.</div>
+  </div>
+</section>
+
+<!-- =================== DECK =================== -->
+<section class="view" id="view-deck">
+  <div class="eyebrow">Walkthrough deck</div>
+  <h1 class="page">Eight slides. Read in five minutes.</h1>
+  <p class="lede">Present this to anyone who hasn't read the long document. Arrow keys or the buttons below.</p>
+
+  <div class="deck-wrap">
+    <div class="deck-frame" id="deck">
+      <div class="slide active" data-n="1">
+        <div class="eyebrow-l">Audit · April 2026</div>
+        <h3>whatifnow.ie</h3>
+        <p class="big">A brutal 8-reviewer audit of the live site, scored against peer Irish &amp; EU SME consultancy sites. Goal: more qualified inbound.</p>
+        <div class="mono-foot"><span>WIN · Brand audit v1.0</span><span>Slide 01 / 08</span></div>
+      </div>
+      <div class="slide" data-n="2">
+        <div class="eyebrow-l">The verdict</div>
+        <h3>Good bones. Dull delivery.<br/>Bleeds leads.</h3>
+        <p class="big">Strong brand system, clean code, genuine proof-of-work in the interactive demos. Undermined by a generic hero, a 6-field contact form, and no named humans on site.</p>
+        <div class="mono-foot"><span>62 / 100 overall</span><span>Slide 02 / 08</span></div>
+      </div>
+      <div class="slide" data-n="3">
+        <div class="eyebrow-l">P0 · Priority zero</div>
+        <h3 style="font-size:40px">Six fixes. This week.</h3>
+        <ul class="lst" style="font-size:19px">
+          <li>Cut contact form to 3 fields. Remove required phone.</li>
+          <li>Rewrite hero. Name the audience in the first line.</li>
+          <li>Fix Organization schema URL (points at .github.io).</li>
+          <li>Put the August 2026 AI Act deadline above the fold.</li>
+          <li>Fix <span class="mono">text-slate-300/500</span> — invisible on privacy page.</li>
+          <li>Put at least a "from €" number on the engagement tiers.</li>
+        </ul>
+        <div class="mono-foot"><span>Est. effort · 1 day each</span><span>Slide 03 / 08</span></div>
+      </div>
+      <div class="slide" data-n="4">
+        <div class="eyebrow-l">The one big idea</div>
+        <h3>You sell <span style="color:var(--teal)">amnesty</span>.<br/>You market <span style="color:var(--slate-light)">"do what only you can"</span>.</h3>
+        <p class="big">Your brand guidelines have a sharper story than your homepage: "illumination before enforcement". Lead with it. Every competitor promises productivity. You promise safe-passage through a specific August deadline.</p>
+        <div class="mono-foot"><span>Reframe the hero around the Act</span><span>Slide 04 / 08</span></div>
+      </div>
+      <div class="slide" data-n="5">
+        <div class="eyebrow-l">Leads</div>
+        <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;width:100%">
+          <div class="num-big">6→3</div>
+          <div>
+            <h3 style="font-size:40px;margin-bottom:16px">Form friction is the single biggest leak.</h3>
+            <p class="big" style="font-size:20px">Six required fields including phone and "preferred contact method" on a first enquiry. Expected lift from cutting to three fields: 30–50% form completion, per industry baselines.</p>
+          </div>
+        </div>
+        <div class="mono-foot"><span>contact.astro</span><span>Slide 05 / 08</span></div>
+      </div>
+      <div class="slide" data-n="6">
+        <div class="eyebrow-l">Trust deficit</div>
+        <h3>No names. No faces.<br/>No stories.</h3>
+        <p class="big">"Our team brings decades of experience" is the opposite of "Confident · Honest · Capable". One named person, one specific sector story, one real hours-saved number would move the needle more than any redesign.</p>
+        <div class="mono-foot"><span>About.astro + new /engagements page</span><span>Slide 06 / 08</span></div>
+      </div>
+      <div class="slide" data-n="7">
+        <div class="eyebrow-l">Hidden strengths</div>
+        <h3>The demos are your moat.<br/>Put them on the homepage.</h3>
+        <p class="big">A working SAR threshold tool. An RTB precedent demo. A scored 18-question readiness quiz. Most competitors ship a PDF. You have working software that no one sees unless they land on a direct URL.</p>
+        <div class="mono-foot"><span>Add /demos hub + hero surfacing</span><span>Slide 07 / 08</span></div>
+      </div>
+      <div class="slide" data-n="8">
+        <div class="eyebrow-l">Next</div>
+        <h3>Ship the P0 list this week.<br/>Measure everything.</h3>
+        <p class="big">Plausible (or equivalent) before any redesign. Then the hero rewrite, the form cut, and the schema fix. After one month of data, revisit the rest.</p>
+        <div class="mono-foot"><span>WIN · Brand audit v1.0</span><span>Slide 08 / 08</span></div>
+      </div>
+    </div>
+    <div class="deck-nav">
+      <button id="deckPrev">← Prev</button>
+      <span id="deckPos" class="mono">01 / 08</span>
+      <button id="deckNext">Next →</button>
+    </div>
+  </div>
+
+</section>
+
+<div class="foot">
+  <div>WIN · audit v1.0 · prepared by an eight-person reviewer team</div>
+  <div class="mono">whatifnow.ie · /audit</div>
+</div>
+
+</div>
+
+<script>
+/* ========================================================= *
+ *  DATA
+ * ========================================================= */
+const AGENTS = [
+  {
+    id:"seo", initials:"SE", v:1, name:"Sinéad · SEO & Discoverability",
+    role:"10 years doing Irish B2B SEO. Hates vague copy and missing structured data.",
+    quote:"\u201cYour homepage title is fine. Everything after it is a mess Google has to guess at.\u201d",
+    score:55, grade:"C\u2212", color:"#2EC4B6",
+    findings:[
+      {sev:"p0", id:"SEO\u00b701", t:"Schema URL is wrong",
+        body:"Layout.astro hard-codes <span class='mono'>\u201curl\u201d: \u201chttps://whatifnow.github.io\u201d</span> in the Organization JSON-LD. Your domain is whatifnow.ie. Google uses this to reconcile brand \u2014 you\u2019re actively splitting your own SEO signal across two domains.",
+        quote:'"url": "https://whatifnow.github.io"',
+        fix:"Hard-code whatifnow.ie or read from astro.config.mjs site. Add sameAs[] with your LinkedIn and Substack."},
+      {sev:"p0", id:"SEO\u00b702", t:"No H1/H2 architecture on the homepage",
+        body:"The hero uses <span class='mono'>h1</span>, then every section below is an <span class='mono'>h2</span>. Fine. But the <span class='mono'>h2</span>s are all branded slogans: \u201cSound familiar?\u201d, \u201cFrom Friction to Fixed\u201d, \u201cBuilt for Business\u201d. None of them contain a keyword you\u2019d want to rank for. Google can\u2019t tell this page is about AI consulting for Irish SMEs.",
+        fix:"Rewrite at least two h2s to carry a keyword: \u201cAI adoption for Irish SMEs and charities\u201d, \u201cEU AI Act compliance, fixed fee\u201d."},
+      {sev:"p0", id:"SEO\u00b703", t:"Description promises nothing specific",
+        body:"The default meta description is <span class='mono'>\u201cAI consulting for businesses. Get AI-ready with What If Now \u2014 strategy, training, and implementation.\u201d</span> It\u2019s a word salad that matches 10,000 other sites. No location, no regulation mention, no price signal.",
+        fix:"Rewrite: \u201cFixed-fee AI Act readiness for Irish SMEs and charities. EU-hosted. Free 18-question assessment.\u201d Under 155 chars. Done."},
+      {sev:"p1", id:"SEO\u00b704", t:"Missing OG image",
+        body:"Layout references <span class='mono'>/images/og-image.jpg</span> but the file is not present in public/images/. Every LinkedIn share right now has a broken preview.",
+        fix:"Ship a 1200\u00d7630 OG card with the wordmark + tagline on navy. 15 minutes of design work, enormous effect."},
+      {sev:"p1", id:"SEO\u00b705", t:"No content depth",
+        body:"Nine pages, zero long-form articles. For \u201cEU AI Act\u201d search, Google wants authority signals. You have none to point at.",
+        fix:"Ship 3 articles: \u2018EU AI Act article 9 for SMEs\u2019, \u2018Your first AI inventory in 1 hour\u2019, \u2018AML + LLMs without violating GDPR\u2019. Target ~1500 words each."},
+      {sev:"p1", id:"SEO\u00b706", t:"Internal linking is CTA-only",
+        body:"Every CTA points at /contact. Good for conversion; bad for link equity. The SAR demo, RTB demo, and quiz get almost zero internal link juice.",
+        fix:"Body-text links from relevant sections to relevant demos. E.g. GDPR card \u2192 SAR demo. AI Act card \u2192 readiness quiz."},
+      {sev:"p2", id:"SEO\u00b707", t:"Toolkit page indexed but quiz/demo pages are thin shells",
+        body:"toolkit.astro correctly sets noindex. Good. But the quiz and demo pages have no explicit directives. A thin /privacy page indexed fine. The two interactive demos indexed with very thin HTML (they\u2019re React-only) is a risk for Google seeing empty shells.",
+        fix:"Add noindex to ai-readiness, precedent-demo, threshold-sar-demo \u2014 or pre-render meaningful content for crawlers."}
+    ]
+  },
+  {
+    id:"trust", initials:"TR", v:2, name:"Tom\u00e1s · Trust & Credibility",
+    role:"Ex-agency founder who has read a thousand \u2018we bring decades of experience\u2019 paragraphs.",
+    quote:"\u201cI don\u2019t know who you are. I don\u2019t know who you\u2019ve worked with. I don\u2019t know who you\u2019ve helped. So why should I call you?\u201d",
+    score:48, grade:"D+", color:"#E8913A",
+    findings:[
+      {sev:"p0", id:"TR\u00b701", t:"Zero named humans",
+        body:"The About component says \u201cOur team brings decades of experience in operations, customer experience, and business transformation\u201d. In a trust-based consultancy purchase, that sentence is worse than nothing \u2014 it pattern-matches to template copy. A single photo with a name and a sentence converts better than the entire rest of the page.",
+        fix:"Add 1\u20132 founder/lead photos with 40-word bios. Show the humans who will actually be in the Zoom call."},
+      {sev:"p0", id:"TR\u00b702", t:"Zero engagements shown",
+        body:"No case studies. No logos. No anonymised numbers. Nothing. For a consultancy claiming \u201coperational expertise combined with engineering capability\u201d, show one. Even \u201c15-person Dublin charity, 11 hours/week saved in fundraising ops, \u20ac8k fixed fee\u201d is enough.",
+        fix:"Write 2\u20133 short engagement summaries. Anonymise if you must. Add to homepage + /engagements."},
+      {sev:"p0", id:"TR\u00b703", t:"\u201cUsually respond within 24 hours\u201d \u2014 unverifiable claim",
+        body:"In isolation this is a soft promise. Given the rest of the page gives no other trust signals, it reads as aspirational. Add something adjacent that can be verified \u2014 e.g. a Substack post count, a LinkedIn follower count, or an actual number of engagements delivered.",
+        fix:"Show something countable. \u201c47 readiness assessments delivered\u201d beats \u201crespond within 24 hours\u201d."},
+      {sev:"p1", id:"TR\u00b704", t:"No testimonial or quote, even anonymised",
+        body:"Your brand pillars include \u201cHonest \u2014 no hype, no fluff\u201d. Ironically, the homepage is all assertion and no evidence.",
+        fix:"One honest testimonial from a real client, with a real name, beats ten polished review-site quotes. If you can\u2019t get one, you don\u2019t have a case study yet \u2014 and that\u2019s your P0."},
+      {sev:"p1", id:"TR\u00b705", t:"Substack link has no context",
+        body:"Footer links to whatifnow.substack.com but nothing on the site says what\u2019s there. Is it active? Weekly? Monthly? A trust signal if it\u2019s alive, a red flag if it\u2019s been dormant for 6 months.",
+        fix:"Add a \u201cRecent posts\u201d strip on the homepage pulling 3 latest Substack headlines. Or remove the link."},
+      {sev:"p2", id:"TR\u00b706", t:"No visible policies beyond privacy",
+        body:"Terms, refund policy, engagement T&Cs. A B2B consultancy charging fixed fees should have a one-pager on how engagements actually run.",
+        fix:"Write a short /how-we-work page: scoping \u2192 proposal \u2192 kickoff \u2192 weekly updates \u2192 handover \u2192 60-day support."},
+      {sev:"p2", id:"TR\u00b707", t:"Favicon colour mismatch is an odd flex",
+        body:"Your brand guidelines go out of the way to justify a different teal in the favicon for legibility \u2014 fine \u2014 but then on the brand-showcase page nothing explains this to visiting designers.",
+        fix:"Non-blocking. Mention in the showcase caption."}
+    ]
+  },
+  {
+    id:"cro", initials:"CR", v:3, name:"Ciara · Conversion (the one you asked for)",
+    role:"Optimises B2B lead funnels for a living. Counts fields for sport.",
+    quote:"\u201cYou told me the win is \u2018more qualified leads via the contact form\u2019. I then watched your contact form ask me six required questions. We need to talk.\u201d",
+    score:52, grade:"C\u2212", color:"#7BB7F0",
+    findings:[
+      {sev:"p0", id:"CR\u00b701", t:"Six required fields. All required.",
+        body:"Name, Company, Email, Phone, Preferred contact method, Subject, Message. Every single one required. Industry standard for B2B first-touch is 3\u20134 fields. Every extra required field drops completion by roughly 10%. You\u2019re voluntarily halving your inbound.",
+        quote:"name* \u00b7 company* \u00b7 email* \u00b7 phone* \u00b7 preferred_contact* \u00b7 subject* \u00b7 message*",
+        fix:"Required = name, email, message. Phone = optional. Subject = optional (default to \u2018General enquiry\u2019). Preferred contact = a single checkbox \u2018prefer a phone call\u2019 that reveals a phone field."},
+      {sev:"p0", id:"CR\u00b702", t:"Only one primary CTA across the whole site",
+        body:"Every path leads to /contact. The quiz ends with \u201cDownload the toolkit\u201d which sends an email \u2014 great \u2014 but then the toolkit page sends them to... /contact. There\u2019s no intermediate nurture. Readers who aren\u2019t ready to call have no second-choice CTA.",
+        fix:"Introduce a \u201cSubscribe to the Substack\u201d micro-conversion on the homepage, in the footer, and on the toolkit page. It\u2019s a warm-pipeline build."},
+      {sev:"p0", id:"CR\u00b703", t:"Hero\u2019s best CTA is its tertiary one",
+        body:"The free 18-question assessment is the lowest-friction, highest-intent lead magnet on the site. In the hero it sits <em>below</em> two buttons in tiny teal text. This is the opposite of hierarchy.",
+        fix:"Promote the quiz to the primary CTA for at least one variant. \u201cStart the 3-minute AI readiness assessment\u201d + a secondary \u201cor book a call\u201d."},
+      {sev:"p1", id:"CR\u00b704", t:"FinalCTA is a weaker echo of the hero",
+        body:"Same \u201cLet\u2019s Talk\u201d button. Same amber. Same copy. By the time a reader has scrolled past 9 sections, they need a richer offer \u2014 a specific call duration, a specific outcome, a specific person.",
+        fix:"FinalCTA: \u201cBook a 20-min scoping call with [Name]. Camera on, plain English, no slides.\u201d"},
+      {sev:"p1", id:"CR\u00b705", t:"No exit intent, no scroll CTA",
+        body:"Once the reader leaves the hero, the only visible CTA is in the sticky nav (small, amber, repeats hero). No floating CTA, no scroll-triggered banner, no exit-intent modal.",
+        fix:"Add a small sticky \u201cTake the assessment\u201d chip on scroll, fixed bottom-right on desktop."},
+      {sev:"p1", id:"CR\u00b706", t:"No conversion tracking visible",
+        body:"Grepped the codebase for gtag, plausible, umami, fathom, posthog. Zero hits. You\u2019re shipping to real traffic without instrumentation. Every change we recommend is unmeasurable.",
+        fix:"Install Plausible or Fathom (GDPR-friendly, matches your positioning) before any other change."},
+      {sev:"p2", id:"CR\u00b707", t:"Toolkit page is a dead end",
+        body:"Once a user lands on /toolkit the only outbound action is \u201cBook a Free 30-Minute Call\u201d. For someone who just asked for a PDF, that\u2019s a big leap. Intermediate offer: \u201cWeekly Substack \u2014 one email, Sundays.\u201d",
+        fix:"Add Substack opt-in above the call CTA on /toolkit."}
+    ]
+  },
+  {
+    id:"a11y", initials:"AX", v:4, name:"Aoife · Accessibility",
+    role:"WCAG 2.2 practitioner, screen-reader user part-time, runs audits for the Irish public sector.",
+    quote:"\u201cFor a privacy-forward brand, your contrast shortcuts and invisible Tailwind classes are embarrassing.\u201d",
+    score:64, grade:"C", color:"#C084FC",
+    findings:[
+      {sev:"p0", id:"A11Y\u00b701", t:"privacy.astro uses Tailwind classes that don\u2019t exist",
+        body:"The page references <span class='mono'>text-slate-300</span> and <span class='mono'>text-slate-500</span>. Your theme defines <span class='mono'>--color-slate</span> and <span class='mono'>--color-slate-light</span>, not a 300/500 scale. These classes silently fail.",
+        quote:"<p class=\"text-slate-300 text-lg...\">\n<p class=\"text-slate-500 text-sm mt-6\">",
+        fix:"Replace with text-slate-light / text-slate or add the missing scale to global.css."},
+      {sev:"p0", id:"A11Y\u00b702", t:"Nav links on navy fail 3:1 UI contrast",
+        body:"<span class='mono'>text-slate-light</span> (#C4D2E0) on <span class='mono'>bg-navy/90</span> passes body-text contrast but is close to the floor. On hover you set text-white which is fine. The amber CTA at #E8913A with charcoal text is strong \u2014 keep.",
+        fix:"Either darken slate-light by ~10% or only use it for body, never for UI nav links. Keep nav links at white, dim on hover."},
+      {sev:"p1", id:"A11Y\u00b703", t:"Mobile menu button has no aria-label",
+        body:"<span class='mono'>&lt;button id=\"mobile-menu-btn\"&gt;</span> contains only an inline SVG. Screen readers announce \u201cbutton\u201d. Also no aria-expanded state.",
+        fix:"aria-label=\"Open menu\", aria-controls=\"mobile-menu\", aria-expanded toggled by the click handler."},
+      {sev:"p1", id:"A11Y\u00b704", t:"Decorative SVGs lack aria-hidden",
+        body:"Every decorative icon (pain points, compliance, service stages) is an SVG without aria-hidden=\"true\". Screen readers may announce these as \u201cimage\u201d or \u201cgraphic\u201d.",
+        fix:"Add aria-hidden=\"true\" or role=\"img\" + aria-label where meaningful."},
+      {sev:"p1", id:"A11Y\u00b705", t:"Contact form labels fine \u2014 but no error state design",
+        body:"Labels are correct. Required markers use a non-text asterisk with visible colour. But there\u2019s no error state visible in the code; Formspree redirects away on submit but if there\u2019s a client-side failure, no fallback.",
+        fix:"Add a visible error message placeholder and an aria-live=\"polite\" region for feedback."},
+      {sev:"p2", id:"A11Y\u00b706", t:"Focus styles are browser default",
+        body:"No custom :focus or :focus-visible. Default blue ring clashes with brand and is absent on some buttons.",
+        fix:"Add a tailored focus ring: 2px solid teal, 2px offset on navy; 2px solid navy on off-white."},
+      {sev:"p2", id:"A11Y\u00b707", t:"Reduced motion",
+        body:"You have a global fade-in animation on every section. For users with prefers-reduced-motion, this is a sensitivity issue.",
+        fix:"Wrap the keyframe in @media (prefers-reduced-motion: no-preference)."}
+    ]
+  },
+  {
+    id:"brand", initials:"BR", v:5, name:"\u00d3rla · Visual & Brand",
+    role:"Senior designer. Wrote the brand guide. Keeps receipts.",
+    quote:"\u201cThe brand guidelines are better than the website that uses them. Start by using your own system.\u201d",
+    score:70, grade:"B\u2212", color:"#F87171",
+    findings:[
+      {sev:"p1", id:"BR\u00b701", t:"Typography is half-applied",
+        body:"Guidelines say DM Serif Display for display/headings, DM Sans for UI/buttons, Inter for body. In practice, hero uses <span class='mono'>font-extrabold</span> (Inter 800) and then later sections use <span class='mono'>font-serif</span>. Some H2s are serif, others aren\u2019t.",
+        fix:"All h1/h2 \u2192 serif 400. All body \u2192 Inter. All buttons + small UI \u2192 DM Sans. Remove font-extrabold from headings."},
+      {sev:"p1", id:"BR\u00b702", t:"The hero visual undermines the brand",
+        body:"Navy canvas with a generic circles-and-dots network graphic. This is the stock AI consultancy visual across 1,000 sites. Your brand system \u2014 navy + teal + serif display \u2014 is distinctive. Put something equally distinctive in the hero.",
+        fix:"Either: a real screenshot of the quiz, a real export of the SAR tool, or a typographic hero with a big pullquote. No more dot patterns."},
+      {sev:"p1", id:"BR\u00b703", t:"Amber is under-used",
+        body:"Guidelines say 15% amber for highlights. Amber only appears on CTAs and the required-field asterisks. No amber in section headings, no amber pullquotes, no amber data highlights.",
+        fix:"Use amber sparingly on 1\u20132 stats or section-opening numbers to bring warmth. 15% is a rhythm, not a rule."},
+      {sev:"p2", id:"BR\u00b704", t:"Inconsistent border-radius",
+        body:"Cards use rounded-2xl, buttons use rounded-full, inputs use rounded-xl, other buttons use rounded-xl. There\u2019s no clean system.",
+        fix:"Define tokens: --radius-card: 16px, --radius-pill: 999px, --radius-input: 10px. Apply consistently."},
+      {sev:"p2", id:"BR\u00b705", t:"Hover states lack lift",
+        body:"Most cards use <span class='mono'>hover:shadow-md</span> which is subtle on a dark bg. Translate a few pixels up (translateY(-2px)) on interactive cards for clearer affordance.",
+        fix:"Introduce a hover-card utility: transform+shadow transition together."},
+      {sev:"p2", id:"BR\u00b706", t:"Mix of svg stroke-widths",
+        body:"Some icons are 1.5 stroke, others are 2. Reads as inconsistency at a glance.",
+        fix:"Pick one (1.5 looks more premium). Normalise across components."},
+      {sev:"p0", id:"BR\u00b707", t:"\u2018DWY\u2019 tier uses a hard-coded hex, not a token",
+        body:"EngagementModels.astro: <span class='mono'>bg-[#1A3D54]</span> for the featured card. That\u2019s not in your palette. It\u2019s close to navy-light but off-brand \u2014 and it\u2019s the most visually prominent card on the page.",
+        fix:"Use bg-navy-light (#3B5680) or introduce an official accent-navy-deep token."}
+    ]
+  },
+  {
+    id:"ia", initials:"UX", v:6, name:"R\u00f3is\u00edn · UX & IA",
+    role:"Sees three process sections saying the same thing.",
+    quote:"\u201cYour homepage explains your process three times in a row. Twice is generous; three times is a loop.\u201d",
+    score:58, grade:"C", color:"#34D399",
+    findings:[
+      {sev:"p0", id:"IA\u00b701", t:"ServiceStages + ForensicAudit + HowItWorks = same thing, three times",
+        body:"ServiceStages: 4 steps. ForensicAudit: 3 steps. HowItWorks: 3 steps. They overlap conceptually and structurally \u2014 all three are \u2018numbered circles + title + blurb + line\u2019. A first-time reader can\u2019t tell these apart.",
+        fix:"Merge into a single \u2018How we work\u2019 section with 3 phases. Keep ServiceStages elsewhere (e.g. services page) as a deeper breakdown."},
+      {sev:"p0", id:"IA\u00b702", t:"No services page",
+        body:"The homepage is also the services page. There\u2019s no landing for someone searching \u2018eu ai act consulting ireland\u2019 to land on a page specifically about that service. Everything funnels through a single 9-section homepage.",
+        fix:"Create /services/eu-ai-act, /services/ai-readiness, /services/workflow-audit. Each is a focused SEO + conversion landing page."},
+      {sev:"p1", id:"IA\u00b703", t:"Demos are orphaned",
+        body:"precedent-demo.astro, threshold-sar-demo.astro, ai-readiness.astro \u2014 three interactive tools, each accessible only via direct URL or the tertiary hero link. No /demos or /tools hub.",
+        fix:"Add a /tools index page listing all three. Link from nav and hero."},
+      {sev:"p1", id:"IA\u00b704", t:"Nav hierarchy is shallow but inconsistent",
+        body:"Nav items: Services, How It Works, About, Compliance. All anchor-scroll to the homepage. On any other page, they all jump you back to the homepage. Feels broken.",
+        fix:"On non-home pages, either show full nav with page links (/services, /about, /compliance) or hide the anchor nav and show breadcrumb + contact CTA only."},
+      {sev:"p2", id:"IA\u00b705", t:"Scroll anchor without sticky offset",
+        body:"Nav is sticky (h-20ish). Anchor scrolls don\u2019t account for it \u2014 clicking \u2018Services\u2019 lands with the section title hidden behind the nav bar.",
+        fix:"scroll-margin-top: 80px on every anchored section."},
+      {sev:"p2", id:"IA\u00b706", t:"No breadcrumb on detail pages",
+        body:"Contact, privacy, toolkit all lack any wayfinding back to parent concepts.",
+        fix:"Add a small top-of-page breadcrumb or \u2018Back to home\u2019 link."}
+    ]
+  },
+  {
+    id:"copy", initials:"CO", v:7, name:"Daire · Copy & Voice",
+    role:"Your brand guide says \u2018clarity is respect\u2019. This reviewer has it tattooed.",
+    quote:"\u201cYou wrote the voice guide. You then broke its own rules on the homepage.\u201d",
+    score:60, grade:"C", color:"#FBBF24",
+    findings:[
+      {sev:"p0", id:"CO\u00b701", t:"Hero headline says nothing",
+        body:"\u201cDo what only you can.\u201d \u2014 poetic but violates your own \u2018clarity is respect\u2019 rule. The subhead does the actual work. Flip them: lead with the clearer statement. Save the elegant line for /about or the footer.",
+        fix:"Rewrite hero around a verifiable promise: \u2018Fixed-fee AI for Irish SMEs. EU-hosted. Act-compliant by August.\u2019"},
+      {sev:"p0", id:"CO\u00b702", t:"\u201cHere\u2019s How It Works. Simply.\u201d",
+        body:"The \u2018Simply\u2019 is hedging. Your voice guide says \u2018short sentences, active voice, no hedging\u2019. This section is a hedge in a headline.",
+        fix:"\u2018How we work.\u2019 Two words. Done."},
+      {sev:"p1", id:"CO\u00b703", t:"Three headlines sound like different brands",
+        body:"\u201cSound familiar?\u201d (casual friend). \u201cFrom Friction to Fixed\u201d (agency slogan). \u201cAI Adoption That\u2019s Compliant From Day One\u201d (enterprise whitepaper). Pick a register and stay in it.",
+        fix:"Pick casual-confident. Rewrite the slogan-y ones in conversational tone."},
+      {sev:"p1", id:"CO\u00b704", t:"CTA copy never varies",
+        body:"\u2018Let\u2019s Talk\u2019 appears 4+ times on the homepage and in the nav. Variation matters for scanability and re-engagement.",
+        fix:"Tier CTAs by friction: lowest-friction = assessment, mid = Substack, highest = scoping call."},
+      {sev:"p1", id:"CO\u00b705", t:"Assertions without evidence",
+        body:"\u2018We\u2019re not here to sell you tools you don\u2019t need.\u2019 Nobody claims the opposite. These sentences take space but carry no information.",
+        fix:"Cut any sentence that, if you flipped its meaning, no competitor would claim."},
+      {sev:"p2", id:"CO\u00b706", t:"The \u2018amnesty before enforcement\u2019 line isn\u2019t anywhere",
+        body:"It\u2019s the sharpest line in your brand guide. It does not appear on the live site. That\u2019s a miss.",
+        fix:"Put it on the homepage. Make it a section headline or a framed pullquote."},
+      {sev:"p2", id:"CO\u00b707", t:"Microcopy near the form is good \u2014 extend it",
+        body:"\u2018Your details are used only to respond to your message.\u2019 \u2014 good. \u2018Usually respond within 24 hours\u2019 \u2014 good. These small honest lines are your voice. Scatter more like them.",
+        fix:"Extend: \u2018No sales sequence. No automated follow-ups. One human reply.\u2019"}
+    ]
+  },
+  {
+    id:"leg", initials:"LG", v:8, name:"Liam · Compliance (the ironic one)",
+    role:"Qualified GDPR/AI Act advisor. Judges you by your own standards.",
+    quote:"\u201cYou sell compliance. Your own cookie banner is missing.\u201d",
+    score:66, grade:"C+", color:"#34D399",
+    findings:[
+      {sev:"p0", id:"LG\u00b701", t:"No cookie banner, no consent mechanism",
+        body:"Even if you currently load zero analytics or marketing scripts, as soon as you add Plausible/Fathom/LinkedIn Insight Tag, you\u2019ll need a banner under ePrivacy. Ship the banner <em>first</em>, then add analytics \u2014 not the other way round.",
+        fix:"Install a lightweight consent UI (e.g. Klaro, or a custom 40-line script). Default off for all non-essential."},
+      {sev:"p0", id:"LG\u00b702", t:"Privacy policy missing DPO / controller identification",
+        body:"The policy lists Resend and Formspree as processors (good) and retention (good) but doesn\u2019t name the controller (What If Now trading entity), its registered address, or how to reach the DPO / equivalent. Irish DPC guidance treats this as mandatory.",
+        fix:"Add controller name, legal form (ltd/sole trader), registered address, and a DPO contact (or \u2018privacy lead\u2019)."},
+      {sev:"p1", id:"LG\u00b703", t:"\u2018Legitimate interest\u2019 basis is sloppy",
+        body:"Relying on legitimate interest to follow up marketing emails after an assessment is arguable, but you must balance-test and disclose the right to object explicitly. You mention unsubscribe but not the formal objection right.",
+        fix:"Either switch to consent (opt-in checkbox on the quiz) or add the LIA summary + explicit right-to-object wording."},
+      {sev:"p1", id:"LG\u00b704", t:"No AI disclosure on the quiz or demos",
+        body:"Under Article 52 AI Act, users should be informed when interacting with an AI system. The quiz is scored by code not model, so probably fine \u2014 but if any of the demos use an LLM in the loop, a notice is required by August.",
+        fix:"Audit each demo. Add \u2018This tool uses [X]\u2019 disclosure where applicable. You\u2019re the EU AI Act advisor \u2014 this has to be exemplary."},
+      {sev:"p1", id:"LG\u00b705", t:"Formspree endpoint in client code",
+        body:"Not a leak per se \u2014 Formspree form IDs are public by design \u2014 but with no honeypot and no captcha, you\u2019ll be scraped and spammed.",
+        fix:"Honeypot field + light rate limit."},
+      {sev:"p2", id:"LG\u00b706", t:"No accessibility statement",
+        body:"For a consultancy serving state / semi-state bodies, an accessibility statement is expected and may be required under the EU Web Accessibility Directive when working with public clients.",
+        fix:"Write a plain-English accessibility statement. Reference WCAG 2.2 AA target + known issues list."},
+      {sev:"p2", id:"LG\u00b707", t:"No business registration detail anywhere",
+        body:"Footer has \u00a9 year and policy link. Nothing about trading name, VAT no., company no. For B2B buyers (especially state bodies), this signals informality.",
+        fix:"Add a small company line in the footer: \u2018What If Now Ltd. \u00b7 Reg X \u00b7 VAT IE X \u00b7 Dublin.\u2019"}
+    ]
+  }
+];
+
+/* ========================================================= *
+ *  RENDER DASHBOARD GRID
+ * ========================================================= */
+const grid = document.getElementById('scoreGrid');
+AGENTS.forEach(a=>{
+  const barClass = a.score>=70?"green":a.score>=60?"amber":"red";
+  const el = document.createElement('div');
+  el.className = 'score-card';
+  el.innerHTML = `
+    <div class="score-head">
+      <span class="score-agent">${a.initials} · ${a.name.split('·')[0].trim()}</span>
+      <span class="pill ${a.score<60?'red':a.score<70?'amber':''}">${a.grade}</span>
+    </div>
+    <div class="score-lens">${a.name.split('·')[1]?.trim()||a.name}</div>
+    <div class="score-big">${a.score}<span>/100</span></div>
+    <div class="bar"><i class="${barClass}" style="width:${a.score}%"></i></div>
+    <div class="score-note">${a.findings.filter(f=>f.sev==='p0').length} P0 · ${a.findings.filter(f=>f.sev==='p1').length} P1 · ${a.findings.filter(f=>f.sev==='p2').length} P2</div>
+  `;
+  el.addEventListener('click', ()=>{ switchView('agents'); setTimeout(()=>{
+    const t = document.getElementById('agent-'+a.id);
+    if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 100); });
+  grid.appendChild(el);
+});
+
+/* ========================================================= *
+ *  RENDER AGENT CARDS
+ * ========================================================= */
+const agentContainer = document.getElementById('agentContainer');
+AGENTS.forEach((a, i)=>{
+  const gradeBg = a.score>=70?'background:#DDF0E6;color:#0d4a2b':a.score>=60?'background:#FAEFD2;color:#6b4c05':'background:#F8E4E4;color:#6b1a1a';
+  const wrap = document.createElement('div');
+  wrap.id = 'agent-'+a.id;
+  wrap.innerHTML = `
+    <div class="agent-hero">
+      <div class="avatar v${a.v}">${a.initials}</div>
+      <div class="name-block">
+        <h2>${a.name}</h2>
+        <div class="role">${a.role}</div>
+        <div class="quote">${a.quote}</div>
+      </div>
+      <div class="agent-score">
+        <div class="n">${a.score}</div>
+        <div class="d">of 100</div>
+        <div class="g" style="${gradeBg}">Grade · ${a.grade}</div>
+      </div>
+    </div>
+    <div class="findings" id="findings-${a.id}"></div>
+    ${i<AGENTS.length-1 ? `<div class="nav-prevnext">
+      <a href="#agent-${a.id}">↑ Top of ${a.name.split('·')[0].trim()}</a>
+      <a href="#agent-${AGENTS[i+1].id}">Next reviewer · ${AGENTS[i+1].name.split('·')[0].trim()} →</a>
+    </div>` : `<div class="nav-prevnext">
+      <a href="#agent-${AGENTS[0].id}">↑ Back to first reviewer</a>
+      <a href="javascript:void(0)" onclick="switchView('dash')">Back to dashboard →</a>
+    </div>`}
+  `;
+  agentContainer.appendChild(wrap);
+  const fwrap = wrap.querySelector('#findings-'+a.id);
+  a.findings.forEach(f=>{
+    const fel = document.createElement('div');
+    fel.className = 'finding' + (f.body.length>260?' full':'');
+    fel.innerHTML = `
+      <div class="fi-head">
+        <span class="sev ${f.sev}">${f.sev.toUpperCase()} · ${f.sev==='p0'?'fix now':f.sev==='p1'?'fix soon':'worth doing'}</span>
+        <span class="fi-id">${f.id}</span>
+      </div>
+      <h4>${f.t}</h4>
+      <p>${f.body}</p>
+      ${f.quote ? `<div class="quote-block">${f.quote}</div>` : ''}
+      <div class="fi-fix">
+        <div class="fix-label">The fix</div>
+        <p>${f.fix}</p>
+      </div>
+    `;
+    fwrap.appendChild(fel);
+  });
+});
+
+/* ========================================================= *
+ *  TAB SWITCHING
+ * ========================================================= */
+function switchView(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.querySelectorAll('#tabs button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.view===v);
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+  try{ localStorage.setItem('win-audit-view', v); }catch(e){}
+}
+document.querySelectorAll('#tabs button').forEach(b=>{
+  b.addEventListener('click', ()=> switchView(b.dataset.view));
+});
+// restore last viewed tab
+try{
+  const v = localStorage.getItem('win-audit-view');
+  if(v && ['dash','agents','annot','redesign','deck'].includes(v)) switchView(v);
+}catch(e){}
+
+/* ========================================================= *
+ *  DECK
+ * ========================================================= */
+const slides = document.querySelectorAll('#deck .slide');
+let sIdx = 0;
+function gotoSlide(n){
+  sIdx = Math.max(0, Math.min(slides.length-1, n));
+  slides.forEach((s,i)=>s.classList.toggle('active', i===sIdx));
+  document.getElementById('deckPos').textContent = String(sIdx+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+  try{ localStorage.setItem('win-audit-deck', String(sIdx)); }catch(e){}
+}
+document.getElementById('deckPrev').addEventListener('click', ()=>gotoSlide(sIdx-1));
+document.getElementById('deckNext').addEventListener('click', ()=>gotoSlide(sIdx+1));
+document.addEventListener('keydown', e=>{
+  const deckActive = document.getElementById('view-deck').classList.contains('active');
+  if(!deckActive) return;
+  if(e.key==='ArrowLeft') gotoSlide(sIdx-1);
+  if(e.key==='ArrowRight') gotoSlide(sIdx+1);
+});
+try{
+  const n = parseInt(localStorage.getItem('win-audit-deck')||'0',10);
+  if(!isNaN(n)) gotoSlide(n);
+}catch(e){ gotoSlide(0); }
+</script>
+
+</body>
+</html>
