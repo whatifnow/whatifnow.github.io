@@ -1,0 +1,56 @@
+---
+const tools = [
+  {
+    title: "AI Readiness Assessment",
+    description: "18 questions across 6 dimensions. Get your score, sector benchmark, and a free toolkit. Takes 3 minutes.",
+    cta: "Take the assessment →",
+    link: "/ai-readiness",
+    icon: `<svg class="w-8 h-8 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+    </svg>`
+  },
+  {
+    title: "SAR Threshold Calculator",
+    description: "A live tool for calculating Subject Access Request thresholds under GDPR. Built for DPOs and compliance teams.",
+    cta: "Try the tool →",
+    link: "/threshold-sar-demo",
+    icon: `<svg class="w-8 h-8 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+    </svg>`
+  },
+  {
+    title: "RTB Precedent Explorer",
+    description: "Search and cross-reference real EU AI Act and GDPR precedents. Built for legal and compliance practitioners.",
+    cta: "Explore precedents →",
+    link: "/precedent-demo",
+    icon: `<svg class="w-8 h-8 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>`
+  }
+];
+---
+
+<section id="tools" class="py-20 px-6 bg-navy">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-teal text-sm font-mono uppercase tracking-widest text-center mb-3">See what we build</p>
+    <h2 class="text-3xl md:text-4xl font-serif text-center text-white mb-4">
+      Working software, not slide decks.
+    </h2>
+    <p class="text-slate-light text-lg text-center max-w-2xl mx-auto mb-16">
+      Most consultancies ship a PDF. We ship working tools. Take one for a spin.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {tools.map((tool) => (
+        <div class="bg-navy-light rounded-2xl p-8 flex flex-col">
+          <div class="mb-4" set:html={tool.icon} />
+          <h3 class="font-serif text-2xl text-white mb-3">{tool.title}</h3>
+          <p class="text-slate-light leading-relaxed mb-6 flex-1">{tool.description}</p>
+          <a href={tool.link} class="text-teal hover:text-white transition-colors font-semibold">
+            {tool.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

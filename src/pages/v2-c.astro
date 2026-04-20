@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavigationV2 from '../components/v2/NavigationV2.astro';
+import HeroContrarian from '../components/v2/HeroContrarian.astro';
+import DemosStrip from '../components/v2/DemosStrip.astro';
+import HowWeWork from '../components/v2/HowWeWork.astro';
+import EngagementModelsV2 from '../components/v2/EngagementModelsV2.astro';
+import AboutV2 from '../components/v2/AboutV2.astro';
+import FinalCTAV2 from '../components/v2/FinalCTAV2.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout
+  title="What If Now | Illumination Before Enforcement"
+  description="We audit the AI your team is already using, map it to the EU AI Act, and turn it into compliant infrastructure. Amnesty, not audit."
+  noindex={true}
+>
+  <NavigationV2 />
+  <main>
+    <HeroContrarian />
+    <DemosStrip />
+    <HowWeWork />
+    <EngagementModelsV2 />
+    <AboutV2 />
+    <FinalCTAV2 />
+  </main>
+  <Footer />
+</Layout>
+
+<style is:global>
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  section { animation: fadeInUp 0.6s ease-out; }
+  @media (prefers-reduced-motion: reduce) {
+    section { animation: none; }
+  }
+</style>

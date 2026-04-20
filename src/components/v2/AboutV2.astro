@@ -1,0 +1,47 @@
+---
+const pills = [
+  "EU AI Act · August 2026",
+  "Fixed fee · Not day-rate",
+  "EU-hosted infrastructure"
+];
+---
+
+<section id="about" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl mx-auto">
+
+      <div class="flex flex-col sm:flex-row gap-8 items-start mb-12">
+        <div class="flex-shrink-0">
+          <div class="w-20 h-20 rounded-full bg-teal flex items-center justify-center">
+            <span class="text-navy text-2xl font-bold font-ui">LJ</span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-1">
+            <h3 class="text-xl font-serif text-white">Lar Judge</h3>
+            <span class="text-xs font-mono text-teal border border-teal/40 rounded-full px-3 py-0.5">What If Now</span>
+          </div>
+          <p class="text-slate-light text-sm mb-1">Founder</p>
+          <p class="text-slate-light leading-relaxed mt-3">
+            Former enterprise ops lead. Spent a decade automating workflows at scale before building What If Now to bring the same rigour — minus the Big Four invoice — to Irish SMEs and charities.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-lg text-slate-light leading-relaxed mb-12">
+        <p>
+          What If Now was founded on a simple belief: your best people shouldn't be spending their week on things that don't need them.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        {pills.map((pill) => (
+          <span class="bg-navy-light px-5 py-2 rounded-full text-sm font-mono text-teal">
+            {pill}
+          </span>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

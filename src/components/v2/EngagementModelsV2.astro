@@ -1,0 +1,94 @@
+---
+const models = [
+  {
+    tier: "DIY",
+    subtitle: "Self-Guided",
+    price: "Free",
+    features: [
+      "Weekly Substack",
+      "AI inventory template (Excel)",
+      "EU AI Act cheat sheet",
+      "Slack community"
+    ],
+    cta: "Subscribe free →",
+    ctaLink: "https://whatifnow.substack.com",
+    featured: false
+  },
+  {
+    tier: "Done With You",
+    subtitle: "Most Popular",
+    price: "from €12,000",
+    features: [
+      "Full AI inventory & Act mapping",
+      "2–3 workflows automated",
+      "Team training (2 half-days)",
+      "60-day support window"
+    ],
+    cta: "Book a 20-min scoping call",
+    ctaLink: "/contact",
+    featured: true
+  },
+  {
+    tier: "Done For You",
+    subtitle: "Full Service",
+    price: "from €35,000",
+    features: [
+      "Everything in DWY",
+      "Custom-built AI tooling",
+      "Full Art. 9/10 documentation",
+      "6-month post-launch support"
+    ],
+    cta: "Request a proposal →",
+    ctaLink: "/contact",
+    featured: false
+  }
+];
+---
+
+<section id="services" class="py-20 px-6 bg-off-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-serif text-center mb-12 text-navy">
+      One engagement. Three depths.
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6 items-start">
+      {models.map((model) => (
+        <div class={`p-8 rounded-2xl transition-shadow ${
+          model.featured
+            ? 'bg-navy-light text-white shadow-xl scale-105'
+            : 'bg-white hover:shadow-md'
+        }`}>
+          <span class={`text-sm font-medium ${model.featured ? 'text-teal' : 'text-teal-dark'}`}>
+            {model.subtitle}
+          </span>
+          <h3 class={`text-2xl font-serif mt-2 mb-1 ${model.featured ? 'text-white' : 'text-navy'}`}>
+            {model.tier}
+          </h3>
+          <p class={`font-serif text-3xl mb-6 ${model.featured ? 'text-teal' : 'text-navy'}`}>
+            {model.price}
+          </p>
+          <ul class="space-y-2 mb-8">
+            {model.features.map((feature) => (
+              <li class={`flex items-start gap-2 ${model.featured ? 'text-slate-light' : 'text-slate'}`}>
+                <svg class={`w-5 h-5 mt-0.5 flex-shrink-0 ${model.featured ? 'text-teal' : 'text-teal-dark'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={model.ctaLink}
+            class={`block text-center py-3 px-6 rounded-full font-semibold transition-colors ${
+              model.featured
+                ? 'bg-teal text-white hover:bg-teal-dark'
+                : 'bg-navy text-white hover:bg-navy-light'
+            }`}
+          >
+            {model.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

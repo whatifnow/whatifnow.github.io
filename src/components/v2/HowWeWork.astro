@@ -1,0 +1,43 @@
+---
+const phases = [
+  {
+    number: "1",
+    title: "Shadow",
+    description: "We spend time alongside your team before we write a line of anything. Map every manual, repetitive task. Identify the 2–3 with the highest automation value."
+  },
+  {
+    number: "2",
+    title: "Design",
+    description: "We produce a fixed-fee proposal: tools, timeline, and a plain-English success metric for each workflow. No surprises."
+  },
+  {
+    number: "3",
+    title: "Build & hand over",
+    description: "We build it, test it in your real environment, train your team, and hand over the keys. We're available for 60 days post-launch."
+  }
+];
+---
+
+<section id="how-it-works" class="py-20 px-6 bg-off-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-serif text-center mb-16 text-navy">
+      How we work.
+    </h2>
+
+    <div class="relative">
+      <div class="hidden md:block absolute top-8 left-[16.67%] right-[16.67%] h-0.5 bg-gradient-to-r from-teal/20 via-teal to-teal/20"></div>
+
+      <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+        {phases.map((phase) => (
+          <div class="relative text-center">
+            <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-teal text-white flex items-center justify-center text-2xl font-bold relative z-10">
+              {phase.number}
+            </div>
+            <h3 class="text-xl font-serif mb-3 text-navy">{phase.title}</h3>
+            <p class="text-slate leading-relaxed">{phase.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
