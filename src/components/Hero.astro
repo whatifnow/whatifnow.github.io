@@ -1,12 +1,11 @@
 ---
-const inventory = [
-  { state: 'ok',   name: 'Copilot',                note: '11 users · working' },
-  { state: 'ok',   name: 'Otter · meeting notes',  note: 'working'            },
-  { state: 'warn', name: 'Custom GPT · grants',    note: 'no owner'           },
-  { state: 'warn', name: 'Zapier · email triage',  note: 'broken Jun'         },
-  { state: 'warn', name: 'No AI use policy',       note: 'gap'                }
+const quizQuestion = "In the last 30 days, how many of your team have used AI for client-facing work?";
+const quizOptions = [
+  { label: "None that I'm aware of",            selected: false },
+  { label: "A few people, ad-hoc",              selected: true  },
+  { label: "Most of the team, regularly",       selected: false },
+  { label: "It's part of our standard process", selected: false }
 ];
-const dotClass = (s) => s === 'ok' ? 'bg-teal' : 'bg-amber';
 ---
 
 <section class="min-h-screen flex items-center pt-20 pb-16 px-6">
@@ -15,54 +14,48 @@ const dotClass = (s) => s === 'ok' ? 'bg-teal' : 'bg-amber';
       <!-- Copy column -->
       <div class="space-y-8">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white font-serif">
-          We get your <span class="text-teal whitespace-nowrap">AI working</span>.<br />
-          Your team does <span class="text-teal whitespace-nowrap">what only they can</span>.
+          How does your team's AI use<br />compare to your <span class="text-teal whitespace-nowrap">sector</span>?
         </h1>
 
         <p class="text-xl md:text-2xl text-slate-light leading-relaxed">
-          Picking tools, wiring workflows, training people, keeping it safe — that's our work, not your team's. We start by mapping what's already there.
+          Most small organisations are using more AI than they realise — and missing the bits that would actually free up their team. The 3-minute audit shows you where you sit.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
           <a
-            href="/how-we-work"
+            href="/ai-readiness"
             class="bg-teal text-navy font-ui px-8 py-4 rounded-full font-bold text-lg hover:bg-teal-dark hover:text-white transition-colors text-center"
           >
-            See how we work
+            Take the 3-minute audit
           </a>
           <a
-            href="/ai-readiness"
+            href="/contact?subject=Scoping+call"
             class="border-2 border-slate-light text-white font-ui px-8 py-4 rounded-full font-bold text-lg hover:bg-navy-light transition-colors text-center"
           >
-            Take the 3-min assessment
+            or book a 20-min call
           </a>
         </div>
-
-        <a
-          href="/contact?subject=Scoping+call"
-          class="inline-flex items-center gap-2 text-teal font-semibold hover:text-white transition-colors text-sm"
-        >
-          <span>Prefer to talk first? Book a 20-min scoping call</span>
-          <span>→</span>
-        </a>
       </div>
 
-      <!-- AI inventory snapshot — sample data only, not real client data -->
+      <!-- Quiz preview card -->
       <div class="hidden lg:block">
         <div class="bg-white rounded-2xl p-6 shadow-2xl border border-slate/10 max-w-md ml-auto">
-          <div class="flex justify-between items-baseline mb-4 pb-3 border-b border-slate/10">
-            <span class="font-serif text-base text-navy">AI inventory</span>
-            <span class="font-mono text-[10px] text-slate tracking-widest">14-PERSON CHARITY · SAMPLE</span>
+          <div class="flex justify-between items-baseline mb-5">
+            <span class="font-ui font-bold text-xs tracking-widest uppercase text-teal-dark">Readiness Assessment</span>
+            <span class="font-mono text-[11px] text-slate">Q 3 / 18</span>
           </div>
-          {inventory.map((item) => (
-            <div class="flex items-center gap-3 py-2 text-sm">
-              <span class={`w-2 h-2 rounded-full flex-shrink-0 ${dotClass(item.state)}`}></span>
-              <span class="flex-1 text-navy font-semibold">{item.name}</span>
-              <span class="font-mono text-[11px] text-slate">{item.note}</span>
+          <div class="h-1.5 bg-off-white rounded-full overflow-hidden mb-5">
+            <div class="h-full bg-teal" style="width:18%"></div>
+          </div>
+          <h3 class="font-serif text-xl text-navy leading-snug mb-4">{quizQuestion}</h3>
+          {quizOptions.map((opt) => (
+            <div class={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg border-[1.5px] mb-2 text-sm ${opt.selected ? 'border-teal bg-teal/10 text-navy' : 'border-slate/15 text-navy'}`}>
+              <span class={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${opt.selected ? 'border-teal bg-teal ring-2 ring-white ring-inset' : 'border-slate-light'}`}></span>
+              {opt.label}
             </div>
           ))}
-          <div class="mt-3 pt-3 border-t border-dashed border-slate/15 font-mono text-[11px] text-slate leading-relaxed">
-            2 working, 3 to sort. <strong class="text-teal-dark">Map drawn in 90 min.</strong>
+          <div class="mt-3 pt-3 border-t border-dashed border-slate/15 font-mono text-[11px] text-slate text-center tracking-wider">
+            3 MIN · INSTANT RESULT · SECTOR BENCHMARK
           </div>
         </div>
       </div>
