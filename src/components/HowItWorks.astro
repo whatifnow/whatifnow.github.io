@@ -1,30 +1,31 @@
 ---
-const steps = [
+const phases = [
   {
     number: "1",
-    title: "Book a Scoping Call",
-    description: "Tell us about your business, your goals, and where you're stuck. We'll figure out the right engagement together — no commitment, no pressure."
+    title: "Scope",
+    description: "Tell us where you're stuck. On a short scoping call we figure out the right engagement together — literacy workshops, a focused audit, or a full build. No commitment, no pressure."
   },
   {
     number: "2",
-    title: "Get Your Diagnostic",
-    description: "We'll map your workflows, assess your AI readiness, and deliver a prioritised action plan with clear next steps and expected outcomes."
+    title: "Diagnose",
+    description: "We shadow your team, map how work actually flows, and surface the real friction points. You get a prioritised action plan with specific tools, timelines, and expected ROI — tailored to your budget."
   },
   {
     number: "3",
-    title: "See Results",
-    description: "Whether you implement with us or independently, you'll have a concrete roadmap and the confidence to move forward."
+    title: "Build",
+    description: "We design and ship AI-enhanced workflows that fit your team and your data — or hand you a roadmap to run yourself. Either way, you leave with the confidence to move forward."
   }
 ];
 ---
 
 <section id="how-it-works" class="py-20 px-6 bg-off-white">
+  <span id="services" class="sr-only" aria-hidden="true"></span>
   <div class="max-w-6xl mx-auto">
     <h2 class="text-3xl md:text-4xl font-bold font-serif text-center mb-4 text-navy">
-      Here's How It Works. Simply.
+      How we work
     </h2>
     <p class="text-slate text-center text-lg mb-16 max-w-2xl mx-auto">
-      Here's how working with us actually works.
+      Three phases. We meet you where you are.
     </p>
 
     <div class="relative">
@@ -32,15 +33,28 @@ const steps = [
       <div class="hidden md:block absolute top-8 left-[16.67%] right-[16.67%] h-0.5 bg-gradient-to-r from-teal/20 via-teal to-teal/20"></div>
 
       <div class="grid md:grid-cols-3 gap-8 md:gap-12">
-        {steps.map((step) => (
+        {phases.map((phase) => (
           <div class="relative text-center">
             <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-teal text-white flex items-center justify-center text-2xl font-bold relative z-10">
-              {step.number}
+              {phase.number}
             </div>
-            <h3 class="text-xl font-bold mb-3 text-navy">{step.title}</h3>
-            <p class="text-slate leading-relaxed">{step.description}</p>
+            <h3 class="text-xl font-bold mb-3 text-navy">{phase.title}</h3>
+            <p class="text-slate leading-relaxed">{phase.description}</p>
           </div>
         ))}
+      </div>
+    </div>
+
+    <!-- Audit duration indicator -->
+    <div class="mt-12 text-center">
+      <div class="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-6 bg-white px-8 py-4 rounded-full border border-slate-200">
+        <span class="text-slate text-sm">
+          <span class="text-teal font-semibold">Focused Audit:</span> 1–2 weeks
+        </span>
+        <span class="hidden sm:block text-slate">|</span>
+        <span class="text-slate text-sm">
+          <span class="text-teal font-semibold">Comprehensive Audit:</span> 6–10 weeks
+        </span>
       </div>
     </div>
   </div>
