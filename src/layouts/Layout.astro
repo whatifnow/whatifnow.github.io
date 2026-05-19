@@ -9,6 +9,7 @@ interface Props {
 
 const { title, description = "AI consulting for businesses. Get AI-ready with What If Now — strategy, training, and implementation.", noindex = false } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL('/images/og-image.jpg', Astro.site);
 ---
 
 <!doctype html>
@@ -26,7 +27,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content="/images/og-image.jpg" />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="What If Now" />
 
     <!-- Twitter -->
