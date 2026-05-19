@@ -3,10 +3,14 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="py-8 px-6 bg-navy border-t border-navy-light">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-    <p class="text-slate text-sm">
-      &copy; {currentYear} What If Now
+  <div class="max-w-6xl mx-auto flex flex-col gap-6">
+    <p class="text-slate text-sm text-center md:text-left">
+      What If Now Ltd · Registered in Dublin, Ireland · Data controller: <a href="mailto:privacy@whatifnow.ie" class="hover:text-white transition-colors">privacy@whatifnow.ie</a>
     </p>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-slate text-sm">
+        &copy; {currentYear} What If Now Ltd
+      </p>
 
     <div class="flex items-center gap-6">
       <a href="/privacy" class="text-slate hover:text-white transition-colors text-sm">
@@ -48,6 +52,7 @@ const currentYear = new Date().getFullYear();
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       </a>
+      </div>
     </div>
   </div>
 </footer>

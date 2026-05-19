@@ -54,8 +54,15 @@ const ogImageURL = new URL('/images/og-image.jpg', Astro.site);
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "What If Now",
+      "legalName": "What If Now Ltd",
       "description": "AI consulting for businesses — strategy, training, and implementation.",
       "url": "https://whatifnow.ie",
+      "email": "privacy@whatifnow.ie",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dublin",
+        "addressCountry": "IE"
+      },
       "serviceType": ["AI Consulting", "AI Training", "AI Implementation", "AI Readiness Assessment"]
     })} />
   </head>
