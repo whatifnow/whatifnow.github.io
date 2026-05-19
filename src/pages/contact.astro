@@ -14,114 +14,85 @@ import Footer from '../components/Footer.astro';
       </p>
 
       <form action="https://formspree.io/f/mlgojgbp" method="POST" class="space-y-6">
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label for="name" class="block text-navy font-semibold mb-1">
-              Full Name <span class="text-amber">*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              required
-              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
-            />
-          </div>
-          <div>
-            <label for="company" class="block text-navy font-semibold mb-1">
-              Company Name <span class="text-amber">*</span>
-            </label>
-            <input
-              type="text"
-              name="company"
-              id="company"
-              required
-              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
-            />
-          </div>
+
+        <!-- Honeypot: bots fill it, humans don't see it. Formspree drops the submission. -->
+        <div style="position:absolute;left:-9999px" aria-hidden="true">
+          <label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label for="email" class="block text-navy font-semibold mb-1">
-              Email <span class="text-amber">*</span>
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
-            />
-          </div>
-          <div>
-            <label for="phone" class="block text-navy font-semibold mb-1">
-              Phone Number <span class="text-amber">*</span>
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              required
-              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
-            />
-          </div>
+        <div>
+          <label for="name" class="block text-navy font-semibold mb-1">
+            Your name <span class="text-amber">*</span>
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            autocomplete="name"
+            class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+          />
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label for="preferred_contact" class="block text-navy font-semibold mb-1">
-              Preferred Contact Method <span class="text-amber">*</span>
-            </label>
-            <select
-              name="preferred_contact"
-              id="preferred_contact"
-              required
-              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy bg-white"
-            >
-              <option value="" disabled selected>Select preferred method...</option>
-              <option value="Email">Email</option>
-              <option value="Phone">Phone</option>
-              <option value="Video Call">Video Call</option>
-            </select>
-          </div>
-          <div>
-            <label for="subject" class="block text-navy font-semibold mb-1">
-              Subject <span class="text-amber">*</span>
-            </label>
-            <input
-              type="text"
-              name="subject"
-              id="subject"
-              required
-              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
-            />
-          </div>
+        <div>
+          <label for="email" class="block text-navy font-semibold mb-1">
+            Work email <span class="text-amber">*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            autocomplete="email"
+            class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+          />
         </div>
 
         <div>
           <label for="message" class="block text-navy font-semibold mb-1">
-            Message <span class="text-amber">*</span>
+            What's on your mind? <span class="text-amber">*</span>
           </label>
           <textarea
             name="message"
             id="message"
             rows="5"
             required
+            placeholder="A few lines about what you're working on. We'll take it from there."
             class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
           ></textarea>
         </div>
+
+        <!-- Optional: only shown if they want a call -->
+        <div class="bg-white/60 rounded-xl p-4 border border-slate/10">
+          <label class="flex items-center gap-3 text-navy text-sm font-medium cursor-pointer">
+            <input type="checkbox" id="prefer-call" class="w-4 h-4" />
+            I'd prefer a phone call — let me leave a number.
+          </label>
+          <div id="phone-wrap" class="hidden mt-3">
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              autocomplete="tel"
+              placeholder="+353…"
+              class="w-full rounded-xl border-2 border-slate/20 focus:border-teal focus:outline-none p-3 text-navy"
+            />
+          </div>
+        </div>
+
+        <!-- Hidden field, prefilled by URL ?subject= for tier links -->
+        <input type="hidden" name="subject" id="subject" value="General enquiry" />
 
         <div class="text-center">
           <button
             type="submit"
             class="bg-amber text-navy font-bold py-3 px-8 rounded-xl hover:bg-amber/90 transition"
           >
-            Send Message
+            Start the conversation
           </button>
           <p class="text-slate/60 text-xs mt-3">
-            Your details are used only to respond to your message.
-            <a href="/privacy" class="underline hover:text-slate transition-colors">Privacy Policy</a>.
+            One human reply, usually within 24 hours. No sales sequence.
+            <a href="/privacy" class="underline hover:text-slate transition-colors">Privacy policy</a>.
           </p>
         </div>
       </form>
@@ -131,7 +102,19 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
+  // URL subject prefill (kept from existing code)
   const params = new URLSearchParams(window.location.search);
   const subject = params.get('subject');
-  if (subject) document.getElementById('subject').value = subject;
+  if (subject) {
+    const el = document.getElementById('subject');
+    if (el) el.value = subject;
+  }
+
+  // Reveal phone field only when the checkbox is ticked
+  const pref = document.getElementById('prefer-call');
+  const wrap = document.getElementById('phone-wrap');
+  pref?.addEventListener('change', () => {
+    wrap?.classList.toggle('hidden', !pref.checked);
+    if (pref.checked) document.getElementById('phone')?.focus();
+  });
 </script>
