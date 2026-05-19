@@ -466,7 +466,6 @@ export default function RTBDemo() {
   const Comp = map[activeView] || OverviewScreen;
   return (
     <div style={{ fontFamily: "'DM Sans', system-ui, sans-serif", background: C.bg, color: C.charcoal, minHeight: "100vh" }}>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Inter:wght@700&display=swap" rel="stylesheet" />
       <style>{`.dn::-webkit-scrollbar{display:none}@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.df{animation:fu .3s ease-out}`}</style>
       <div style={{ background: C.white, borderBottom: `1px solid ${C.border}`, padding: "16px 22px 14px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}><WinLogo size={30} /><WinWordmark size={18} /><div style={{ flex: 1 }} /><Tag color={C.navy}>Product Preview</Tag></div>
