@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts (no third-party fetch — ePrivacy + Schrems II clean). */
+@import "@fontsource-variable/inter";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/dm-serif-display/400.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+
 @theme {
   --color-navy: #2A4365;
   --color-navy-light: #3B5680;
@@ -13,9 +24,10 @@
   --color-amber-dark: #d4802e;
   --color-charcoal: #2D3142;
 
-  --font-family-sans: 'Inter', system-ui, sans-serif;
+  --font-family-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
   --font-family-serif: 'DM Serif Display', Georgia, serif;
   --font-family-ui: 'DM Sans', system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 @layer base {
