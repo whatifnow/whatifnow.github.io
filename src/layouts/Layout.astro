@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import StickyBookCTA from '../components/StickyBookCTA.astro';
 
 interface Props {
   title: string;
@@ -60,5 +61,6 @@ const ogImageURL = new URL('/images/og-image.jpg', Astro.site);
   </head>
   <body>
     <slot />
+    <StickyBookCTA />
   </body>
 </html>
