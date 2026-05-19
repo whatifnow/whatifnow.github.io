@@ -34,19 +34,23 @@ Headline: The site has the plumbing of a B2B consultancy and the trust signals o
 
 Picked across six lenses. No more than 2 from any single lens. Every item traces to a specific finding.
 
+**Status legend:** ✅ shipped · ⏭ skipped (out of scope this cycle) · _(unmarked)_ pending.
+
+**Shipped 2026-05-20:** items 2 (LG-01, PR #15), 5 (LG-04, PR #16), 8 (AX-01, PR #17), 9 (UX-P0-02, PR #17). Item 3 (EU AI Act repositioning) skipped — WIN pivot under way; revisit when positioning lands. Items 1, 4, 6, 7, 10 still pending.
+
 ### 1. Name the founder, with photo + bio, on the homepage About — Trust · TR-01 (agent-trust.md)
 - Why: An SME director will not send a €12k Build enquiry to a faceless entity. Highest-leverage trust intervention; every other CTA leans on it.
 - File: `src/components/About.astro:14-22`; add `public/images/lar.jpg`
 - Effort: hours (AboutV2 draft already exists in `src/components/v2/AboutV2.astro`)
 - Risk if not fixed: Every contact-form CTA asks a stranger to email a void.
 
-### 2. Add full business identity (footer + privacy controller) — Legal · LG-01 (agent-legal.md)
+### 2. ✅ Add full business identity (footer + privacy controller) — Legal · LG-01 (agent-legal.md) — shipped PR #15
 - Why: Companies Act 2014 s.151 + GDPR Art. 13. Procurement reviewers fail the site at first scroll today. WIN sells compliance and fails the same Art. 13 test it bills clients to fix.
 - File: `src/components/Footer.astro:5-53`; `src/pages/privacy.astro:154-162`
 - Effort: hours (paperwork; copy is ~80 words once Lar pastes entity details)
 - Risk if not fixed: Public-sector and charity buyers cannot proceed past procurement vetting.
 
-### 3. Rewrite homepage title, H1, meta to target EU AI Act keyword — SEO · SE-P0-1 (agent-seo.md)
+### 3. ⏭ Rewrite homepage title, H1, meta to target EU AI Act keyword — SEO · SE-P0-1 (agent-seo.md) — skipped (positioning pivot)
 - Why: WIN owns a defensible niche (EU AI Act for Irish SMEs, Aug 2026 deadline) and the homepage doesn't say so in any place a crawler can see. The v2-a draft already nails the formula — promote it.
 - File: `src/pages/index.astro:14`, `src/layouts/Layout.astro:11`, `src/components/Hero.astro:16-19`
 - Effort: hours
@@ -58,7 +62,7 @@ Picked across six lenses. No more than 2 from any single lens. Every item traces
 - Effort: hours
 - Risk if not fixed: Plain-text SERP entries vs competitors with rich results — measurable CTR hit.
 
-### 5. Self-host Google Fonts (kill the consent-banner trigger) — Legal · LG-04 (agent-legal.md)
+### 5. ✅ Self-host Google Fonts (kill the consent-banner trigger) — Legal · LG-04 (agent-legal.md) — shipped PR #16
 - Why: ePrivacy + Schrems II. `fonts.googleapis.com` transfers EU user IPs to Google with no consent. Self-hosting makes the site genuinely consent-free — aligns with "amnesty before audit".
 - File: `src/layouts/Layout.astro:40-42`; also `src/components/SARDemo.jsx:408`, `RTBPrecedentDemo.jsx:469`
 - Effort: hours
@@ -76,13 +80,13 @@ Picked across six lenses. No more than 2 from any single lens. Every item traces
 - Effort: minutes
 - Risk if not fixed: Inbox triage stays blind to source surface.
 
-### 8. Fix mobile menu accessibility (aria-label, aria-expanded, focus mgmt) — A11y · AX-01 (agent-a11y.md) + UX · P0-04 (agent-ux.md)
+### 8. ✅ Fix mobile menu accessibility (aria-label, aria-expanded, focus mgmt) — A11y · AX-01 (agent-a11y.md) + UX · P0-04 (agent-ux.md) — shipped PR #17
 - Why: Mobile is the dominant first-touch channel for charity/local-gov RFPs and the only path to /contact on mobile is via this button. Screen-reader users can't operate it. WCAG 4.1.2 fail. Cross-lens duplicate.
 - File: `src/components/Navigation.astro:17-21,37-50`
 - Effort: 30 minutes
 - Risk if not fixed: Direct lead-block for an entire audience segment; procurement-grade WCAG fail.
 
-### 9. Reorder homepage sections to pain → solution → proof → ask — UX · P0-02 (agent-ux.md)
+### 9. ✅ Reorder homepage sections to pain → solution → proof → ask — UX · P0-02 (agent-ux.md) — shipped PR #17 (final order: Hero → PainPoints → Compliance → About → EngagementModels → FinalCTA)
 - Why: Today's order puts a €750–€12k pricing grid before any credibility signal. Single biggest IA error on the site.
 - File: `src/pages/index.astro:16-23`
 - Effort: 15 minutes (reorder imports; no copy changes)
