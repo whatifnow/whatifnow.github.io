@@ -1,79 +1,110 @@
 ---
-const models = [
+const formats = [
   {
-    title: "DIY",
-    subtitle: "Self-Guided",
-    description: "Access our resources and templates to upskill your team at your own pace. Perfect for businesses just getting started.",
-    features: ["Weekly AI insights on Substack", "Template library access", "Community Q&A", "Self-paced learning paths"],
-    cta: "Book a Scoping Call",
-    ctaLink: "/contact?subject=DIY+-+Self-Guided+Inquiry",
+    initial: "B",
+    duration: "90 min — half day",
+    title: "Briefing",
+    description: "A plain-English session for a leadership team or board. What AI can do for an organisation your size — and what it can't.",
+    price: "from €750",
+    unit: "/ session",
+    cta: "Request a briefing",
+    ctaLink: "/contact?subject=Briefing",
     featured: false
   },
   {
-    title: "Done With You",
-    subtitle: "Most Popular",
-    description: "We work alongside your team — auditing workflows, designing solutions, and building capability so you can run AI independently.",
-    features: ["Full workflow audit", "Hands-on workshops", "Custom AI roadmap", "Implementation coaching", "Ongoing advisory support"],
-    cta: "Book a Scoping Call",
-    ctaLink: "/contact?subject=Done+With+You+-+Scoping+Call",
-    featured: true
+    initial: "W",
+    duration: "1–2 days · on-site or remote",
+    title: "Workshop",
+    description: "Theory in the morning, hands-on labs in the afternoon. Your team leaves having actually built something — a custom GPT, a triage flow, an inventory.",
+    price: "from €2,500",
+    unit: "/ day",
+    cta: "Book a workshop",
+    ctaLink: "/contact?subject=Workshop",
+    featured: true,
+    pop: "MOST BOOKED"
   },
   {
-    title: "Done For You",
-    subtitle: "Full Service",
-    description: "We handle everything — from strategy to build to deployment. You get production-ready AI solutions without the learning curve.",
-    features: ["End-to-end delivery", "Custom AI solutions", "Integration & testing", "Training & handover", "Post-launch support"],
-    cta: "Book a Scoping Call",
-    ctaLink: "/contact?subject=Done+For+You+-+Scoping+Call",
+    initial: "P",
+    duration: "Fractional · 2 weeks–3 months",
+    title: "Pairing",
+    description: "One or two days a week, beside one of yours. We work the task they're stuck on — grants, ops, sales leads, customer service. You set the pace.",
+    price: "from €4,000",
+    unit: "/ sprint",
+    cta: "Explore pairing",
+    ctaLink: "/contact?subject=Pairing",
+    featured: false
+  },
+  {
+    initial: "B",
+    duration: "4–10 weeks · fixed fee",
+    title: "Build",
+    description: "We design, build, and ship a working AI tool tailored to your operation. Fixed scope, fixed fee. We document, train, and step out. Commercial fit — bespoke or product-based — agreed in scoping.",
+    price: "from €12,000",
+    unit: "/ build",
+    cta: "Scope a build",
+    ctaLink: "/contact?subject=Build",
     featured: false
   }
 ];
 ---
 
-<section class="py-20 px-6 bg-off-white">
+<section id="services" class="py-20 px-6 bg-off-white">
   <div class="max-w-6xl mx-auto">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-navy font-serif">
-      Work With Us Your Way
+      Pick the engagement that fits.
     </h2>
-    <p class="text-slate text-center text-lg mb-12 max-w-2xl mx-auto">
-      From self-guided learning to full implementation — pick what fits your pace and budget.
+    <p class="text-slate text-center text-lg mb-14 max-w-2xl mx-auto">
+      Four formats, all fixed fee. The price floors below are real — actual scope agreed on the call.
     </p>
 
-    <div class="grid md:grid-cols-3 gap-6 items-start">
-      {models.map((model) => (
-        <div class={`p-8 rounded-2xl transition-shadow ${
-          model.featured
-            ? 'bg-[#1A3D54] text-white shadow-xl scale-105'
-            : 'bg-white hover:shadow-md'
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+      {formats.map((fmt) => (
+        <div class={`relative p-6 rounded-2xl flex flex-col gap-2 ${
+          fmt.featured
+            ? 'bg-navy text-white border-2 border-teal'
+            : 'bg-white border border-slate/15'
         }`}>
-          <span class={`text-sm font-medium ${model.featured ? 'text-teal' : 'text-teal-dark'}`}>
-            {model.subtitle}
-          </span>
-          <h3 class={`text-2xl font-bold mt-2 mb-4 ${model.featured ? 'text-white' : 'text-navy'}`}>
-            {model.title}
+          {fmt.featured && fmt.pop && (
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-teal text-navy font-ui font-bold text-[11px] tracking-widest uppercase px-3 py-1 rounded-full whitespace-nowrap">
+              {fmt.pop}
+            </span>
+          )}
+          <div class={`w-9 h-9 rounded-lg flex items-center justify-center font-serif text-lg ${
+            fmt.featured ? 'bg-teal text-navy' : 'bg-teal/10 text-teal-dark'
+          }`}>
+            {fmt.initial}
+          </div>
+          <div class={`text-xs font-ui tracking-wider uppercase mt-1 font-bold ${
+            fmt.featured ? 'text-teal' : 'text-teal-dark'
+          }`}>
+            {fmt.duration}
+          </div>
+          <h3 class={`text-xl font-bold font-serif ${
+            fmt.featured ? 'text-white' : 'text-navy'
+          }`}>
+            {fmt.title}
           </h3>
-          <p class={`mb-6 leading-relaxed ${model.featured ? 'text-slate-light' : 'text-slate'}`}>
-            {model.description}
+          <p class={`text-sm leading-relaxed ${
+            fmt.featured ? 'text-slate-light' : 'text-slate'
+          }`}>
+            {fmt.description}
           </p>
-          <ul class="space-y-2 mb-8">
-            {model.features.map((feature) => (
-              <li class={`flex items-start gap-2 ${model.featured ? 'text-slate-light' : 'text-slate'}`}>
-                <svg class={`w-5 h-5 mt-0.5 flex-shrink-0 ${model.featured ? 'text-teal' : 'text-teal-dark'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                {feature}
-              </li>
-            ))}
-          </ul>
+          <div class={`font-serif text-2xl mt-auto pt-4 border-t border-dashed ${
+            fmt.featured ? 'text-white border-white/15' : 'text-navy border-slate/15'
+          }`}>
+            {fmt.price}<span class={`font-ui text-sm font-medium ml-1 ${
+              fmt.featured ? 'text-slate-light' : 'text-slate'
+            }`}>{fmt.unit}</span>
+          </div>
           <a
-            href={model.ctaLink}
-            class={`block text-center py-3 px-6 rounded-full font-semibold transition-colors ${
-              model.featured
-                ? 'bg-teal text-white hover:bg-teal-dark'
+            href={fmt.ctaLink}
+            class={`block text-center py-2.5 px-4 rounded-full font-ui font-bold text-sm transition-colors mt-2 ${
+              fmt.featured
+                ? 'bg-teal text-navy hover:bg-teal-dark hover:text-white'
                 : 'bg-navy text-white hover:bg-navy-light'
             }`}
           >
-            {model.cta}
+            {fmt.cta}
           </a>
         </div>
       ))}

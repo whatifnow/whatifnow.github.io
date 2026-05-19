@@ -1,81 +1,63 @@
 ---
+const quizQuestion = "In the last 30 days, how many of your team have used AI for client-facing work?";
+const quizOptions = [
+  { label: "None that I'm aware of",            selected: false },
+  { label: "A few people, ad-hoc",              selected: true  },
+  { label: "Most of the team, regularly",       selected: false },
+  { label: "It's part of our standard process", selected: false }
+];
 ---
 
 <section class="min-h-screen flex items-center pt-20 pb-16 px-6">
   <div class="max-w-6xl mx-auto w-full">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Copy column -->
       <div class="space-y-8">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white font-serif">
-          Do what <span class="text-teal whitespace-nowrap">only you can</span>.
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white font-serif">
+          How does your team's AI use<br />compare to your <span class="text-teal whitespace-nowrap">sector</span>?
         </h1>
 
         <p class="text-xl md:text-2xl text-slate-light leading-relaxed">
-          We find what's eating your team's time and build tools to handle it — so your people can get back to the work that actually needs them. Not to cut costs. To grow.
+          Most small organisations are using more AI than they realise — and missing the bits that would actually free up their team. The 3-minute audit shows you where you sit.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
           <a
-            href="/contact"
-            class="bg-amber text-charcoal font-ui px-8 py-4 rounded-full font-semibold text-lg hover:bg-amber-dark transition-colors text-center"
+            href="/ai-readiness"
+            class="bg-teal text-navy font-ui px-8 py-4 rounded-full font-bold text-lg hover:bg-teal-dark hover:text-white transition-colors text-center"
           >
-            Let's Talk
+            Take the 3-minute audit
           </a>
           <a
-            href="#how-it-works"
-            class="border-2 border-slate-light text-white font-ui px-8 py-4 rounded-full font-semibold text-lg hover:bg-navy-light transition-colors text-center"
+            href="/contact?subject=Scoping+call"
+            class="border-2 border-slate-light text-white font-ui px-8 py-4 rounded-full font-bold text-lg hover:bg-navy-light transition-colors text-center"
           >
-            See How It Works
+            or book a 20-min call
           </a>
         </div>
-
-        <a
-          href="/ai-readiness"
-          class="inline-flex items-center gap-2 text-teal font-semibold hover:text-teal-light transition-colors text-sm"
-        >
-          <span>Not sure where to start? Take the free AI Readiness Assessment</span>
-          <span>→</span>
-        </a>
       </div>
 
-      <div class="relative hidden lg:block">
-        <!-- Abstract geometric SVG visual -->
-        <svg viewBox="0 0 400 400" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-          <!-- Grid dots pattern -->
-          <defs>
-            <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="2" fill="#64748B" opacity="0.3"/>
-            </pattern>
-          </defs>
-          <rect width="400" height="400" fill="url(#dots)" rx="24"/>
-
-          <!-- Abstract circles suggesting connectivity/transformation -->
-          <circle cx="200" cy="200" r="120" fill="none" stroke="#3B5680" stroke-width="2"/>
-          <circle cx="200" cy="200" r="80" fill="none" stroke="#2EC4B6" stroke-width="2" opacity="0.6"/>
-          <circle cx="200" cy="200" r="40" fill="#2EC4B6" opacity="0.15"/>
-
-          <!-- Accent nodes -->
-          <circle cx="200" cy="80" r="8" fill="#2EC4B6"/>
-          <circle cx="304" cy="140" r="6" fill="#2EC4B6" opacity="0.7"/>
-          <circle cx="304" cy="260" r="6" fill="#2EC4B6" opacity="0.7"/>
-          <circle cx="200" cy="320" r="8" fill="#2EC4B6"/>
-          <circle cx="96" cy="260" r="6" fill="#2EC4B6" opacity="0.7"/>
-          <circle cx="96" cy="140" r="6" fill="#2EC4B6" opacity="0.7"/>
-
-          <!-- Connecting lines -->
-          <line x1="200" y1="80" x2="304" y2="140" stroke="#2EC4B6" stroke-width="1" opacity="0.3"/>
-          <line x1="304" y1="140" x2="304" y2="260" stroke="#2EC4B6" stroke-width="1" opacity="0.3"/>
-          <line x1="304" y1="260" x2="200" y2="320" stroke="#2EC4B6" stroke-width="1" opacity="0.3"/>
-          <line x1="200" y1="320" x2="96" y2="260" stroke="#2EC4B6" stroke-width="1" opacity="0.3"/>
-          <line x1="96" y1="260" x2="96" y2="140" stroke="#2EC4B6" stroke-width="1" opacity="0.3"/>
-          <line x1="96" y1="140" x2="200" y2="80" stroke="#2EC4B6" stroke-width="1" opacity="0.3"/>
-
-          <!-- Center glow -->
-          <circle cx="200" cy="200" r="12" fill="#2EC4B6" opacity="0.9"/>
-        </svg>
-
-        <!-- Decorative blur elements -->
-        <div class="absolute -top-4 -right-4 w-24 h-24 bg-teal/10 rounded-full blur-2xl"></div>
-        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-teal/5 rounded-full blur-3xl"></div>
+      <!-- Quiz preview card -->
+      <div class="hidden lg:block">
+        <div class="bg-white rounded-2xl p-6 shadow-2xl border border-slate/10 max-w-md ml-auto">
+          <div class="flex justify-between items-baseline mb-5">
+            <span class="font-ui font-bold text-xs tracking-widest uppercase text-teal-dark">Readiness Assessment</span>
+            <span class="font-mono text-[11px] text-slate">Q 3 / 18</span>
+          </div>
+          <div class="h-1.5 bg-off-white rounded-full overflow-hidden mb-5">
+            <div class="h-full bg-teal" style="width:18%"></div>
+          </div>
+          <h3 class="font-serif text-xl text-navy leading-snug mb-4">{quizQuestion}</h3>
+          {quizOptions.map((opt) => (
+            <div class={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg border-[1.5px] mb-2 text-sm ${opt.selected ? 'border-teal bg-teal/10 text-navy' : 'border-slate/15 text-navy'}`}>
+              <span class={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${opt.selected ? 'border-teal bg-teal ring-2 ring-white ring-inset' : 'border-slate-light'}`}></span>
+              {opt.label}
+            </div>
+          ))}
+          <div class="mt-3 pt-3 border-t border-dashed border-slate/15 font-mono text-[11px] text-slate text-center tracking-wider">
+            3 MIN · INSTANT RESULT · SECTOR BENCHMARK
+          </div>
+        </div>
       </div>
     </div>
   </div>
