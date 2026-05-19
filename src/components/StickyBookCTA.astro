@@ -1,0 +1,76 @@
+---
+---
+
+<a
+  id="sticky-book-cta"
+  href="/contact?subject=Book+a+call"
+  class="fixed bottom-6 right-6 z-30 inline-flex items-center gap-2 bg-amber text-charcoal font-ui font-bold text-base px-5 py-3 rounded-full shadow-lg shadow-navy/20 opacity-0 translate-y-4 pointer-events-none transition-all duration-200 ease-out hover:bg-amber-dark"
+  aria-label="Book a call"
+>
+  <svg
+    class="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2.2"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M8 7V3M16 7V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+    />
+  </svg>
+  Book a call
+</a>
+
+<script>
+  const cta = document.getElementById('sticky-book-cta');
+  if (cta) {
+    const path = window.location.pathname.replace(/\/+$/, '');
+    const params = new URLSearchParams(window.location.search);
+
+    // Don't show on the contact form itself, or right after a successful submit
+    const suppress = path === '/contact' || params.get('thanks') === '1';
+
+    if (suppress) {
+      cta.remove();
+    } else {
+      const SHOW_AFTER_PX = 400;
+      let finalCtaInView = false;
+
+      const setVisible = (visible) => {
+        if (visible) {
+          cta.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+          cta.classList.add('opacity-100', 'translate-y-0');
+        } else {
+          cta.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+          cta.classList.remove('opacity-100', 'translate-y-0');
+        }
+      };
+
+      const sync = () => {
+        const scrolledEnough = window.scrollY > SHOW_AFTER_PX;
+        setVisible(scrolledEnough && !finalCtaInView);
+      };
+
+      // FinalCTA section (id="contact" inside FinalCTA.astro) is the page's main
+      // conversion block — when it's on screen, hide the sticky to avoid two
+      // competing amber CTAs at once.
+      const finalCta = document.getElementById('contact');
+      if (finalCta && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            finalCtaInView = entries[0].isIntersecting;
+            sync();
+          },
+          { rootMargin: '0px 0px -20% 0px' }
+        );
+        io.observe(finalCta);
+      }
+
+      window.addEventListener('scroll', sync, { passive: true });
+      sync();
+    }
+  }
+</script>
