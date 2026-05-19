@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 
 export default defineConfig({
-  site: 'https://whatifnow.github.io',
+  site: 'https://www.whatifnow.ie',
   integrations: [sitemap({ filter: (page) => !page.includes('threshold-sar-demo') && !page.includes('/toolkit') && !page.includes('precedent-demo') }), react()],
   vite: {
     plugins: [tailwindcss()]
