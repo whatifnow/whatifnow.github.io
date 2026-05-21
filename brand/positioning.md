@@ -190,6 +190,7 @@ Recording the calls made this session so future sessions don't re-litigate.
 | Hero locked: "Practical AI for teams figuring out where it fits." | 2026-05-21 | The PDF's "We help you do what only you can." is voice-correct but doesn't say what we do or who we serve (the audit's Copy reviewer flagged exactly this). Final line drops geography (per founder direction) and avoids analyst-speak ("emergent phase"). |
 | Drop geography from the lead | 2026-05-21 | "Irish teams" framing limits ambition. "Ireland-Built" stays as a feature-pill trust signal — not in the hero, not in the audience definition. |
 | Unify general inbox on info@whatifnow.ie | 2026-05-21 | PDF uses info@; site had drifted to hello@. privacy@ remains the controller channel. |
+| Switch general inbox info@ → paul@whatifnow.ie | 2026-05-21 | Named-human ask landed on FinalCTA ("Email Paul. He reads everything"); inbox now points at Paul directly. privacy@ remains the controller channel. |
 | No phone number on the site | 2026-05-21 | PDF lists one; site doesn't need it. We surface a reply commitment (email) instead. |
 | Fractional AI Officer absorbed into Pairing card | 2026-05-21 | PDF lists it as a fourth service; structurally it's a rolling retainer, which the Pairing card now describes ("sprint or retainer"). Keeps the engagement grid at four. |
 | Feature pills strip below hero | 2026-05-21 | GDPR-Compliant · EU AI Act Ready · Ireland-Built · SMEs & Charities. Trust signals, not audience constraints. AI Act resurfaces as a *feature*, not the *lead*. |
