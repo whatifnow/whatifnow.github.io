@@ -64,7 +64,7 @@ const views = [
 function OverviewScreen() {
   const steps = [
     { n: "01", title: "Describe your case", desc: "Type a plain-English description of the tenant's situation. No legal jargon needed.", color: C.teal },
-    { n: "02", title: "AI searches 40,000+ decisions", desc: "Semantic search finds the most relevant RTB adjudications and tribunal reports from the full published corpus.", color: C.teal },
+    { n: "02", title: "AI searches 25,000+ decisions", desc: "Semantic search finds the most relevant RTB adjudications and tribunal reports from the full published corpus.", color: C.teal },
     { n: "03", title: "Get precedent analysis", desc: "AI summarises typical outcomes, damages ranges, and key reasoning patterns from similar cases.", color: C.amber },
     { n: "04", title: "Review cited decisions", desc: "Every claim is backed by specific RTB reference numbers. Drill into any decision to read the full text.", color: C.amber },
     { n: "05", title: "Build your case", desc: "Get suggested questions, evidence checklists, and red flags tailored to the case type.", color: C.green },
@@ -86,7 +86,7 @@ function OverviewScreen() {
         </div>
       ))}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginTop: 20 }}>
-        {[{ value: "40,000+", label: "RTB decisions indexed", sub: "2004 to present" }, { value: "< 8 sec", label: "Average query time", sub: "Search + AI analysis" }, { value: "100%", label: "EU-hosted", sub: "Google Cloud, Frankfurt" }].map((s, i) => (
+        {[{ value: "25,000+", label: "RTB decisions indexed", sub: "2004 to present" }, { value: "< 8 sec", label: "Average query time", sub: "Search + AI analysis" }, { value: "100%", label: "EU-hosted", sub: "Google Cloud, Frankfurt" }].map((s, i) => (
           <div key={i} style={{ textAlign: "center", padding: "18px 14px", borderRadius: 12, background: C.tealSubtle, border: `1px solid ${C.teal}18` }}>
             <div style={{ fontSize: 24, fontWeight: 700, color: C.teal, fontFamily: "'DM Serif Display', Georgia, serif" }}>{s.value}</div>
             <div style={{ fontSize: 11, fontWeight: 600, color: C.navy, marginTop: 4 }}>{s.label}</div><div style={{ fontSize: 10, color: C.muted, marginTop: 2 }}>{s.sub}</div>
@@ -134,7 +134,7 @@ function SearchScreen() {
           { title: "Natural language", desc: "No legal jargon needed. Describe the situation as a tenant would describe it to you." },
           { title: "Semantic matching", desc: "AI understands meaning, not just keywords. 'Kicked out' matches 'unlawful termination'." },
           { title: "Smart filters", desc: "Narrow by dispute type, year, party role, or outcome. Combine filters freely." },
-          { title: "Instant results", desc: "Searches 40,000+ decisions in under 3 seconds. Analysis generated in 5-8 seconds." },
+          { title: "Instant results", desc: "Searches 25,000+ decisions in under 3 seconds. Analysis generated in 5-8 seconds." },
         ].map((item, i) => (
           <Card key={i} style={{ padding: "14px 16px" }}><div style={{ fontSize: 12, fontWeight: 600, color: C.navy, marginBottom: 4 }}>{item.title}</div><div style={{ fontSize: 11, color: C.muted, lineHeight: 1.55 }}>{item.desc}</div></Card>
         ))}
@@ -328,7 +328,7 @@ function BenchmarksScreen() {
       <p style={{ fontSize: 14, color: C.slate, lineHeight: 1.7, marginBottom: 18 }}>Damages benchmarking across the full RTB corpus. Know what similar cases have been awarded.</p>
       <AppFrame path="benchmarks">
         <div style={{ fontSize: 14, color: C.navy, fontWeight: 600, marginBottom: 14 }}>Damages benchmarks by dispute type</div>
-        <div style={{ fontSize: 11, color: C.muted, marginBottom: 16 }}>Based on 40,000+ published RTB decisions (2004–2026)</div>
+        <div style={{ fontSize: 11, color: C.muted, marginBottom: 16 }}>Based on 25,000+ published RTB decisions (2004–2026)</div>
 
         {categories.map((cat, i) => (
           <div key={i} style={{ padding: "14px 16px", borderRadius: 10, marginBottom: 8, border: `1px solid ${C.borderLight}`, background: i % 2 === 0 ? C.white : C.surfaceAlt }}>
@@ -370,7 +370,7 @@ function DashboardScreen() {
       <p style={{ fontSize: 14, color: C.slate, lineHeight: 1.7, marginBottom: 18 }}>Organisation-level view. Track usage, recent searches, and saved precedents.</p>
       <AppFrame path="dashboard">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-          <div><div style={{ fontSize: 16, color: C.navy, fontWeight: 600 }}>Welcome back, Ann-Marie</div><div style={{ fontSize: 12, color: C.muted }}>Threshold  |  RTB Precedent Intelligence</div></div>
+          <div><div style={{ fontSize: 16, color: C.navy, fontWeight: 600 }}>Welcome back, Ann-Marie</div><div style={{ fontSize: 12, color: C.muted }}>Threshold  |  Stare</div></div>
           <Btn primary>New search</Btn>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 10, marginBottom: 18 }}>
@@ -469,8 +469,8 @@ export default function RTBDemo() {
       <style>{`.dn::-webkit-scrollbar{display:none}@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.df{animation:fu .3s ease-out}`}</style>
       <div style={{ background: C.white, borderBottom: `1px solid ${C.border}`, padding: "16px 22px 14px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}><a href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }} aria-label="What If Now home"><WinLogo size={30} /><WinWordmark size={18} /></a><div style={{ flex: 1 }} /><Tag color={C.navy}>Product Preview</Tag></div>
-        <h1 style={{ fontSize: 24, fontWeight: 400, margin: "0 0 4px", fontFamily: "'DM Serif Display', Georgia, serif", color: C.navy }}>RTB Precedent Intelligence</h1>
-        <p style={{ fontSize: 13, color: C.muted, margin: 0 }}>AI-powered search across 40,000+ RTB decisions — evidence-based advice at your fingertips</p>
+        <h1 style={{ fontSize: 24, fontWeight: 400, margin: "0 0 4px", fontFamily: "'DM Serif Display', Georgia, serif", color: C.navy }}>Stare Demo</h1>
+        <p style={{ fontSize: 13, color: C.muted, margin: 0 }}>AI-powered search across 25,000+ RTB Tribunal decisions — evidence-based advice at your fingertips</p>
       </div>
       <div className="dn" style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none", borderBottom: `1px solid ${C.border}`, background: C.white, padding: "0 22px" }}>
         {views.map(v => <button key={v.id} onClick={() => setActiveView(v.id)} style={{ all: "unset", cursor: "pointer", padding: "12px 16px", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap", color: activeView === v.id ? C.navy : C.muted, borderBottom: activeView === v.id ? `2.5px solid ${C.teal}` : "2.5px solid transparent", transition: "all 0.15s" }}>{v.label}</button>)}
