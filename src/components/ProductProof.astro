@@ -1,0 +1,136 @@
+---
+// "What we've built" — homepage proof strip (audit-followup #23 + #24).
+// Two product panels with self-contained CSS mock UIs. No external screenshots
+// required; UIs are faithful representations of the live products.
+// Held-Square palette (#1a2744 / #e8554a / #fbfaf7) is allowed INSIDE the
+// righttostay mock card frame; outside it stays WIN palette to avoid brand bleed
+// (audit Brand P0-04).
+---
+
+<section id="what-weve-built" class="py-20 px-6 bg-navy">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl mx-auto text-center mb-14">
+      <span class="inline-block text-teal font-ui font-bold text-xs tracking-widest uppercase mb-4">What we've built</span>
+      <h2 class="text-3xl md:text-4xl font-bold font-serif mb-4 text-white">Two products. Both shipping.</h2>
+      <p class="text-lg text-slate-light leading-relaxed">
+        The kind of work you get inside an engagement. We don't sell slideware.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <!-- righttostay panel -->
+      <article class="bg-navy-light rounded-2xl border border-teal/15 overflow-hidden flex flex-col">
+        <!-- Mock UI: Held-Square palette contained inside the card frame -->
+        <div class="p-5 bg-[#fbfaf7]">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-serif text-base text-[#1a2744]">righttostay<span class="text-[#e8554a]">.</span>ie</span>
+            <span class="font-mono text-[10px] text-[#1a2744]/60 tracking-widest">SAMPLE</span>
+          </div>
+          <div class="bg-white rounded-lg border border-[#1a2744]/10 px-3 py-2 mb-3 flex items-center gap-2">
+            <svg class="w-4 h-4 text-[#1a2744]/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.34-4.34m0 0A7.5 7.5 0 1 0 6.04 6.04a7.5 7.5 0 0 0 10.62 10.62Z"/>
+            </svg>
+            <span class="text-[13px] text-[#1a2744]">Can my landlord raise rent by 10% in one year?</span>
+          </div>
+          <div class="bg-white rounded-lg border border-[#1a2744]/10 p-3">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-[#e8554a] mb-1">Plain-English answer</div>
+            <p class="text-[13px] text-[#1a2744] leading-relaxed mb-2">
+              In a Rent Pressure Zone, no. Rent reviews are capped — currently at 2% per year or inflation, whichever is lower.
+            </p>
+            <div class="text-[10px] font-mono text-[#1a2744]/60">
+              Sourced from <strong class="text-[#1a2744]">TR0224-005678</strong> and 14 related decisions
+            </div>
+          </div>
+        </div>
+
+        <!-- WIN-palette content frame -->
+        <div class="p-7 flex flex-col flex-grow">
+          <h3 class="text-2xl font-bold font-serif text-white mb-2">righttostay</h3>
+          <p class="text-slate-light leading-relaxed mb-4">
+            A free, plain-language tool for anyone renting in Ireland. Ask a question, get an answer grounded in real RTB Tribunal decisions. Translated into 14 languages so it reaches the people who actually need it.
+          </p>
+          <div class="text-sm text-slate-light mb-6">
+            <span class="text-teal-dark font-bold">Bonus:</span> the same corpus powers monthly free reports that turn 25,000+ decisions into charts a board can read.
+          </div>
+          <div class="mt-auto flex flex-wrap gap-3">
+            <a
+              href="https://www.righttostay.ie"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-teal text-navy font-ui font-bold px-5 py-2.5 rounded-full text-sm hover:bg-teal-dark hover:text-white transition-colors"
+            >
+              Visit righttostay.ie
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="/solutions"
+              class="inline-flex items-center gap-2 border border-slate-light/40 text-white font-ui font-bold px-5 py-2.5 rounded-full text-sm hover:bg-navy transition-colors"
+            >
+              How we built it
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stare panel -->
+      <article class="bg-navy-light rounded-2xl border border-teal/15 overflow-hidden flex flex-col">
+        <!-- Mock UI: WIN-adjacent palette -->
+        <div class="p-5 bg-off-white">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-serif text-base text-navy">stare<span class="text-teal">.</span>law</span>
+            <span class="font-mono text-[10px] text-slate tracking-widest">SAMPLE</span>
+          </div>
+          <div class="bg-white rounded-lg border border-slate/15 px-3 py-2 mb-3 flex items-center gap-2">
+            <svg class="w-4 h-4 text-slate flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.34-4.34m0 0A7.5 7.5 0 1 0 6.04 6.04a7.5 7.5 0 0 0 10.62 10.62Z"/>
+            </svg>
+            <span class="text-[13px] text-navy">rent pressure zone · 10% increase · validity</span>
+            <span class="ml-auto font-mono text-[10px] text-slate">17 results</span>
+          </div>
+          <div class="space-y-1.5">
+            <div class="bg-white rounded-lg border border-slate/15 p-2.5">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-[10px] text-teal-dark font-bold">TR0224-005678</span>
+                <span class="font-mono text-[10px] text-slate">· 2024 · upheld</span>
+              </div>
+              <p class="text-[12px] text-navy leading-snug">Section 19(4) breach where RPZ cap exceeded; €4,200 redress ordered.</p>
+            </div>
+            <div class="bg-white rounded-lg border border-slate/15 p-2.5 opacity-75">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-[10px] text-teal-dark font-bold">TR0123-009912</span>
+                <span class="font-mono text-[10px] text-slate">· 2023 · upheld</span>
+              </div>
+              <p class="text-[12px] text-navy leading-snug">10.4% increase outside RPZ cap; landlord ordered to refund overcharge.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WIN-palette content frame -->
+        <div class="p-7 flex flex-col flex-grow">
+          <h3 class="text-2xl font-bold font-serif text-white mb-2">Stare</h3>
+          <p class="text-slate-light leading-relaxed mb-4">
+            Precedent intelligence for Irish housing law. Same 25,000-decision corpus that powers righttostay — re-shaped for the lawyers and compliance teams who need to see how the Tribunal has actually decided cases.
+          </p>
+          <div class="text-sm text-slate-light mb-6">
+            <span class="text-teal-dark font-bold">MCP-ready:</span> plugs straight into the AI tools your firm already uses.
+          </div>
+          <div class="mt-auto flex flex-wrap gap-3">
+            <a
+              href="/precedent-demo"
+              class="inline-flex items-center gap-2 bg-teal text-navy font-ui font-bold px-5 py-2.5 rounded-full text-sm hover:bg-teal-dark hover:text-white transition-colors"
+            >
+              Try the demo
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="/solutions"
+              class="inline-flex items-center gap-2 border border-slate-light/40 text-white font-ui font-bold px-5 py-2.5 rounded-full text-sm hover:bg-navy transition-colors"
+            >
+              How we built it
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
