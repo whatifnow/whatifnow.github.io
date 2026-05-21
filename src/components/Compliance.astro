@@ -29,12 +29,15 @@ const regulations = [
 
 <section id="compliance" class="py-20 px-6 bg-off-white">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold font-serif text-center mb-4 text-navy">
-      AI Adoption That's Compliant From Day One
-    </h2>
-    <p class="text-slate text-center text-lg mb-12 max-w-2xl mx-auto">
-      Regulation shouldn't slow you down. We build compliance into every recommendation so you can move fast — and stay safe.
-    </p>
+    <div class="text-center mb-12">
+      <span class="inline-block text-teal-dark font-ui font-bold text-xs tracking-widest uppercase mb-4">How we work</span>
+      <h2 class="text-3xl md:text-4xl font-bold font-serif mb-4 text-navy">
+        Compliance, handled in the background.
+      </h2>
+      <p class="text-slate text-lg max-w-2xl mx-auto">
+        Regulation shouldn't slow you down. We build compliance into every recommendation so you can move fast — and stay safe.
+      </p>
+    </div>
 
     <div class="grid md:grid-cols-2 gap-6">
       {regulations.map((reg) => (
@@ -45,6 +48,12 @@ const regulations = [
           <p class="text-slate leading-relaxed">{reg.description}</p>
         </div>
       ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/contact?subject=Compliance" class="inline-flex items-center gap-2 text-teal-dark font-ui font-bold hover:text-navy transition-colors">
+        Compliance is on our checklist for every engagement. Talk it through →
+      </a>
     </div>
   </div>
 </section>
