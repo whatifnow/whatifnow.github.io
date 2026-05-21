@@ -47,7 +47,7 @@ const quizOptions = [
           <div class="h-1.5 bg-off-white rounded-full overflow-hidden mb-5">
             <div class="h-full bg-teal" style="width:18%"></div>
           </div>
-          <h3 class="font-serif text-xl text-navy leading-snug mb-4">{quizQuestion}</h3>
+          <p class="font-serif text-xl text-navy leading-snug mb-4">{quizQuestion}</p>
           {quizOptions.map((opt) => (
             <div class={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg border-[1.5px] mb-2 text-sm ${opt.selected ? 'border-teal bg-teal/10 text-navy' : 'border-slate/15 text-navy'}`}>
               <span class={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${opt.selected ? 'border-teal bg-teal ring-2 ring-white ring-inset' : 'border-slate-light'}`}></span>
