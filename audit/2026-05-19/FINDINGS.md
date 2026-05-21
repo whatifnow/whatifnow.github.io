@@ -34,9 +34,9 @@ Headline: The site has the plumbing of a B2B consultancy and the trust signals o
 
 Picked across six lenses. No more than 2 from any single lens. Every item traces to a specific finding.
 
-**Status legend:** ✅ shipped · ⏭ skipped (out of scope this cycle) · _(unmarked)_ pending.
+**Status legend:** ✅ shipped · ⏭ skipped (out of scope this cycle) · ⏸ on hold (maybe later) · _(unmarked)_ pending.
 
-**Shipped 2026-05-20:** items 2 (LG-01, PR #15), 5 (LG-04, PR #16), 8 (AX-01, PR #17), 9 (UX-P0-02, PR #17). Item 3 (EU AI Act repositioning) skipped — WIN pivot under way; revisit when positioning lands. Items 1, 4, 6, 7, 10 still pending.
+**Shipped 2026-05-20:** items 2 (LG-01, PR #15), 5 (LG-04, PR #16), 8 (AX-01, PR #17), 9 (UX-P0-02, PR #17). Item 3 (EU AI Act repositioning) skipped — WIN pivot under way; revisit when positioning lands. Item 6 (Plausible analytics) on hold — WIN is in the Google ecosystem; revisit when there's appetite for a separate analytics tool, or fold into a future GA4 conversation (note: GA4 will reintroduce a cookie-banner requirement and undo LG-04's consent-free posture). Items 1, 4, 7, 10 still pending.
 
 ### 1. Name the founder, with photo + bio, on the homepage About — Trust · TR-01 (agent-trust.md)
 - Why: An SME director will not send a €12k Build enquiry to a faceless entity. Highest-leverage trust intervention; every other CTA leans on it.
@@ -68,7 +68,7 @@ Picked across six lenses. No more than 2 from any single lens. Every item traces
 - Effort: hours
 - Risk if not fixed: A regulator can flag this in 30 seconds; highest credibility-tax surface for a compliance consultancy.
 
-### 6. Install Plausible + tag every conversion surface — CRO · CRO-P0-1 (agent-cro.md)
+### 6. ⏸ Install Plausible + tag every conversion surface — CRO · CRO-P0-1 (agent-cro.md) — on hold (heavy Google stack; revisit alongside any GA4 decision)
 - Why: Without analytics, every other recommendation is unmeasurable. Prior audit's CR·06 unfixed (regression of intent per Ciara).
 - File: `src/layouts/Layout.astro:60`; goals on contact submit, quiz start/complete, sticky-CTA, each tier CTA
 - Effort: hours (sequence: LG-04 first or same PR so no banner is needed)
