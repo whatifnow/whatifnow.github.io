@@ -11,13 +11,15 @@ This brief is the gating reference for any PR that touches the homepage, hero, A
 
 ## 1. The line
 
-> **Practical AI for the emergent phase — for SMEs and charities figuring out where AI fits.**
+> **Practical AI for teams figuring out where it fits.**
 
-That's the homepage positioning headline candidate. Test it against alternatives in the issue that rewrites the hero (#6) — final wording can flex within the same intent. The intent is fixed:
+That's the homepage positioning headline — shipped in PR #26's batch. The intent:
 
-- "**Practical**" — what we offer.
-- "**Emergent phase**" — who we offer it to, and explicitly NOT compliance-panic buyers.
-- "**Figuring out where AI fits**" — the visitor's actual mental state when they land.
+- "**Practical AI**" — what we offer, anchored to the voice triad (Practical · Honest · Capable).
+- "**Teams**" — buyer-shaped. No geography in the headline (we serve Ireland and beyond; geography lives in feature pills as a trust signal, not the audience boundary).
+- "**Figuring out where it fits**" — the visitor's actual mental state when they land. Replaces analyst-speak like "emergent phase".
+
+Sub-headline (live on site): *"We're an AI consultancy. We find the manual, repetitive work eating your team's time, and build tools to handle it."*
 
 **Retired:** *"Enterprise-grade rigour without the enterprise overhead."* Wrong register for an emergent-phase SME — sounds like it's pitching big-company process to small teams who don't want it.
 
@@ -25,7 +27,7 @@ That's the homepage positioning headline candidate. Test it against alternatives
 
 ## 2. Audience
 
-**Who:** Irish and EU SMEs and charities, 5 to 250 staff. State and semi-state bodies of similar size.
+**Who:** SMEs and charities, 5 to 250 staff. State and semi-state bodies of similar size. Geographically open — we're built in Ireland (a trust signal) but we don't pitch as "for Irish teams only" anywhere visitor-facing.
 
 **Phase they're in:** *emergent.* They've heard about ChatGPT. Someone on staff is already using AI tools, probably without a policy. They don't have an AI inventory. They might have signed up to Copilot. They're not racing the EU AI Act — that's a 2027 worry for them, not a 2026 buying trigger.
 
@@ -113,7 +115,7 @@ These map verbatim to how Lar described WIN in this session: *"honest, good peop
 Trust is built in three layers. Each layer answers a different visitor question.
 
 **Layer 1 — Who is this?**
-A named human on About. Photo + first name + role + prior employers + personal LinkedIn. The trust gap the audit named TR-01. Deferred to a later session today (#1).
+Two named humans on About: **Paul Thompson** (Co-Founder · Business Lead) and **Lar Judge** (Co-Founder · Technical Architect). Photos + titles + bullet bios. Bios drawn verbatim (typos fixed) from the canonical founders info pack (`public/downloads/whatifnow-info-pack.pdf`). Closes audit finding TR-01 — shipped in the same PR that locked the headline.
 
 **Layer 2 — What have they actually built?**
 A homepage strip showcasing **righttostay** as a working product: screenshot, one sentence on what it does ("a free tenant rights tool that turns 25,000+ RTB decisions into an answer for any Irish renter"), link out. Sits between the proof-block sections (Compliance + About) and the offer (EngagementModels). Tracked in #3.
@@ -184,7 +186,15 @@ Recording the calls made this session so future sessions don't re-litigate.
 
 | Decision | Date | Reason |
 |---|---|---|
-| Drop EU AI Act as homepage lead | 2026-05-21 | Target audience (emergent-phase SMEs) is not yet motivated by August 2026 enforcement. Compliance still featured, just not the headline. |
+| Two co-founders on About (Paul + Lar) | 2026-05-21 | Prior brief assumed Lar was the sole face. The canonical founders info pack names Paul Thompson as Co-Founder · Business Lead — material change to the trust positioning. Bios shipped verbatim from the PDF. |
+| Hero locked: "Practical AI for teams figuring out where it fits." | 2026-05-21 | The PDF's "We help you do what only you can." is voice-correct but doesn't say what we do or who we serve (the audit's Copy reviewer flagged exactly this). Final line drops geography (per founder direction) and avoids analyst-speak ("emergent phase"). |
+| Drop geography from the lead | 2026-05-21 | "Irish teams" framing limits ambition. "Ireland-Built" stays as a feature-pill trust signal — not in the hero, not in the audience definition. |
+| Unify general inbox on info@whatifnow.ie | 2026-05-21 | PDF uses info@; site had drifted to hello@. privacy@ remains the controller channel. |
+| No phone number on the site | 2026-05-21 | PDF lists one; site doesn't need it. We surface a reply commitment (email) instead. |
+| Fractional AI Officer absorbed into Pairing card | 2026-05-21 | PDF lists it as a fourth service; structurally it's a rolling retainer, which the Pairing card now describes ("sprint or retainer"). Keeps the engagement grid at four. |
+| Feature pills strip below hero | 2026-05-21 | GDPR-Compliant · EU AI Act Ready · Ireland-Built · SMEs & Charities. Trust signals, not audience constraints. AI Act resurfaces as a *feature*, not the *lead*. |
+| Capability strip on EngagementModels | 2026-05-21 | One-line summary of the four services from the PDF (strategy / custom automation / fractional AI officer cover / training) — captures the capability axis without a second grid of four. |
+| Drop EU AI Act as homepage lead | 2026-05-21 | Target audience (teams figuring out where AI fits) is not yet motivated by August 2026 enforcement. Compliance still featured, just not the headline. |
 | Retire "amnesty before enforcement / illumination before enforcement" | 2026-05-21 | The phrase ladders to the dropped AI-Act-led positioning. Won't survive on the public site. May resurface in client-doc voice for compliance engagements. |
 | Retire "Enterprise-grade rigour without the enterprise overhead" | 2026-05-21 | Wrong register for emergent-phase SMEs. |
 | Drop DIY / Done With You / Done For You ladder | 2026-04 (PR #13) | The four-format model communicates engagement *shape* better than depth. Already shipped. |

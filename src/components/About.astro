@@ -1,34 +1,86 @@
 ---
-const differentiators = [
-  { label: "Growing Businesses", detail: "Our Focus" },
-  { label: "Practical AI", detail: "Our Approach" }
+const founders = [
+  {
+    name: "Paul Thompson",
+    title: "Co-Founder · Business Lead",
+    photo: "/images/team/paul-thompson.jpg",
+    bio: [
+      {
+        h: "Operational Efficiency Expert",
+        p: "20+ years leading operations and customer experience at Google, LinkedIn and Sage, managing global teams, driving efficiency and delivering measurable results at scale."
+      },
+      {
+        h: "Process Improvement Specialist",
+        p: "Expert in standardising manual, repetitive workflows, allowing for the automation of high-capacity processes that give teams their time back."
+      },
+      {
+        h: "Award-Winning Service Excellence",
+        p: "Recognised by the CCMA and European Call Centre Awards for operational excellence and team transformation. Current CCMA board member."
+      },
+      {
+        h: "Champion for SMB Growth",
+        p: "Dedicated to levelling the playing field for SMEs and charities, building bespoke tools that eliminate administrative drag while ensuring compliance."
+      }
+    ]
+  },
+  {
+    name: "Lar Judge",
+    title: "Co-Founder · Technical Architect",
+    photo: "/images/team/lar-judge.jpg",
+    bio: [
+      {
+        h: "Engineering Manager at Canva",
+        p: "Leads AI Development and the roll-out of agentic AI tooling to staff globally."
+      },
+      {
+        h: "Generative AI Lead",
+        p: "Navigated strict regulatory frameworks and enterprise partnerships with Anthropic and Google at one of Australia's largest banks."
+      },
+      {
+        h: "Expert in Scalable Business Growth",
+        p: "15 years building and scaling digital products, from zero to hundreds of thousands of customers."
+      },
+      {
+        h: "Experienced Entrepreneur",
+        p: "Co-founded a startup and built engineering teams inside some of the most demanding environments in tech and finance."
+      },
+      {
+        h: "Bridge Between Tech and Strategy",
+        p: "At What If Now Lar brings enterprise-grade rigour to the practical automation challenges organisations face every day, without the enterprise overhead."
+      }
+    ]
+  }
 ];
 ---
 
 <section id="about" class="py-20 px-6">
   <div class="max-w-6xl mx-auto">
-    <div class="max-w-3xl mx-auto text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold font-serif mb-6">Built for Business</h2>
-
-      <div class="space-y-4 text-lg text-slate-light leading-relaxed">
-        <p>
-          What If Now was founded on a simple belief: your best people shouldn't be spending their week on things that don't need them. We find those things. We fix them. And we watch what your people do with the time they get back.
-        </p>
-        <p>
-          Our team brings decades of experience in operations, customer experience, and business transformation — combined with engineering expertise that builds the custom AI solutions powering real results.
-        </p>
-        <p>
-          We're not here to sell you tools you don't need or strategies that don't fit. We meet you where you are, understand how your business actually works, and help you move forward with <strong class="text-white">clarity and confidence</strong>.
-        </p>
-      </div>
+    <div class="max-w-3xl mx-auto text-center mb-14">
+      <span class="inline-block text-teal font-ui font-bold text-xs tracking-widest uppercase mb-4">Who we are</span>
+      <h2 class="text-3xl md:text-4xl font-bold font-serif mb-6 text-white">Two co-founders. Decades of operations and engineering.</h2>
+      <p class="text-lg text-slate-light leading-relaxed">
+        We're <strong class="text-white">practical</strong>, <strong class="text-white">honest</strong>, and <strong class="text-white">capable</strong> — we build things that work, tell you what they cost, and don't sell you AI you don't need.
+      </p>
     </div>
 
-    <!-- Differentiator tags -->
-    <div class="flex flex-wrap justify-center gap-4">
-      {differentiators.map((diff) => (
-        <div class="bg-navy-light px-6 py-3 rounded-full">
-          <span class="font-semibold text-teal">{diff.label}</span>
-          <span class="text-slate-light"> · {diff.detail}</span>
+    <div class="grid md:grid-cols-2 gap-10 lg:gap-16">
+      {founders.map((f) => (
+        <div class="flex flex-col">
+          <div class="flex flex-col items-center md:items-start">
+            <div class="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden mb-5 border-2 border-teal/30">
+              <img src={f.photo} alt={`Portrait of ${f.name}`} width="416" height="416" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <h3 class="text-2xl font-bold font-serif text-amber">{f.name}</h3>
+            <p class="text-white font-ui font-bold text-sm mt-1">{f.title}</p>
+          </div>
+          <ul class="space-y-4 mt-6">
+            {f.bio.map((item) => (
+              <li class="text-slate-light text-sm leading-relaxed flex gap-3">
+                <span class="text-teal flex-shrink-0 mt-0.5" aria-hidden="true">→</span>
+                <span><strong class="text-white">{item.h}:</strong> {item.p}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>
