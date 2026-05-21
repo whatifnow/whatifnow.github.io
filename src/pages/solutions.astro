@@ -6,8 +6,8 @@ import FinalCTA from '../components/FinalCTA.astro';
 ---
 
 <Layout
-  title="Solutions | What If Now"
-  description="What If Now builds two products: righttostay, a free tenant rights tool in 14 languages, and Stare, precedent intelligence for Irish law firms."
+  title="Solutions | What If Now — righttostay + Stare"
+  description="Two products WIN designed, built, and ships. righttostay: a free tenant rights tool in 14 languages, grounded in 25,000+ RTB Tribunal decisions. Stare: precedent intelligence for law firms and compliance teams on the same corpus."
 >
   <Navigation />
 
@@ -19,132 +19,235 @@ import FinalCTA from '../components/FinalCTA.astro';
     aria-live="polite"
   >
     <div class="max-w-4xl mx-auto px-6 py-4 flex items-center gap-4">
-      <svg
-        class="w-6 h-6 flex-shrink-0 text-teal-dark"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2.5"
-        aria-hidden="true"
-      >
+      <svg class="w-6 h-6 flex-shrink-0 text-teal-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
       </svg>
       <div class="flex-grow">
         <p class="text-navy font-semibold">Your message is with us.</p>
-        <p class="text-slate text-sm">We reply personally, usually within 24 hours. No sales sequence.</p>
+        <p class="text-slate text-sm">We reply personally, usually within 24 hours.</p>
       </div>
-      <button
-        id="thanks-dismiss"
-        type="button"
-        class="text-slate hover:text-navy transition-colors p-2 -m-2"
-        aria-label="Dismiss confirmation"
-      >
-        <svg
-          class="w-5 h-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-          aria-hidden="true"
-        >
+      <button id="thanks-dismiss" type="button" class="text-slate hover:text-navy transition-colors p-2 -m-2" aria-label="Dismiss confirmation">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
   </div>
 
-  <main class="bg-off-white pt-32 pb-24 px-6">
-
-    <!-- Hero -->
+  <main class="bg-off-white pt-32 pb-12 px-6">
+    <!-- Page hero -->
     <section class="max-w-3xl mx-auto text-center mb-16">
+      <span class="inline-block text-teal-dark font-ui font-bold text-xs tracking-widest uppercase mb-4">Solutions</span>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-navy mb-6 font-serif">
-        Two products. One bet.
+        What WIN actually builds.
       </h1>
       <p class="text-slate text-lg md:text-xl leading-relaxed">
-        We don't just talk about it. We build the tools — for tenants who need to know their rights, and for the lawyers who help them.
+        Two shipping products. One shared corpus. Two completely different audiences.
+        This is the standard of work you get inside a Build engagement.
       </p>
     </section>
+  </main>
 
-    <!-- Product cards -->
-    <section class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-
-      <!-- righttostay -->
-      <article class="bg-white rounded-2xl border border-slate/10 border-t-4 border-t-[#e8554a] p-8 flex flex-col">
-        <div class="flex items-center justify-between mb-6">
+  <!-- righttostay deep section -->
+  <section class="bg-white py-20 px-6 border-y border-slate/10">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-ui font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-teal/10 text-teal-dark">Live</span>
           <span class="text-xs font-ui font-bold uppercase tracking-wider text-slate">For tenants</span>
-          <span class="text-xs font-ui font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#e8554a]/10 text-[#e8554a]">Live</span>
         </div>
-        <h2 class="text-3xl font-bold text-navy mb-2 font-serif">righttostay</h2>
-        <p class="text-lg text-slate italic mb-5">Know your rights. Use them.</p>
-        <p class="text-slate leading-relaxed mb-6">
-          A free, plain-language tool for anyone renting in Ireland. Ask a question, get an answer grounded in real Residential Tenancies Board decisions. Available in 14 languages so it actually reaches the people who need it.
+        <h2 class="text-4xl font-bold text-navy mb-2 font-serif">righttostay</h2>
+        <p class="text-lg text-slate italic mb-6">Know your rights. Use them.</p>
+
+        <p class="text-slate leading-relaxed mb-5">
+          A free, plain-language tool for anyone renting in Ireland. You type your question in your own words; the tool surfaces an answer grounded in real Residential Tenancies Board decisions, with the case references attached so you can show your landlord exactly what the Tribunal has said before.
         </p>
-        <ul class="flex flex-wrap gap-x-3 gap-y-2 text-sm text-slate font-medium mb-8 list-none">
-          <li>Free</li>
-          <li class="text-slate/40" aria-hidden="true">·</li>
-          <li>14 languages</li>
-          <li class="text-slate/40" aria-hidden="true">·</li>
-          <li>RTB-backed</li>
+        <p class="text-slate leading-relaxed mb-8">
+          Translated into 14 languages because tenant rights aren't useful if they're locked behind a language barrier. Free because charging for them defeats the point.
+        </p>
+
+        <h3 class="text-sm font-ui font-bold uppercase tracking-widest text-teal-dark mb-3">The problem we built it for</h3>
+        <p class="text-slate leading-relaxed mb-8">
+          The RTB Tribunal publishes every decision it makes. There are 25,000+ of them. They're searchable in theory and unreadable in practice — legalistic, sprawling, scattered across a portal that wasn't designed for renters under stress. Most people don't know their landlord just broke the law because they can't find the decision that says so.
+        </p>
+
+        <h3 class="text-sm font-ui font-bold uppercase tracking-widest text-teal-dark mb-3">What we built</h3>
+        <ul class="space-y-3 text-slate leading-relaxed mb-8">
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">Conversational search</strong> grounded in the corpus. Ask "Can my landlord raise the rent 10% in a year?" — get a plain-English answer with the cases that say so.</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">14 languages</strong>, shipped same PR — never English-only. Every page and component lands in all locales together.</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">Monthly free reports</strong> turning the same corpus into business-readable insights (which sections of the Act are most-disputed, win rates by case type, regional patterns).</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">GDPR-clean by design</strong>: no tracking pixels, no analytics cookies, no personal data collected beyond what a user voluntarily types in.</span></li>
         </ul>
-        <div class="mt-auto">
+
+        <div class="flex flex-wrap gap-3">
           <a
             href="https://www.righttostay.ie"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-[#e8554a] hover:bg-[#d44a40] text-white font-ui font-bold px-6 py-3 rounded-full transition-colors"
+            class="inline-flex items-center gap-2 bg-teal text-navy font-ui font-bold px-6 py-3 rounded-full hover:bg-teal-dark hover:text-white transition-colors"
           >
             Visit righttostay.ie
             <span aria-hidden="true">→</span>
           </a>
+          <a
+            href="/contact?subject=Build+like+righttostay"
+            class="inline-flex items-center gap-2 bg-navy text-white font-ui font-bold px-6 py-3 rounded-full hover:bg-navy-light transition-colors"
+          >
+            Want a build like this?
+          </a>
         </div>
-      </article>
+      </div>
 
-      <!-- Stare -->
-      <article class="bg-white rounded-2xl border border-slate/10 border-t-4 border-t-teal p-8 flex flex-col">
-        <div class="flex items-center justify-between mb-6">
-          <span class="text-xs font-ui font-bold uppercase tracking-wider text-slate">For lawyers + compliance teams</span>
-          <span class="text-xs font-ui font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-teal/10 text-teal-dark">Early access</span>
+      <!-- Product mock (Held-Square palette inside the card only) -->
+      <div class="lg:sticky lg:top-24">
+        <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate/15 bg-[#fbfaf7]">
+          <div class="bg-[#1a2744] px-5 py-3 flex items-center gap-3">
+            <div class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+            </div>
+            <span class="font-mono text-[11px] text-white/80 ml-2">righttostay.ie</span>
+            <span class="ml-auto font-mono text-[10px] text-white/60">EN · ES · PL · RO · UK · AR · …</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-2xl text-[#1a2744] mb-1">Know your rights.</h3>
+            <p class="text-[#1a2744]/70 mb-5 text-sm">Free. Plain language. Backed by real cases.</p>
+            <div class="bg-white rounded-lg border border-[#1a2744]/15 px-4 py-3 mb-4 flex items-center gap-3">
+              <svg class="w-4 h-4 text-[#1a2744]/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.34-4.34m0 0A7.5 7.5 0 1 0 6.04 6.04a7.5 7.5 0 0 0 10.62 10.62Z"/>
+              </svg>
+              <span class="text-sm text-[#1a2744]">Can my landlord raise rent by 10% in one year?</span>
+            </div>
+            <div class="bg-white rounded-lg border border-[#1a2744]/15 p-4">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-[#e8554a] mb-2">Plain-English answer</div>
+              <p class="text-sm text-[#1a2744] leading-relaxed mb-3">
+                In a Rent Pressure Zone, no. Rent reviews are capped — currently at 2% per year or inflation, whichever is lower. Outside an RPZ, increases must still be reasonable and properly notified.
+              </p>
+              <div class="text-[10px] font-mono text-[#1a2744]/60 border-t border-[#1a2744]/10 pt-2">
+                References: <strong class="text-[#1a2744]">TR0224-005678</strong>, <strong class="text-[#1a2744]">TR0123-009912</strong>, +14 related decisions
+              </div>
+            </div>
+          </div>
         </div>
-        <h2 class="text-3xl font-bold text-navy mb-2 font-serif">Stare</h2>
-        <p class="text-lg text-slate italic mb-5">Precedent intelligence for Irish law.</p>
-        <p class="text-slate leading-relaxed mb-6">
-          A searchable corpus of 25,000+ Residential Tenancies Board decisions, embedded and queryable in seconds. Built for law firms doing housing work and for compliance teams who need to see how the Tribunal has actually decided cases. MCP-ready, so it plugs into the AI tools your team already uses.
+        <p class="text-xs text-slate text-center mt-3 font-mono">Sample interaction. SAMPLE.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stare deep section -->
+  <section class="bg-off-white py-20 px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+      <!-- Product mock -->
+      <div class="lg:sticky lg:top-24 order-2 lg:order-1">
+        <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate/15 bg-white">
+          <div class="bg-navy px-5 py-3 flex items-center gap-3">
+            <div class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+            </div>
+            <span class="font-mono text-[11px] text-white/80 ml-2">stare.law</span>
+            <span class="ml-auto font-mono text-[10px] text-teal">v2 · MCP-ready</span>
+          </div>
+          <div class="p-6">
+            <div class="bg-off-white rounded-lg border border-slate/15 px-4 py-3 mb-4 flex items-center gap-3">
+              <svg class="w-4 h-4 text-slate flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.34-4.34m0 0A7.5 7.5 0 1 0 6.04 6.04a7.5 7.5 0 0 0 10.62 10.62Z"/>
+              </svg>
+              <span class="text-sm text-navy">rent pressure zone · 10% increase · validity</span>
+              <span class="ml-auto font-mono text-[10px] text-slate">17 results</span>
+            </div>
+            <div class="space-y-2">
+              <div class="bg-off-white rounded-lg border border-slate/15 p-3">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-[10px] text-teal-dark font-bold">TR0224-005678</span>
+                  <span class="font-mono text-[10px] text-slate">· 2024 · upheld</span>
+                </div>
+                <p class="text-[13px] text-navy leading-snug mb-2">Section 19(4) breach where RPZ cap exceeded; €4,200 redress ordered. Landlord argued substantial change exemption; rejected on evidence.</p>
+                <div class="flex items-center gap-3 text-[10px] font-mono text-slate">
+                  <span>RPZ · §19(4)</span>
+                  <span>·</span>
+                  <span>Dublin 8</span>
+                </div>
+              </div>
+              <div class="bg-off-white rounded-lg border border-slate/15 p-3">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-[10px] text-teal-dark font-bold">TR0123-009912</span>
+                  <span class="font-mono text-[10px] text-slate">· 2023 · upheld</span>
+                </div>
+                <p class="text-[13px] text-navy leading-snug mb-2">10.4% increase outside RPZ cap; landlord ordered to refund overcharge. Notice period also defective under §22.</p>
+                <div class="flex items-center gap-3 text-[10px] font-mono text-slate">
+                  <span>Non-RPZ · §22</span>
+                  <span>·</span>
+                  <span>Galway</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 pt-3 border-t border-dashed border-slate/15 font-mono text-[10px] text-slate text-center tracking-wider">
+              25,118 DECISIONS · VECTOR + KEYWORD · MCP
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate text-center mt-3 font-mono">Sample search result. SAMPLE.</p>
+      </div>
+
+      <div class="order-1 lg:order-2">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-ui font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-amber/15 text-amber-dark">Early access</span>
+          <span class="text-xs font-ui font-bold uppercase tracking-wider text-slate">For lawyers + compliance teams</span>
+        </div>
+        <h2 class="text-4xl font-bold text-navy mb-2 font-serif">Stare</h2>
+        <p class="text-lg text-slate italic mb-6">Precedent intelligence for Irish housing law.</p>
+
+        <p class="text-slate leading-relaxed mb-5">
+          The same 25,000-decision RTB corpus that powers righttostay — re-shaped for the people who bill by the hour. Stare is for solicitors doing housing work, in-house counsel at letting agencies and councils, and compliance teams who need to know how the Tribunal has actually been deciding cases, not how the Act reads on paper.
         </p>
-        <ul class="flex flex-wrap gap-x-3 gap-y-2 text-sm text-slate font-medium mb-8 list-none">
-          <li>25,000+ decisions</li>
-          <li class="text-slate/40" aria-hidden="true">·</li>
-          <li>Vector search</li>
-          <li class="text-slate/40" aria-hidden="true">·</li>
-          <li>MCP-ready</li>
+        <p class="text-slate leading-relaxed mb-8">
+          Vector search plus keyword filters. Citations every time. And it speaks MCP — so it plugs straight into the AI assistants your firm is already paying for, without exporting anything to a third-party LLM.
+        </p>
+
+        <h3 class="text-sm font-ui font-bold uppercase tracking-widest text-teal-dark mb-3">The problem we built it for</h3>
+        <p class="text-slate leading-relaxed mb-8">
+          Irish housing law has roughly two minutes of statute and twenty years of Tribunal decisions deciding what that statute means in practice. Junior solicitors spend hours reading PDFs from the RTB portal to find three citations. Partners pay them for it. Compliance teams skip the exercise entirely and hope.
+        </p>
+
+        <h3 class="text-sm font-ui font-bold uppercase tracking-widest text-teal-dark mb-3">What we built</h3>
+        <ul class="space-y-3 text-slate leading-relaxed mb-8">
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">25,118 decisions indexed</strong> — every public RTB Tribunal decision, refreshed weekly, with vector embeddings and keyword filters.</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">MCP-native</strong> — exposed as a tool surface to Claude, Copilot, and any other assistant your firm uses. Citations come back as part of the response.</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">Anonymised at ingest</strong> — party names redacted before vectors are built. Compliance with publication norms is part of the pipeline, not an afterthought.</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">Audit trail by design</strong> — every search and citation logged for malpractice-defence purposes.</span></li>
         </ul>
-        <div class="mt-auto flex flex-wrap gap-3">
+
+        <div class="flex flex-wrap gap-3">
           <a
             href="/precedent-demo"
-            class="inline-flex items-center gap-2 bg-amber hover:bg-amber-dark text-charcoal font-ui font-bold px-6 py-3 rounded-full transition-colors"
+            class="inline-flex items-center gap-2 bg-teal text-navy font-ui font-bold px-6 py-3 rounded-full hover:bg-teal-dark hover:text-white transition-colors"
           >
             Try the Precedent Explorer
             <span aria-hidden="true">→</span>
           </a>
           <a
-            href="/contact?subject=Stare+-+Tell+me+more"
-            class="inline-flex items-center gap-2 bg-navy hover:bg-navy-light text-white font-ui font-bold px-6 py-3 rounded-full transition-colors"
+            href="/contact?subject=Stare+early+access"
+            class="inline-flex items-center gap-2 bg-navy text-white font-ui font-bold px-6 py-3 rounded-full hover:bg-navy-light transition-colors"
           >
-            Talk to us about Stare
-            <span aria-hidden="true">→</span>
+            Request early access
           </a>
         </div>
-      </article>
+      </div>
+    </div>
+  </section>
 
-    </section>
-
-    <!-- Bridge -->
-    <section class="max-w-3xl mx-auto text-center mt-20">
-      <p class="text-slate text-lg italic">
-        We build because we use it ourselves. The consulting work and the products feed each other.
+  <!-- Bridge -->
+  <section class="bg-white py-16 px-6 border-t border-slate/10">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-slate text-lg leading-relaxed">
+        Two products. One corpus. Two completely different audiences.<br />
+        We build because we use it ourselves — the consulting work and the products feed each other.
       </p>
-    </section>
-
-  </main>
+    </div>
+  </section>
 
   <FinalCTA />
   <Footer />
@@ -161,9 +264,7 @@ import FinalCTA from '../components/FinalCTA.astro';
 
   if (banner && params.get('thanks') === '1') {
     banner.classList.remove('hidden');
-    // Clean the URL so refresh / share doesn't re-show the banner
     history.replaceState(null, '', '/solutions/');
-    // Auto-dismiss after 8 seconds
     setTimeout(hideBanner, 8000);
   }
 
