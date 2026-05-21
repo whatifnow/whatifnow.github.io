@@ -6,20 +6,12 @@ const founders = [
     photo: "/images/team/paul-thompson.jpg",
     bio: [
       {
-        h: "Operational Efficiency Expert",
-        p: "20+ years leading operations and customer experience at Google, LinkedIn and Sage, managing global teams, driving efficiency and delivering measurable results at scale."
+        h: "Operational efficiency at scale",
+        p: "20+ years leading operations and customer experience at Google, LinkedIn and Sage. CCMA board member, recognised by the CCMA and European Call Centre Awards for team transformation."
       },
       {
-        h: "Process Improvement Specialist",
-        p: "Expert in standardising manual, repetitive workflows, allowing for the automation of high-capacity processes that give teams their time back."
-      },
-      {
-        h: "Award-Winning Service Excellence",
-        p: "Recognised by the CCMA and European Call Centre Awards for operational excellence and team transformation. Current CCMA board member."
-      },
-      {
-        h: "Champion for SMB Growth",
-        p: "Dedicated to levelling the playing field for SMEs and charities, building bespoke tools that eliminate administrative drag while ensuring compliance."
+        h: "Champion for SME growth",
+        p: "Building practical tools that eliminate administrative drag for SMEs and charities — without sacrificing compliance."
       }
     ]
   },
@@ -29,24 +21,12 @@ const founders = [
     photo: "/images/team/lar-judge.jpg",
     bio: [
       {
-        h: "Engineering Manager at Canva",
-        p: "Leads AI Development and the roll-out of agentic AI tooling to staff globally."
+        h: "Engineering manager at Canva, ex-banking GenAI lead",
+        p: "Leads AI development and the roll-out of agentic AI tooling to staff globally. Previously navigated strict regulatory frameworks and enterprise partnerships with Anthropic and Google at one of Australia's largest banks."
       },
       {
-        h: "Generative AI Lead",
-        p: "Navigated strict regulatory frameworks and enterprise partnerships with Anthropic and Google at one of Australia's largest banks."
-      },
-      {
-        h: "Expert in Scalable Business Growth",
-        p: "15 years building and scaling digital products, from zero to hundreds of thousands of customers."
-      },
-      {
-        h: "Experienced Entrepreneur",
-        p: "Co-founded a startup and built engineering teams inside some of the most demanding environments in tech and finance."
-      },
-      {
-        h: "Bridge Between Tech and Strategy",
-        p: "At What If Now Lar brings enterprise-grade rigour to the practical automation challenges organisations face every day, without the enterprise overhead."
+        h: "Bridge between tech and strategy",
+        p: "15 years building and scaling digital products. Brings enterprise-grade rigour to the practical automation challenges organisations face every day, without the enterprise overhead."
       }
     ]
   }
@@ -67,8 +47,8 @@ const founders = [
       {founders.map((f) => (
         <div class="flex flex-col">
           <div class="flex flex-col items-center md:items-start">
-            <div class="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden mb-5 border-2 border-teal/30">
-              <img src={f.photo} alt={`Portrait of ${f.name}`} width="416" height="416" class="w-full h-full object-cover" loading="lazy" />
+            <div class="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden mb-5 border-2 border-teal/30">
+              <img src={f.photo} alt={`Portrait of ${f.name}`} width="288" height="288" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <h3 class="text-2xl font-bold font-serif text-amber">{f.name}</h3>
             <p class="text-white font-ui font-bold text-sm mt-1">{f.title}</p>
@@ -83,6 +63,13 @@ const founders = [
           </ul>
         </div>
       ))}
+    </div>
+
+    <div class="text-center mt-14">
+      <a href="/contact?subject=Scoping+call" class="inline-flex items-center gap-2 text-teal font-ui font-bold hover:text-white transition-colors">
+        Want to talk to Paul or Lar directly? Book a 20-min scoping call
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
   </div>
 </section>

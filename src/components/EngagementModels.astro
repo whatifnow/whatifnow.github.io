@@ -48,63 +48,66 @@ const formats = [
 ];
 ---
 
-<section id="services" class="py-20 px-6 bg-off-white">
+<section id="services" class="py-20 px-6 bg-navy">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-navy font-serif">
-      Pick the engagement that fits.
-    </h2>
-    <p class="text-slate text-center text-lg mb-3 max-w-2xl mx-auto">
-      Four formats. The price floors are real — actual scope agreed on the call.
-    </p>
-    <p class="text-slate text-center text-sm mb-14 max-w-3xl mx-auto opacity-80">
-      Inside any engagement we typically deliver some combination of AI strategy, custom automation builds, fractional AI officer cover, and team training.
-    </p>
+    <div class="text-center mb-12">
+      <span class="inline-block text-teal font-ui font-bold text-xs tracking-widest uppercase mb-4">Want this for your team?</span>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white font-serif">
+        Pick the engagement that fits.
+      </h2>
+      <p class="text-slate-light text-lg mb-3 max-w-2xl mx-auto">
+        Four formats. The price floors are real — actual scope agreed on the call.
+      </p>
+      <p class="text-slate-light text-sm max-w-3xl mx-auto opacity-90">
+        Inside any engagement we typically deliver some combination of AI strategy, custom automation builds, fractional AI officer cover, and team training.
+      </p>
+    </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
       {formats.map((fmt) => (
         <div class={`relative p-6 rounded-2xl flex flex-col gap-2 ${
           fmt.featured
-            ? 'bg-navy text-white border-2 border-teal'
-            : 'bg-white border border-slate/15'
+            ? 'bg-white text-navy border-2 border-amber'
+            : 'bg-navy-light border border-white/10'
         }`}>
           {fmt.featured && fmt.pop && (
-            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-teal text-navy font-ui font-bold text-[11px] tracking-widest uppercase px-3 py-1 rounded-full whitespace-nowrap">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber text-charcoal font-ui font-bold text-[11px] tracking-widest uppercase px-3 py-1 rounded-full whitespace-nowrap">
               {fmt.pop}
             </span>
           )}
           <div class={`w-9 h-9 rounded-lg flex items-center justify-center font-serif text-lg ${
-            fmt.featured ? 'bg-teal text-navy' : 'bg-teal/10 text-teal-dark'
+            fmt.featured ? 'bg-amber/15 text-amber-dark' : 'bg-teal/15 text-teal'
           }`}>
             {fmt.initial}
           </div>
           <div class={`text-xs font-ui tracking-wider uppercase mt-1 font-bold ${
-            fmt.featured ? 'text-teal' : 'text-teal-dark'
+            fmt.featured ? 'text-amber-dark' : 'text-teal'
           }`}>
             {fmt.duration}
           </div>
           <h3 class={`text-xl font-bold font-serif ${
-            fmt.featured ? 'text-white' : 'text-navy'
+            fmt.featured ? 'text-navy' : 'text-white'
           }`}>
             {fmt.title}
           </h3>
           <p class={`text-sm leading-relaxed ${
-            fmt.featured ? 'text-slate-light' : 'text-slate'
+            fmt.featured ? 'text-slate' : 'text-slate-light'
           }`}>
             {fmt.description}
           </p>
           <div class={`font-serif text-2xl mt-auto pt-4 border-t border-dashed ${
-            fmt.featured ? 'text-white border-white/15' : 'text-navy border-slate/15'
+            fmt.featured ? 'text-amber-dark border-slate/15' : 'text-white border-white/15'
           }`}>
             {fmt.price}<span class={`font-ui text-sm font-medium ml-1 ${
-              fmt.featured ? 'text-slate-light' : 'text-slate'
+              fmt.featured ? 'text-slate' : 'text-slate-light'
             }`}>{fmt.unit}</span>
           </div>
           <a
             href={fmt.ctaLink}
             class={`block text-center py-2.5 px-4 rounded-full font-ui font-bold text-sm transition-colors mt-2 ${
               fmt.featured
-                ? 'bg-teal text-navy hover:bg-teal-dark hover:text-white'
-                : 'bg-navy text-white hover:bg-navy-light'
+                ? 'bg-amber text-charcoal hover:bg-amber-dark hover:text-white'
+                : 'bg-teal text-navy hover:bg-teal-dark hover:text-white'
             }`}
           >
             {fmt.cta}
