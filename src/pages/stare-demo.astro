@@ -1,0 +1,63 @@
+---
+import RTBPrecedentDemo from '../components/RTBPrecedentDemo.jsx';
+
+const title = "Stare Demo · Precedent Intelligence | What If Now";
+const description = "Live preview of Stare — search 25,000+ Residential Tenancies Board Tribunal decisions with vector embeddings, keyword filters, and citations. Built by What If Now for law firms and compliance teams doing housing work.";
+const canonical = "https://www.whatifnow.ie/stare-demo/";
+const ogImage = "https://www.whatifnow.ie/images/og-image.jpg";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: canonical,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "What If Now",
+    url: "https://www.whatifnow.ie"
+  },
+  about: {
+    "@type": "SoftwareApplication",
+    name: "Stare",
+    applicationCategory: "LegalTechApplication",
+    description: "Precedent intelligence search across 25,000+ RTB Tribunal decisions. MCP-ready."
+  }
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="What If Now" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #FAFAF8; }
+    </style>
+  </head>
+  <body>
+    <RTBPrecedentDemo client:only="react" />
+  </body>
+</html>
