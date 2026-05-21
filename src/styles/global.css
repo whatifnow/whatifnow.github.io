@@ -39,3 +39,28 @@
     @apply bg-navy text-white font-sans antialiased;
   }
 }
+
+/* Skip-to-content link: hidden until keyboard focus, then revealed. WCAG 2.4.1 + 2.4.7. */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  z-index: 100;
+  padding: 8px 16px;
+  background: var(--color-navy);
+  color: var(--color-white);
+  font-family: var(--font-family-ui);
+  font-weight: 600;
+  font-size: 14px;
+  border: 2px solid var(--color-teal);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top 0.15s ease-out;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 8px;
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
