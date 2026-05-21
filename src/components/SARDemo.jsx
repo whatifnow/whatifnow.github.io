@@ -103,7 +103,7 @@ function OnboardingScreen() {
     <div>
       <p style={{ fontSize: 14, color: C.slate, lineHeight: 1.7, marginBottom: 18 }}>Operational in under five minutes. No IT department required. Sign in with Microsoft or Google.</p>
       <AppFrame path="signup">
-        <div style={{ textAlign: "center", marginBottom: 18 }}><WinLogo size={36} /><div style={{ marginTop: 8 }}><WinWordmark size={18} /></div><div style={{ fontSize: 12, color: C.muted, marginTop: 4 }}>SAR Processing Tool</div></div>
+        <div style={{ textAlign: "center", marginBottom: 18 }}><a href="/" style={{ textDecoration: "none", display: "inline-block" }} aria-label="What If Now home"><WinLogo size={36} /><div style={{ marginTop: 8 }}><WinWordmark size={18} /></div></a><div style={{ fontSize: 12, color: C.muted, marginTop: 4 }}>SAR Processing Tool</div></div>
         <div style={{ maxWidth: 320, margin: "0 auto" }}>
           {["Sign in with Microsoft 365", "Sign in with Google Workspace"].map((t, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 18px", borderRadius: 8, border: `1.5px solid ${C.border}`, background: C.white, marginBottom: 8 }}><span style={{ fontSize: 13, fontWeight: 500, color: C.charcoal }}>{t}</span></div>
@@ -407,7 +407,7 @@ export default function SARDemo() {
     <div style={{ fontFamily: "'DM Sans', system-ui, sans-serif", background: C.bg, color: C.charcoal, minHeight: "100vh" }}>
       <style>{`.dn::-webkit-scrollbar{display:none}@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.df{animation:fu .3s ease-out}`}</style>
       <div style={{ background: C.white, borderBottom: `1px solid ${C.border}`, padding: "16px 22px 14px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}><WinLogo size={30} /><WinWordmark size={18} /><div style={{ flex: 1 }} /><Tag color={C.navy}>Product Preview</Tag></div>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}><a href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }} aria-label="What If Now home"><WinLogo size={30} /><WinWordmark size={18} /></a><div style={{ flex: 1 }} /><Tag color={C.navy}>Product Preview</Tag></div>
         <h1 style={{ fontSize: 24, fontWeight: 400, margin: "0 0 4px", fontFamily: "'DM Serif Display', Georgia, serif", color: C.navy }}>AI-Powered SAR Processing</h1>
         <p style={{ fontSize: 13, color: C.muted, margin: 0 }}>GDPR Subject Access Request compliance — faster, cheaper, more accurate</p>
       </div>

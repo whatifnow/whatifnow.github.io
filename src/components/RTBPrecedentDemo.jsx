@@ -468,7 +468,7 @@ export default function RTBDemo() {
     <div style={{ fontFamily: "'DM Sans', system-ui, sans-serif", background: C.bg, color: C.charcoal, minHeight: "100vh" }}>
       <style>{`.dn::-webkit-scrollbar{display:none}@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.df{animation:fu .3s ease-out}`}</style>
       <div style={{ background: C.white, borderBottom: `1px solid ${C.border}`, padding: "16px 22px 14px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}><WinLogo size={30} /><WinWordmark size={18} /><div style={{ flex: 1 }} /><Tag color={C.navy}>Product Preview</Tag></div>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}><a href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }} aria-label="What If Now home"><WinLogo size={30} /><WinWordmark size={18} /></a><div style={{ flex: 1 }} /><Tag color={C.navy}>Product Preview</Tag></div>
         <h1 style={{ fontSize: 24, fontWeight: 400, margin: "0 0 4px", fontFamily: "'DM Serif Display', Georgia, serif", color: C.navy }}>RTB Precedent Intelligence</h1>
         <p style={{ fontSize: 13, color: C.muted, margin: 0 }}>AI-powered search across 40,000+ RTB decisions — evidence-based advice at your fingertips</p>
       </div>

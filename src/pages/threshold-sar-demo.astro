@@ -1,5 +1,29 @@
 ---
 import SARDemo from '../components/SARDemo.jsx';
+
+const title = "SAR Processing Tool · Demo | What If Now";
+const description = "Live preview of a Subject Access Request processing tool — built by What If Now to show how AI can help small teams handle GDPR Article 15 requests within statutory deadlines without breaking the bank.";
+const canonical = "https://www.whatifnow.ie/threshold-sar-demo/";
+const ogImage = "https://www.whatifnow.ie/images/og-image.jpg";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: canonical,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "What If Now",
+    url: "https://www.whatifnow.ie"
+  },
+  about: {
+    "@type": "SoftwareApplication",
+    name: "SAR Processing Tool",
+    applicationCategory: "BusinessApplication",
+    description: "AI-assisted Subject Access Request handling for SMEs and charities."
+  }
+};
 ---
 
 <!doctype html>
@@ -7,8 +31,27 @@ import SARDemo from '../components/SARDemo.jsx';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SAR Processing Tool — Product Preview</title>
-    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="What If Now" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { background: #FAFAF8; }
