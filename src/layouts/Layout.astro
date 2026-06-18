@@ -52,16 +52,42 @@ const ogImageURL = new URL('/images/og-image.jpg', Astro.site);
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "What If Now",
+      "alternateName": "WIN",
       "legalName": "What If Now Ltd",
       "description": "AI consulting for businesses — strategy, training, and implementation.",
-      "url": "https://whatifnow.ie",
+      "disambiguatingDescription": "Dublin-based AI consultancy founded by Paul Thompson and Lar Judge — not the television programme, the Cecelia Ahern novel, or the AI artist of the same name.",
+      "url": "https://www.whatifnow.ie",
       "email": "privacy@whatifnow.ie",
+      "areaServed": "IE",
+      "knowsAbout": ["Artificial intelligence", "Generative AI", "Retrieval-augmented generation", "EU AI Act", "GDPR", "Irish housing law"],
+      "founder": [
+        { "@type": "Person", "name": "Paul Thompson" },
+        { "@type": "Person", "name": "Lar Judge" }
+      ],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Dublin",
         "addressCountry": "IE"
       },
-      "serviceType": ["AI Consulting", "AI Training", "AI Implementation", "AI Readiness Assessment"]
+      "sameAs": [
+        "https://www.linkedin.com/company/whatifnow/",
+        "https://github.com/whatifnow"
+      ],
+      "serviceType": ["AI Consulting", "AI Training", "AI Implementation", "AI Readiness Assessment"],
+      "subOrganization": [
+        {
+          "@type": "Organization",
+          "name": "righttostay.ie",
+          "url": "https://www.righttostay.ie",
+          "description": "Free, plain-language Irish tenant-rights tool, available in 14 languages and grounded in 25,000+ RTB Tribunal decisions."
+        },
+        {
+          "@type": "Organization",
+          "name": "Stare",
+          "url": "https://stare.law",
+          "description": "B2B precedent-intelligence platform for Irish legal professionals, built on the same Residential Tenancies Board decision corpus."
+        }
+      ]
     })} />
   </head>
   <body>

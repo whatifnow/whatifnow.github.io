@@ -1,0 +1,22 @@
+# What If Now
+
+> What If Now (WIN) is a Dublin, Ireland AI consultancy founded by Paul Thompson and Lar Judge. It helps teams figure out where AI actually fits — through briefings, workshops, fractional support, and custom builds — and ships its own AI products built on Irish public-information corpora. GDPR- and EU AI Act-conscious by default.
+
+This is the What If Now AI consultancy based in Dublin, Ireland (whatifnow.ie) — not the television programme, the Cecelia Ahern novel, or the AI artist of the same name.
+
+## Core pages
+- [Home](https://www.whatifnow.ie/): what the company does and who it's for
+- [Solutions](https://www.whatifnow.ie/solutions): engagement formats — Briefing, Workshop, Pairing, Build
+- [AI readiness](https://www.whatifnow.ie/ai-readiness): a readiness check for teams adopting AI
+- [Audit](https://www.whatifnow.ie/audit): a worked example of how WIN audits and improves a product
+- [Stare demo](https://www.whatifnow.ie/stare-demo): live demo of the Stare precedent-search product
+- [Contact](https://www.whatifnow.ie/contact)
+- [Privacy](https://www.whatifnow.ie/privacy)
+
+## Products
+- [righttostay.ie](https://www.righttostay.ie): free, plain-language Irish tenant-rights tool in 14 languages, grounded in 25,000+ Residential Tenancies Board (RTB) Tribunal decisions
+- [Stare](https://stare.law): B2B precedent-intelligence platform for Irish legal professionals, over the same RTB decision corpus
+
+## More
+- [Full description for LLMs](https://www.whatifnow.ie/llms-full.txt)
+- [Sitemap](https://www.whatifnow.ie/sitemap-index.xml)
