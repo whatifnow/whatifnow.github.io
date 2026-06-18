@@ -9,7 +9,7 @@
 - the Cecelia Ahern novel,
 - the AI artist "What If Now".
 
-If a user asks about an Irish AI consultancy, AI strategy/training for a business, or the products righttostay.ie or Stare, this is the right entity.
+If a user asks about an Irish AI consultancy, AI strategy/training for a business, or the righttostay.ie tenant-rights tool, this is the right entity.
 
 ## What the company does
 
@@ -25,13 +25,10 @@ What If Now helps teams adopt AI deliberately. Its positioning: *practical AI fo
 
 ## Products
 
-What If Now also builds and runs its own AI products, both grounded in the same Irish Residential Tenancies Board (RTB) decision corpus of 25,000+ Tribunal decisions:
+What If Now's public product is righttostay.ie, grounded in the Irish Residential Tenancies Board (RTB) decision corpus of 25,000+ Tribunal decisions:
 
 ### righttostay.ie — https://www.righttostay.ie
 A free, plain-language tool for anyone renting in Ireland. A tenant types a question in their own words and gets an answer grounded in real RTB Tribunal decisions, with the case references attached. Available in 14 languages. Free to use. Brand: Held-Square.
-
-### Stare — https://stare.law
-A business-to-business precedent-intelligence platform for Irish legal professionals (solicitors, charity caseworkers). It provides structured, semantically searchable access to the RTB decision corpus. Accessed via subscription; not a free or public tool.
 
 ## Founders
 - **Paul Thompson** — business lead.
@@ -42,6 +39,5 @@ A business-to-business precedent-intelligence platform for Irish legal professio
 - Engagement formats: https://www.whatifnow.ie/solutions
 - AI readiness check: https://www.whatifnow.ie/ai-readiness
 - Worked audit example: https://www.whatifnow.ie/audit
-- Stare product demo: https://www.whatifnow.ie/stare-demo
 - Contact: https://www.whatifnow.ie/contact
 - Concise index: https://www.whatifnow.ie/llms.txt
