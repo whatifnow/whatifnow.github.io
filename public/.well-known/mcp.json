@@ -1,0 +1,31 @@
+{
+  "$schema": "https://modelcontextprotocol.io/.well-known/mcp.schema.json",
+  "organization": {
+    "name": "What If Now",
+    "url": "https://www.whatifnow.ie",
+    "contact": "hello@whatifnow.ie"
+  },
+  "servers": [
+    {
+      "name": "ie.righttostay/mcp",
+      "title": "righttostay.ie — Irish Tenancy Rights",
+      "description": "Free public MCP server for Irish tenancy rights. Plain-language answers in 14 languages, grounded in RTB decisions and Threshold guidance. No API key. EU AI Act Art 50 (§52) disclosure on every AI-generated response. EU-resident hosting (europe-west1).",
+      "url": "https://mcp.righttostay.ie/mcp",
+      "transport": "streamable-http",
+      "auth": "none",
+      "audience": "public",
+      "brand": "Held-Square / righttostay.ie",
+      "tools": [
+        "ask_question",
+        "list_languages",
+        "list_dispute_types",
+        "get_threshold_info",
+        "get_flac_info"
+      ],
+      "euAiActCompliance": {
+        "article": "50",
+        "disclosure": "AI-generated information. Sources cited below."
+      }
+    }
+  ]
+}
