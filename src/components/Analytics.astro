@@ -1,0 +1,108 @@
+---
+// Consent-gated Google Analytics 4 (G-NM48VRCM74).
+//
+// Nothing loads until the visitor explicitly opts in — this satisfies the site's
+// own LG-01 audit finding ("ship the consent banner before analytics") and EU
+// ePrivacy. Consent Mode v2 defaults every storage type to "denied"; clicking
+// Accept flips analytics_storage to "granted" and injects gtag. A decline is
+// remembered and respected. While analytics is denied, no GA cookies are set.
+//
+// Also tags visits arriving from AI assistants / LLM surfaces (ChatGPT, Claude,
+// Perplexity, Gemini, Copilot…) with an `ai_referral` event + user property, so
+// AI-driven discovery shows up in GA4 (register `traffic_kind` / `ai_source` as
+// custom dimensions in GA Admin to surface them in reports).
+---
+
+<div
+  id="wifn-consent"
+  hidden
+  role="dialog"
+  aria-label="Cookie consent"
+  aria-live="polite"
+  class="fixed bottom-4 inset-x-4 z-[9999] mx-auto flex max-w-xl flex-col gap-4 rounded-xl bg-navy p-5 text-white shadow-2xl sm:flex-row sm:items-center"
+>
+  <p class="m-0 text-sm leading-relaxed">
+    We'd like to use Google Analytics to understand how people find What If Now.
+    Nothing runs until you agree. See our <a href="/privacy" class="underline hover:no-underline">privacy policy</a>.
+  </p>
+  <div class="flex shrink-0 gap-2 sm:ml-auto">
+    <button
+      type="button"
+      data-consent="decline"
+      class="rounded-full border border-white/40 px-5 py-2 font-ui text-sm font-bold transition-colors hover:bg-white/10"
+    >Decline</button>
+    <button
+      type="button"
+      data-consent="accept"
+      class="rounded-full bg-teal px-5 py-2 font-ui text-sm font-bold text-navy transition-colors hover:bg-teal-dark hover:text-white"
+    >Accept</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var GA_ID = 'G-NM48VRCM74';
+    var KEY = 'wifn-consent';
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+
+    // Consent Mode v2 — everything denied until the visitor opts in.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+
+    function loadGA() {
+      if (window.__wifnGA) return;
+      window.__wifnGA = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', GA_ID, { anonymize_ip: true });
+      tagAiReferral();
+    }
+
+    function tagAiReferral() {
+      try {
+        var host = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : '';
+        var sources = ['chatgpt.com', 'chat.openai.com', 'claude.ai', 'perplexity.ai', 'gemini.google.com', 'copilot.microsoft.com', 'you.com', 'poe.com', 'phind.com'];
+        var hit = sources.filter(function (h) { return host === h || host.indexOf('.' + h) === host.length - h.length - 1; })[0];
+        var utm = (new URLSearchParams(location.search).get('utm_source') || '').toLowerCase();
+        var aiUtm = /chatgpt|openai|claude|anthropic|perplexity|gemini|copilot|llm|^ai$|ai-/.test(utm);
+        if (hit || aiUtm) {
+          gtag('event', 'ai_referral', { ai_source: hit || utm || 'unknown' });
+          gtag('set', 'user_properties', { traffic_kind: 'ai_referral' });
+        }
+      } catch (e) { /* referrer parsing is best-effort */ }
+    }
+
+    function grant() { gtag('consent', 'update', { analytics_storage: 'granted' }); loadGA(); }
+    function showBanner() { var b = document.getElementById('wifn-consent'); if (b) b.hidden = false; }
+    function hideBanner() { var b = document.getElementById('wifn-consent'); if (b) b.hidden = true; }
+
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    if (stored === 'granted') { grant(); }
+    else if (stored === 'denied') { /* respect the decline */ }
+    else { showBanner(); }
+
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.getAttribute) return;
+      var choice = t.getAttribute('data-consent');
+      if (choice === 'accept') {
+        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
+        grant(); hideBanner();
+      } else if (choice === 'decline') {
+        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
+        hideBanner();
+      }
+    });
+  })();
+</script>
