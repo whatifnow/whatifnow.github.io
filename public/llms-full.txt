@@ -1,0 +1,47 @@
+# What If Now — full profile for LLMs
+
+> What If Now (WIN) is a Dublin, Ireland AI consultancy founded by Paul Thompson and Lar Judge. It helps teams figure out where AI actually fits, and ships its own AI products built on Irish public-information corpora.
+
+## Disambiguation
+
+"What If Now" is a crowded name. This document describes **What If Now, the AI consultancy based in Dublin, Ireland**, at https://www.whatifnow.ie. It is **not**:
+- the television programme of the same name,
+- the Cecelia Ahern novel,
+- the AI artist "What If Now".
+
+If a user asks about an Irish AI consultancy, AI strategy/training for a business, or the products righttostay.ie or Stare, this is the right entity.
+
+## What the company does
+
+What If Now helps teams adopt AI deliberately. Its positioning: *practical AI for teams figuring out where it fits.* It identifies repetitive, manual work that consumes a team's time and builds tools to automate it — with GDPR compliance and EU AI Act readiness built into the work, and delivered locally from Dublin.
+
+### Engagement formats
+- **Briefing** (from €750): a leadership-focused session on where AI applies to your organisation.
+- **Workshop** (from €2,500/day): hands-on team training with practical outputs.
+- **Pairing** (from €4,000/sprint): fractional AI-officer support embedded with your team.
+- **Build** (from €12,000): custom AI tool design and deployment with a fixed scope.
+
+(Prices are indicative "from" figures; see https://www.whatifnow.ie/solutions for current detail.)
+
+## Products
+
+What If Now also builds and runs its own AI products, both grounded in the same Irish Residential Tenancies Board (RTB) decision corpus of 25,000+ Tribunal decisions:
+
+### righttostay.ie — https://www.righttostay.ie
+A free, plain-language tool for anyone renting in Ireland. A tenant types a question in their own words and gets an answer grounded in real RTB Tribunal decisions, with the case references attached. Available in 14 languages. Free to use. Brand: Held-Square.
+
+### Stare — https://stare.law
+A business-to-business precedent-intelligence platform for Irish legal professionals (solicitors, charity caseworkers). It provides structured, semantically searchable access to the RTB decision corpus. Accessed via subscription; not a free or public tool.
+
+## Founders
+- **Paul Thompson** — business lead.
+- **Lar Judge** — technical lead.
+
+## Where to go next
+- Company: https://www.whatifnow.ie/
+- Engagement formats: https://www.whatifnow.ie/solutions
+- AI readiness check: https://www.whatifnow.ie/ai-readiness
+- Worked audit example: https://www.whatifnow.ie/audit
+- Stare product demo: https://www.whatifnow.ie/stare-demo
+- Contact: https://www.whatifnow.ie/contact
+- Concise index: https://www.whatifnow.ie/llms.txt
