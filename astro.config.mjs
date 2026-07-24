@@ -16,6 +16,7 @@ const SITEMAP_EXCLUDE = [
   '/v2-a',
   '/v2-b',
   '/v2-c',
+  '/yellow-harbour',
 ];
 
 export default defineConfig({

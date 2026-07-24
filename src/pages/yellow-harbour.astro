@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grant Matching Workspace — Yellow Harbour</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#F2F5F7; --surface:#FFFFFF; --ink:#17242F; --muted:#5C6B7A; --faint:#8A97A5;
+    --line:#E2E8EE; --line-strong:#C9D3DC;
+    --brand:#0E6E68; --brand-soft:#E0F2F0; --brand-ink:#0A4B47;
+    --gold:#F5B82E; --gold-soft:#FDF3DC;
+    --green:#1E8E5F; --green-soft:#E2F4EA;
+    --amber:#A96F10; --amber-soft:#FBEFD8;
+    --purple:#6252C6; --purple-soft:#ECE9FA;
+    --red:#C4453C; --red-soft:#FAE6E4;
+    --radius:10px;
+    font-size:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+  /* ── Top bar ─────────────────────────── */
+  header{height:54px;background:#0F3A43;color:#fff;display:flex;align-items:center;gap:28px;padding:0 20px;flex-shrink:0}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+  .logo-mark{width:26px;height:26px;border-radius:6px;background:var(--gold);display:flex;align-items:center;justify-content:center}
+  .logo-mark svg{display:block}
+  nav{display:flex;gap:4px;font-size:13px}
+  nav a{color:#B8CCD2;text-decoration:none;padding:6px 12px;border-radius:6px}
+  nav a.active{background:rgba(255,255,255,.14);color:#fff;font-weight:600}
+  nav a:hover{color:#fff}
+  .top-right{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:13px}
+  .env-chip{background:rgba(245,184,46,.18);border:1px solid rgba(245,184,46,.5);color:var(--gold);padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .avatar{width:30px;height:30px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+  /* ── Breadcrumb / run bar ────────────── */
+  .runbar{background:var(--surface);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;align-items:center;gap:18px;flex-shrink:0}
+  .crumbs{font-size:13px;color:var(--muted)}
+  .crumbs b{color:var(--ink);font-weight:600}
+  .crumbs span{margin:0 6px;color:var(--line-strong)}
+  .runmeta{margin-left:auto;display:flex;gap:16px;font-size:12px;color:var(--muted);align-items:center}
+  .runmeta .dot{width:4px;height:4px;border-radius:50%;background:var(--line-strong)}
+  .runmeta code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;background:var(--bg);padding:2px 6px;border-radius:4px;color:var(--muted)}
+
+  /* ── Layout ──────────────────────────── */
+  .workspace{flex:1;display:grid;grid-template-columns:272px 372px 1fr;gap:0;min-height:0}
+
+  /* ── Grant panel ─────────────────────── */
+  .grant-panel{background:var(--surface);border-right:1px solid var(--line);overflow-y:auto;padding:18px 16px}
+  .grant-panel h2{font-size:15px;line-height:1.35;margin-bottom:2px}
+  .funder{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+  .grant-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+  .fact{background:var(--bg);border-radius:8px;padding:8px 10px}
+  .fact .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--faint);margin-bottom:2px}
+  .fact .v{font-size:13px;font-weight:600}
+  .panel-h{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--faint);margin:16px 0 8px;font-weight:700}
+  .crit-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .crit-list li{font-size:12.5px;color:var(--ink);display:flex;gap:8px;align-items:flex-start;line-height:1.4}
+  .crit-list li::before{content:"";width:6px;height:6px;border-radius:2px;background:var(--brand);margin-top:5px;flex-shrink:0}
+  .src{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:7px 9px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;color:var(--ink);cursor:pointer}
+  .src:hover{border-color:var(--brand);background:var(--brand-soft)}
+  .src .ico{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+  .ico-pdf{background:var(--red-soft);color:var(--red)}
+  .ico-web{background:var(--brand-soft);color:var(--brand)}
+  .ico-doc{background:#E3EDFB;color:#2563A8}
+  .src small{display:block;color:var(--faint);font-size:11px}
+
+  /* ── Match list ──────────────────────── */
+  .match-col{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line)}
+  .match-tools{padding:12px 14px 8px;background:var(--surface);border-bottom:1px solid var(--line)}
+  .search{width:100%;padding:7px 10px;border:1px solid var(--line-strong);border-radius:8px;font-size:13px;margin-bottom:10px;background:var(--bg)}
+  .search:focus{outline:2px solid var(--brand-soft);border-color:var(--brand)}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line-strong);background:var(--surface);border-radius:999px;padding:4px 11px;font-size:12px;cursor:pointer;color:var(--muted)}
+  .chip.active{background:#0F3A43;color:#fff;border-color:#0F3A43;font-weight:600}
+  .match-list{overflow-y:auto;flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+  .mcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:11px 12px;cursor:pointer;position:relative}
+  .mcard:hover{border-color:var(--line-strong);box-shadow:0 1px 4px rgba(23,36,47,.06)}
+  .mcard.sel{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)}
+  .mcard .row1{display:flex;align-items:baseline;gap:8px}
+  .mcard .client{font-weight:650;font-size:13.5px}
+  .mcard .score{margin-left:auto;font-weight:700;font-size:14px}
+  .mcard .proj{font-size:12.5px;color:var(--muted);margin:2px 0 8px;line-height:1.35}
+  .scorebar{height:4px;border-radius:2px;background:var(--bg);margin-bottom:8px;overflow:hidden}
+  .scorebar i{display:block;height:100%;border-radius:2px;background:var(--brand)}
+  .badges{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+  .badge{font-size:10.5px;font-weight:650;padding:2.5px 8px;border-radius:999px;letter-spacing:.2px}
+  .b-eligible{background:var(--green-soft);color:var(--green)}
+  .b-gaps{background:var(--amber-soft);color:var(--amber)}
+  .b-lateral{background:var(--purple-soft);color:var(--purple)}
+  .b-inelig{background:var(--red-soft);color:var(--red)}
+  .b-approved{background:var(--green);color:#fff}
+  .b-rejected{background:var(--red);color:#fff}
+  .b-conf{background:var(--bg);color:var(--muted)}
+
+  /* ── Detail pane ─────────────────────── */
+  .detail{overflow-y:auto;min-height:0;padding:18px 22px 90px;position:relative}
+  .d-head{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+  .d-top{display:flex;align-items:flex-start;gap:16px}
+  .d-title h3{font-size:17px;margin-bottom:2px}
+  .d-title .sub{color:var(--muted);font-size:13px}
+  .scorering{margin-left:auto;text-align:center;flex-shrink:0}
+  .ring{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;background:conic-gradient(var(--brand) calc(var(--p)*1%), var(--line) 0);position:relative}
+  .ring::before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--surface)}
+  .ring span{position:relative}
+  .scorering .lbl{font-size:10.5px;color:var(--faint);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+  .d-badges{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+  .d-summary{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.55;color:var(--ink)}
+  .lateral-note{margin-top:10px;background:var(--purple-soft);border:1px solid #D8D2F2;border-radius:8px;padding:10px 12px;font-size:12.5px;color:#463A96;line-height:1.5;display:flex;gap:8px}
+  .tabs{display:flex;gap:2px;margin:16px 0 12px;border-bottom:1px solid var(--line)}
+  .tab{padding:8px 14px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tab.active{color:var(--brand-ink);border-color:var(--brand);font-weight:650}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px}
+  .card h4{font-size:13px;padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+  .card h4 .count{font-size:11px;color:var(--muted);font-weight:500}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--faint);text-align:left;padding:8px 16px;border-bottom:1px solid var(--line);background:#FAFBFC}
+  td{padding:10px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+  tr:last-child td{border-bottom:none}
+  .verdict{display:inline-flex;align-items:center;gap:6px;font-weight:650;font-size:12px;white-space:nowrap}
+  .v-met{color:var(--green)} .v-gap{color:var(--amber)} .v-unclear{color:var(--faint)} .v-fail{color:var(--red)}
+  .v-ico{width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0}
+  .v-met .v-ico{background:var(--green)} .v-gap .v-ico{background:var(--amber)} .v-unclear .v-ico{background:var(--faint)} .v-fail .v-ico{background:var(--red)}
+  .evidence{color:var(--ink)}
+  .cite{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 7px;font-size:11px;color:var(--muted);margin-top:5px;cursor:pointer}
+  .cite:hover{border-color:var(--brand);color:var(--brand-ink)}
+  .missing{padding:12px 16px}
+  .missing li{margin-left:18px;font-size:13px;line-height:1.7;color:var(--ink)}
+  .audit{list-style:none}
+  .audit li{display:flex;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:12.5px}
+  .audit li:last-child{border-bottom:none}
+  .audit time{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--faint);white-space:nowrap;padding-top:1px}
+  .audit .a-body b{font-weight:650}
+  .audit .a-meta{color:var(--faint);font-size:11px;margin-top:2px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  /* ── Action bar ──────────────────────── */
+  .actionbar{position:absolute;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);padding:12px 22px;display:flex;gap:10px;align-items:center}
+  .btn{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)}
+  .btn:hover{border-color:var(--brand)}
+  .btn-approve{background:var(--brand);border-color:var(--brand);color:#fff}
+  .btn-approve:hover{background:var(--brand-ink)}
+  .btn-reject{color:var(--red)}
+  .btn-reject:hover{border-color:var(--red);background:var(--red-soft)}
+  .action-note{margin-left:auto;font-size:12px;color:var(--faint)}
+
+  /* ── Grant Bible ─────────────────────── */
+  #page-grants{flex:1;display:flex;flex-direction:column;min-height:0}
+  #page-bible{flex:1;overflow-y:auto;min-height:0;padding:20px 24px 60px}
+  .bible-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:16px}
+  .bible-head h1{font-size:20px}
+  .bible-head .sub{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .bible-head .sub b{color:var(--brand-ink)}
+  .bible-head .btn{margin-left:auto}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .kpi .n{font-size:20px;font-weight:750}
+  .kpi .k{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+  .kpi .s{font-size:11px;color:var(--muted);margin-top:4px}
+  .mstrip{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;margin-bottom:6px}
+  .mcardlet{flex:0 0 auto;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:8px;padding:8px 12px;font-size:12px;min-width:240px}
+  .mcardlet.hot{border-left-color:var(--red)}
+  .mcardlet.warn{border-left-color:var(--gold)}
+  .mcardlet b{display:block;font-size:12.5px;margin-bottom:1px}
+  .mcardlet span{color:var(--muted)}
+  .mnote{font-size:11px;color:var(--faint);margin:0 0 16px}
+  .btoolbar{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .btoolbar .search{width:250px;margin:0}
+  .btoolbar .auto-note{margin-left:auto;font-size:11.5px;color:var(--brand-ink)}
+  .stagechip{font-size:10.5px;font-weight:650;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .st-intake{background:#EEF1F4;color:#5C6B7A}
+  .st-matching{background:var(--brand-soft);color:var(--brand-ink)}
+  .st-qualified{background:#E3EDFB;color:#2563A8}
+  .st-drafting{background:var(--gold-soft);color:#8A6206}
+  .st-clientreview{background:var(--amber-soft);color:var(--amber)}
+  .st-submitted{background:var(--purple-soft);color:var(--purple)}
+  .st-awarded{background:var(--green-soft);color:var(--green)}
+  .st-declined{background:var(--red-soft);color:var(--red)}
+  .stagenote{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.35;max-width:240px}
+  .stagenote.warn{color:var(--amber);font-weight:600}
+  .fundcell b{font-size:13.5px}
+  .fundcell .funder{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .recur{font-size:11px;color:var(--purple);margin-top:4px}
+  .autochip{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:700;background:var(--brand-soft);color:var(--brand-ink);border-radius:4px;padding:1px 5px;vertical-align:2px;margin-left:6px;letter-spacing:.3px}
+  .countd{display:inline-block;font-size:10.5px;font-weight:650;border-radius:5px;padding:1px 7px;margin-left:6px;background:#EEF1F4;color:#5C6B7A}
+  .countd.warn{background:var(--amber-soft);color:var(--amber)}
+  .countd.hot{background:var(--red-soft);color:var(--red)}
+  .mssub{font-size:11px;color:var(--faint);margin-top:3px}
+  .reqbar{width:70px;height:4px;border-radius:2px;background:var(--bg);margin-top:5px;overflow:hidden}
+  .reqbar i{display:block;height:100%;background:var(--green)}
+  .own{width:24px;height:24px;border-radius:50%;background:#0F3A43;color:#fff;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+  .note-cell{color:var(--muted);font-size:12.5px;min-width:160px;line-height:1.4;border-radius:6px;padding:6px 8px;cursor:text}
+  .note-cell:hover{background:var(--bg)}
+  .note-cell:focus{outline:2px solid var(--brand-soft);background:#fff;color:var(--ink)}
+  .note-cell:empty::before{content:"Add note…";color:var(--line-strong)}
+  .brow{cursor:pointer}
+  .brow:hover td{background:#FAFCFC}
+  .blegend{font-size:11px;color:var(--faint);margin-top:10px}
+
+  /* ── Dashboard / Clients / Reports ───── */
+  .page-scroll{flex:1;overflow-y:auto;min-height:0;padding:20px 24px 60px}
+  .grid2{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;align-items:start}
+  .feed{list-style:none}
+  .feed li{display:flex;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.45}
+  .feed li:last-child{border-bottom:none}
+  .feed time{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--faint);white-space:nowrap;padding-top:2px;width:62px;flex-shrink:0}
+  .fdot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
+  .pills{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px}
+  .pill{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12px;cursor:pointer}
+  .pill b{margin-right:4px}
+  .pill:hover{border-color:var(--brand)}
+  .cardpad{padding:12px 16px;font-size:12.5px;color:var(--muted);line-height:1.5}
+  .fresh{font-size:11px;font-weight:600;border-radius:5px;padding:2px 7px;display:inline-block;white-space:nowrap}
+  .fr-ok{background:var(--green-soft);color:var(--green)}
+  .fr-warn{background:var(--amber-soft);color:var(--amber)}
+  .alertcell{font-size:11.5px;color:var(--amber);line-height:1.35}
+  .alertcell.red{color:var(--red)}
+  .cols{display:flex;align-items:flex-end;gap:10px;height:130px;padding:16px 16px 8px}
+  .colu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;font-size:10.5px;color:var(--faint);height:100%}
+  .colu i{display:block;width:100%;max-width:36px;background:var(--brand);border-radius:4px 4px 0 0}
+  .colu b{color:var(--ink);font-size:11px}
+  .hbars{padding:12px 16px}
+  .hb{display:grid;grid-template-columns:170px 1fr 52px;gap:10px;align-items:center;margin:9px 0;font-size:12.5px}
+  .hb .track{height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+  .hb .track i{display:block;height:100%;background:var(--brand);border-radius:4px}
+  .hb .val{font-weight:650;text-align:right;font-size:12px}
+  .clickable{cursor:pointer}
+
+  /* ── Toast ───────────────────────────── */
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#0F3A43;color:#fff;padding:11px 20px;border-radius:10px;font-size:13px;box-shadow:0 6px 24px rgba(15,58,67,.35);transition:transform .25s ease;z-index:50}
+  #toast.show{transform:translateX(-50%) translateY(0)}
+
+  .foot-note{position:fixed;bottom:8px;right:14px;font-size:10.5px;color:var(--faint);background:rgba(242,245,247,.85);padding:2px 8px;border-radius:6px;pointer-events:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M1 4c2 0 2 2 4 2s2-2 4-2 2 2 4 2" fill="none" stroke="#0F3A43" stroke-width="1.6" stroke-linecap="round"/><path d="M1 8c2 0 2 2 4 2s2-2 4-2 2 2 4 2" fill="none" stroke="#0F3A43" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+    Yellow Harbour
+  </div>
+  <nav>
+    <a href="#" id="nav-dash" onclick="showPage('dash');return false">Dashboard</a>
+    <a href="#" id="nav-grants" class="active" onclick="showPage('grants');return false">Grants</a>
+    <a href="#" id="nav-clients" onclick="showPage('clients');return false">Clients</a>
+    <a href="#" id="nav-bible" onclick="showPage('bible');return false">Grant Bible</a>
+    <a href="#" id="nav-reports" onclick="showPage('reports');return false">Reports</a>
+  </nav>
+  <div class="top-right">
+    <span class="env-chip">Pilot</span>
+    <div class="avatar" title="David McCarthy">DM</div>
+  </div>
+</header>
+
+<div id="page-grants">
+<div class="runbar">
+  <div class="crumbs">Grants <span>/</span> <b>Community Resilience Fund 2026</b></div>
+</div>
+
+<div class="workspace">
+
+  <!-- Grant context -->
+  <aside class="grant-panel">
+    <h2>Community Resilience Fund 2026</h2>
+    <div class="funder">The Meadowbrook Foundation · new grant, first seen 23 Jul</div>
+    <div class="grant-facts">
+      <div class="fact"><div class="k">Amount</div><div class="v">€25k–€75k</div></div>
+      <div class="fact"><div class="k">Deadline</div><div class="v">30 Sep 2026</div></div>
+      <div class="fact"><div class="k">Duration</div><div class="v">≤ 24 months</div></div>
+      <div class="fact"><div class="k">Co-funding</div><div class="v">20% required</div></div>
+    </div>
+    <div class="panel-h">Extracted criteria (8)</div>
+    <ul class="crit-list">
+      <li>Registered charity or CLG, ≥ 2 years operating</li>
+      <li>Based in and serving the Republic of Ireland</li>
+      <li>Project serves disadvantaged communities</li>
+      <li>Priority: youth mental health &amp; wellbeing</li>
+      <li>20% co-funding confirmed at application</li>
+      <li>Audited accounts for the last 2 years</li>
+      <li>Safeguarding policy where under-18s involved</li>
+      <li>Measurable outcomes plan required</li>
+    </ul>
+    <div class="panel-h">Grant sources</div>
+    <div class="src"><div class="ico ico-pdf">PDF</div><div>CRF-2026-Guidelines.pdf<small>cached at intake · 23 Jul · 14 pages</small></div></div>
+    <div class="src"><div class="ico ico-doc">DOC</div><div>Application-Form-2026.docx<small>retrieved from funder portal</small></div></div>
+    <div class="src"><div class="ico ico-web">WEB</div><div>meadowbrookfoundation.ie<small>crawled 23 Jul · 11 pages</small></div></div>
+  </aside>
+
+  <!-- Match list -->
+  <section class="match-col">
+    <div class="match-tools">
+      <input class="search" id="search" type="text" placeholder="Search clients or projects…">
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="match-list" id="mlist"></div>
+  </section>
+
+  <!-- Detail -->
+  <section class="detail" id="detail"></section>
+
+</div>
+</div><!-- /page-grants -->
+
+<div id="page-bible" style="display:none">
+  <div class="bible-head">
+    <div>
+      <h1>Grant Bible</h1>
+    </div>
+    <button class="btn btn-approve" onclick="toast('Mockup — would accept a guidelines PDF or funder URL and auto-fill a new register row')">+ New grant · drop guidelines or URL</button>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">6</div><div class="k">Active opportunities</div><div class="s">across 14 client applications</div></div>
+    <div class="kpi"><div class="n">1</div><div class="k">Deadline in next 30 days</div><div class="s">Teen Digital Wellbeing · 15 Aug</div></div>
+    <div class="kpi"><div class="n">€330k</div><div class="k">Potential ask, active funds</div><div class="s">upper bound of open amounts</div></div>
+    <div class="kpi"><div class="n">58%</div><div class="k">Win rate, trailing 12 mo</div><div class="s">7 of 12 decided applications</div></div>
+  </div>
+
+  <div class="mstrip">
+    <div class="mcardlet hot"><b>Teen Digital Wellbeing Fund</b><span>Internal review due Mon 28 Jul · SF · 2 drafts</span></div>
+    <div class="mcardlet warn"><b>Family Support Innovation Fund</b><span>Client response due Sun 27 Jul · LB</span></div>
+    <div class="mcardlet"><b>Community Resilience Fund 2026</b><span>Matching decisions target Fri 8 Aug · SF · 8 pending</span></div>
+  </div>
+
+  <div class="btoolbar">
+    <div class="chips" id="bchips"></div>
+    <input class="search" id="bsearch" type="text" placeholder="Search funds, funders, clients…">
+    <span class="auto-note">⚡ auto-filled at intake by guideline parsing</span>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th style="width:24%">Fund / Funder</th>
+        <th>Amount</th>
+        <th style="width:16%">Deadline &amp; milestones</th>
+        <th style="width:20%">Stage</th>
+        <th>Clients</th>
+        <th>Requirements</th>
+        <th>Owner</th>
+        <th style="width:17%">Notes</th>
+      </tr></thead>
+      <tbody id="btable-body"></tbody>
+    </table>
+  </div>
+  <div class="blegend">⚡ fields populated automatically from guideline parsing at intake · stages update from platform activity (matching decisions, drafting, submissions) · notes are the only human-maintained field.</div>
+</div><!-- /page-bible -->
+
+<div id="page-dash" class="page-scroll" style="display:none">
+  <div class="bible-head">
+    <div>
+      <h1>Good morning, David</h1>
+      <div class="sub">Friday 24 July 2026</div>
+    </div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="n">6</div><div class="k">Active opportunities</div><div class="s">14 client applications in flight</div></div>
+    <div class="kpi"><div class="n">8</div><div class="k">Decisions waiting on you</div></div>
+    <div class="kpi"><div class="n">15 Aug</div><div class="k">Next submission deadline</div><div class="s">Teen Digital Wellbeing Fund</div></div>
+    <div class="kpi"><div class="n">58%</div><div class="k">Win rate, trailing 12 mo</div><div class="s">7 of 12 decided applications</div></div>
+  </div>
+  <div class="mstrip">
+    <div class="mcardlet clickable" onclick="showPage('grants')"><b>8 matching decisions pending</b><span>review now →</span></div>
+    <div class="mcardlet hot"><b>Internal review due Mon 28 Jul</b><span>Teen Digital Wellbeing · 2 drafts · SF</span></div>
+    <div class="mcardlet warn"><b>Client response due Sun 27 Jul</b><span>Family Support Innovation · LB</span></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h4>Engine activity — today <span class="count">every event audit-logged</span></h4>
+      <ul class="feed">
+        <li><time>09:16</time><span class="fdot" style="background:var(--brand)"></span><div><b>Matching run #3 complete</b> — Community Resilience Fund 2026 · 447 screened, 8 recommendations ready for review.</div></li>
+        <li><time>09:16</time><span class="fdot" style="background:var(--purple)"></span><div><b>Lateral suggestion flagged</b> — Suir Valley Community Farm: youth garden programme spotted on their website; no registered project. Needs client verification.</div></li>
+        <li><time>07:58</time><span class="fdot" style="background:var(--gold)"></span><div><b>New grant auto-filled</b> — Green Communities Fund 2026 created in the Grant Bible from a guidelines PDF.</div></li>
+        <li><time>06:00</time><span class="fdot" style="background:var(--faint)"></span><div><b>Nightly refresh</b> — 45 client profiles updated from 132 sources · 2 data warnings raised.</div></li>
+        <li><time>23 Jul</time><span class="fdot" style="background:var(--green)"></span><div><b>Gap closed</b> — Harbourlight FY2025 audited accounts received; blocker cleared on Teen Digital Wellbeing application.</div></li>
+        <li><time>23 Jul</time><span class="fdot" style="background:#2563A8"></span><div><b>Guidelines diff</b> — Meadowbrook CRF 2026 vs 2025: co-funding requirement rose from 15% to 20%; safeguarding review window tightened.</div></li>
+      </ul>
+    </div>
+    <div>
+      <div class="card">
+        <h4>Pipeline</h4>
+        <div class="pills">
+          <span class="pill" onclick="showPage('bible')"><b>1</b>Intake</span>
+          <span class="pill" onclick="showPage('bible')"><b>2</b>Matching</span>
+          <span class="pill" onclick="showPage('bible')"><b>1</b>Qualified</span>
+          <span class="pill" onclick="showPage('bible')"><b>1</b>Drafting</span>
+          <span class="pill" onclick="showPage('bible')"><b>1</b>Client review</span>
+          <span class="pill" onclick="showPage('bible')"><b>1</b>Submitted</span>
+        </div>
+        <div class="cardpad">Stages update from platform activity — the Grant Bible is the register view of this pipeline.</div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h4>Data health</h4>
+        <div class="cardpad">
+          <b style="color:var(--ink)">45 profiles refreshed at 06:00</b><br>
+          2 warnings: Lisheen website unreachable since 12 Jul · Glenmara safeguarding policy outdated.<br>
+          <span class="pill" style="display:inline-block;margin-top:8px" onclick="showPage('clients')">Review in Clients →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-dash -->
+
+<div id="page-clients" class="page-scroll" style="display:none">
+  <div class="bible-head">
+    <div>
+      <h1>Clients</h1>
+    </div>
+    <button class="btn" onclick="toast('Mockup — would start client onboarding: folder scan + website crawl + profile build')">+ Onboard client</button>
+  </div>
+  <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
+    <div class="kpi"><div class="n">45</div><div class="k">Clients</div></div>
+    <div class="kpi"><div class="n">447</div><div class="k">Registered projects</div></div>
+    <div class="kpi"><div class="n">5</div><div class="k">Data alerts open</div></div>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th style="width:22%">Client</th><th>Projects</th><th>Open apps</th><th style="width:16%">Latest matching</th><th style="width:15%">Profile freshness</th><th style="width:22%">Alerts</th><th>Owner</th>
+      </tr></thead>
+      <tbody>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Glenmara Family Resource Centre</b><div class="funder">Family support · Co. Waterford</div></td><td>11</td><td>2</td><td><span class="badge b-eligible">CRF 92 · eligible</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td class="alertcell">Safeguarding policy dated 2021 — update required</td><td><span class="own">SF</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Harbourlight Youth Project</b><div class="funder">Youth services · north docks</div></td><td>9</td><td>2</td><td><span class="badge b-gaps">CRF 87 · gaps</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td style="color:var(--green);font-size:11.5px">FY2025 accounts received 23 Jul ✓</td><td><span class="own">SF</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Tús Nua Recovery Network</b><div class="funder">Recovery &amp; community health</div></td><td>8</td><td>0</td><td><span class="badge b-gaps">CRF 81 · gaps</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td class="alertcell">Young-carer strand unconfirmed — scoping call suggested</td><td><span class="own">DM</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Cara Housing Alliance</b><div class="funder">Approved housing body</div></td><td>12</td><td>1</td><td><span class="badge b-approved">CRF 76 · approved</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td>—</td><td><span class="own">LB</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Suir Valley Community Farm</b><div class="funder">Community agriculture</div></td><td>6</td><td>0</td><td><span class="badge b-lateral">CRF 68 · lateral</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td class="alertcell">Website programme not in project register — verify with client</td><td><span class="own">SF</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Bramblewood Age Action</b><div class="funder">Older people</div></td><td>7</td><td>1</td><td><span class="badge b-gaps">CRF 61 · gaps</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td>—</td><td><span class="own">LB</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Inis Óg Island Co-operative</b><div class="funder">Island community</div></td><td>4</td><td>0</td><td><span class="badge b-lateral">CRF 57 · lateral</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td class="alertcell">Charitable status unconfirmed in held documents</td><td><span class="own">DM</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Rathmoor Sports Partnership</b><div class="funder">Sport &amp; recreation</div></td><td>5</td><td>1</td><td><span class="badge b-inelig">CRF 34 · not eligible</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td class="alertcell red">Company limited by shares — ineligible for most charitable schemes</td><td><span class="own">DM</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Curraghbeg Men’s Shed</b><div class="funder">Community health</div></td><td>6</td><td>1</td><td><span class="badge b-conf">no current run</span></td><td><span class="fresh fr-ok">refreshed 06:00</span></td><td>—</td><td><span class="own">SF</span></td></tr>
+        <tr class="brow" onclick="toast('Mockup — client profile: sources, projects, history, matches')"><td class="fundcell"><b>Lisheen Women’s Collective</b><div class="funder">Education &amp; empowerment</div></td><td>9</td><td>1</td><td><span class="badge b-conf">no current run</span></td><td><span class="fresh fr-warn">website unreachable</span></td><td class="alertcell">Site down since 12 Jul — profile using cached crawl</td><td><span class="own">LB</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="blegend">Showing 10 of 45 clients · profile freshness reflects the nightly ingestion run; alerts are raised by the engine, never typed in.</div>
+</div><!-- /page-clients -->
+
+<div id="page-reports" class="page-scroll" style="display:none">
+  <div class="bible-head">
+    <div>
+      <h1>Reports</h1>
+    </div>
+    <button class="btn" onclick="toast('Mockup — would export a board-ready PDF report')">Export PDF</button>
+    <button class="btn" style="margin-left:0" onclick="toast('Mockup — would export the underlying data as xlsx')">Export xlsx</button>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="n">€412k</div><div class="k">Awarded YTD</div><div class="s">across 7 successful applications</div></div>
+    <div class="kpi"><div class="n">58%</div><div class="k">Win rate, trailing 12 mo</div><div class="s">7 of 12 decided</div></div>
+    <div class="kpi"><div class="n">24 days</div><div class="k">Avg intake → submission</div><div class="s">manual baseline: 41 days</div></div>
+    <div class="kpi"><div class="n">~9 h/wk</div><div class="k">Admin time returned</div><div class="s">est. from eliminated data entry</div></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h4>Applications by month <span class="count">2026 YTD</span></h4>
+      <div class="cols">
+        <div class="colu"><b>3</b><i style="height:30%"></i>Jan</div>
+        <div class="colu"><b>2</b><i style="height:20%"></i>Feb</div>
+        <div class="colu"><b>4</b><i style="height:40%"></i>Mar</div>
+        <div class="colu"><b>5</b><i style="height:50%"></i>Apr</div>
+        <div class="colu"><b>3</b><i style="height:30%"></i>May</div>
+        <div class="colu"><b>6</b><i style="height:60%"></i>Jun</div>
+        <div class="colu"><b>8</b><i style="height:80%"></i>Jul</div>
+      </div>
+      <div class="cardpad">July volume reflects the matching engine surfacing more qualified opportunities per consultant hour.</div>
+    </div>
+    <div class="card">
+      <h4>Win rate by funder <span class="count">decided applications</span></h4>
+      <div class="hbars">
+        <div class="hb"><span>Ballinmore County Council</span><span class="track"><i style="width:75%"></i></span><span class="val">3 / 4</span></div>
+        <div class="hb"><span>Claremont Trust</span><span class="track"><i style="width:67%"></i></span><span class="val">2 / 3</span></div>
+        <div class="hb"><span>Meadowbrook Foundation</span><span class="track"><i style="width:50%"></i></span><span class="val">2 / 4</span></div>
+        <div class="hb"><span>Atlantic Communities Trust</span><span class="track"><i style="width:50%"></i></span><span class="val">1 / 2</span></div>
+      </div>
+      <div class="cardpad">Funder-level intelligence accumulates automatically as outcomes are recorded in the Grant Bible.</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h4>Funder intelligence <span class="count">what the outcomes are teaching us</span></h4>
+    <table>
+      <thead><tr><th>Funder</th><th>Applied</th><th>Awarded</th><th>Value</th><th>Median decision</th><th style="width:38%">Learned pattern</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600">Ballinmore County Council</td><td>4</td><td>3</td><td>€187k</td><td>6 weeks</td><td>Favours capital-ready projects — engineer reports strongly correlated with awards.</td></tr>
+        <tr><td style="font-weight:600">Claremont Trust</td><td>3</td><td>2</td><td>€48k</td><td>4 weeks</td><td>Strict word limits; concise drafts outperform. Youth digital themes prioritised.</td></tr>
+        <tr><td style="font-weight:600">The Meadowbrook Foundation</td><td>4</td><td>2</td><td>€95k</td><td>9 weeks</td><td>Co-funding evidence weighted heavily — 2026 requirement rose to 20% (guidelines diff, 23 Jul).</td></tr>
+        <tr><td style="font-weight:600">Atlantic Communities Trust</td><td>2</td><td>1</td><td>€55k</td><td>11 weeks</td><td>Community-consultation evidence decisive in both decided applications.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="blegend">These views are the seed of the future Reporting &amp; Analytics agent — same data store, new pipeline.</div>
+</div><!-- /page-reports -->
+
+<div id="toast"></div>
+<div class="foot-note">High-fidelity mockup · sample data only · What If Now, 24 Jul 2026</div>
+
+<script id="app">
+const RUN_AUDIT = [
+  {t:"09:14:02", b:"<b>Guidelines parsed</b> — 8 criteria extracted", m:"CRF-2026-Guidelines.pdf · sha 7f3a91c2 · prompt guideline-parse v1.3"},
+  {t:"09:14:11", b:"<b>Funder site crawled</b> — 11 pages cached at intake", m:"meadowbrookfoundation.ie · robots respected"},
+  {t:"09:14:18", b:"<b>Stage 1 shortlist</b> — 447 projects screened, 38 above threshold", m:"embedding cosine ≥ 0.62 · eu-region index"},
+  {t:"09:15:44", b:"<b>Stage 2 evaluation</b> — 38 projects × 8 criteria, evidence resolved to sources", m:"claude-sonnet-5 · prompt criterion-eval v1.3 · temperature 0"},
+  {t:"09:16:01", b:"<b>Scoring &amp; ranking</b> — composite scores and confidence computed", m:"weights v1.2 · eligibility .4 / priority .3 / feasibility .2 / deadline .1"},
+  {t:"09:16:02", b:"<b>Lateral scan</b> — 2 website-derived suggestions added (conservative mode)", m:"prompt lateral-scan v1.1 · flagged for mandatory review"}
+];
+
+const MATCHES = [
+ {id:1, client:"Glenmara Family Resource Centre", project:"Youth Outreach & Wellbeing Hub", score:92, conf:"High", tier:"eligible", status:"pending",
+  summary:"Strong alignment. The Wellbeing Hub directly targets 12–18s in a catchment that includes two designated disadvantaged areas, and every core eligibility criterion is evidenced from held documentation. The only open item is an out-of-date safeguarding policy. Recommend proceeding to draft this cycle — the 30 Sep deadline is comfortable for this client.",
+  criteria:[
+   {c:"Registered charity / CLG ≥ 2 years", v:"met", e:"CLG incorporated 2011; charity registration active.", s:"Annual Report 2025, p.2"},
+   {c:"Based in &amp; serving Republic of Ireland", v:"met", e:"Operates across Glenmara and east Co. Waterford.", s:"glenmara.ie/about"},
+   {c:"Serves disadvantaged communities", v:"met", e:"Catchment includes two RAPID-designated areas; 68% of families referred via statutory services.", s:"Strategic Plan 2025–2028, p.12"},
+   {c:"Youth mental health &amp; wellbeing priority", v:"met", e:"Hub provides counselling access and peer-support groups for 12–18s.", s:"Project Template — Youth Outreach Hub"},
+   {c:"20% co-funding confirmed", v:"met", e:"€14k committed: parish fundraising plus local authority amenity grant.", s:"Meeting transcript, 14 May 2026"},
+   {c:"Audited accounts, last 2 years", v:"met", e:"FY2024 and FY2025 audited accounts on file.", s:"Teams · Glenmara/Financials"},
+   {c:"Safeguarding policy (under-18s)", v:"gap", e:"Policy on file is dated 2021; funder requires review within the last 3 years.", s:"Teams · Glenmara/Policies"},
+   {c:"Measurable outcomes plan", v:"met", e:"Outcomes Star framework in use since 2023; baseline data available.", s:"Previous application — Healthy Ireland Fund 2025"}
+  ],
+  missing:["Updated safeguarding policy — current version dated 2021; confirm review before submission."],
+  ma:{t:"09:15:52", b:"<b>Glenmara FRC evaluated</b> — 8/8 criteria assessed, 8 evidence references resolved", m:"6 internal sources · 1 website source"}},
+
+ {id:2, client:"Harbourlight Youth Project", project:"Evening Drop-In Expansion", score:87, conf:"High", tier:"gaps", status:"pending",
+  summary:"Excellent thematic fit — expansion of the evening drop-in for 13–17s in the north docks area sits squarely inside the fund’s priority. Two items block submission today: FY2025 audited accounts are not yet on file, and co-funding is only 60% of the required 20% per the latest transcript. Both look resolvable before the deadline.",
+  criteria:[
+   {c:"Registered charity / CLG ≥ 2 years", v:"met", e:"Registered charity since 2016.", s:"Annual Report 2025, p.3"},
+   {c:"Serves disadvantaged communities", v:"met", e:"North docks catchment; free-of-charge service model.", s:"Project Template — Drop-In Expansion"},
+   {c:"Youth mental health &amp; wellbeing priority", v:"met", e:"Youth-work model with early-intervention referral pathway.", s:"harbourlight.ie/services"},
+   {c:"20% co-funding confirmed", v:"gap", e:"Fundraising at ~60% of the required match as of last contact.", s:"Meeting transcript, 3 Jun 2026"},
+   {c:"Audited accounts, last 2 years", v:"gap", e:"FY2024 on file; FY2025 audit in progress with accountant.", s:"Meeting transcript, 3 Jun 2026"},
+   {c:"Safeguarding policy (under-18s)", v:"met", e:"Policy reviewed Jan 2026; designated liaison person named.", s:"Teams · Harbourlight/Policies"},
+   {c:"Measurable outcomes plan", v:"met", e:"Attendance and wellbeing-scale tracking already reported quarterly.", s:"Previous application — CYPSC 2025"}
+  ],
+  missing:["FY2025 audited accounts (audit underway).","Co-funding confirmation letter for the remaining ~40% of match funding."],
+  ma:{t:"09:15:53", b:"<b>Harbourlight evaluated</b> — 7 criteria assessed, 2 gaps identified", m:"5 internal sources · 1 website source"}},
+
+ {id:3, client:"Tús Nua Recovery Network", project:"Peer Support Training Programme", score:81, conf:"Medium", tier:"gaps", status:"pending",
+  summary:"Partial fit. The core programme serves adults in recovery, which matches “community wellbeing” but not the youth priority that carries 30% of scoring weight. Their strategic plan references a young-carer support pilot — if the application is framed around that strand, fit improves materially. Worth a scoping call before committing.",
+  criteria:[
+   {c:"Registered charity / CLG ≥ 2 years", v:"met", e:"CLG with charitable status since 2014.", s:"Annual Report 2025"},
+   {c:"Serves disadvantaged communities", v:"met", e:"Service users predominantly from priority postcodes; HSE referral pathway.", s:"Strategic Plan 2024–2027, p.8"},
+   {c:"Youth mental health &amp; wellbeing priority", v:"unclear", e:"Core cohort is 18+; young-carer pilot referenced but not yet a registered project.", s:"Strategic Plan 2024–2027, p.15"},
+   {c:"20% co-funding confirmed", v:"gap", e:"No co-funding source identified in held documentation.", s:"—"},
+   {c:"Audited accounts, last 2 years", v:"met", e:"FY2024 and FY2025 on file.", s:"Teams · TúsNua/Financials"}
+  ],
+  missing:["Confirm scope and timeline of the young-carer strand with the client.","Identify co-funding source."],
+  ma:{t:"09:15:54", b:"<b>Tús Nua evaluated</b> — 5 criteria assessed, 1 unclear escalated", m:"4 internal sources"}},
+
+ {id:4, client:"Cara Housing Alliance", project:"Tenant Wellbeing Programme", score:76, conf:"Medium", tier:"eligible", status:"approved",
+  summary:"Solid fit through the family-support strand — the programme includes structured supports for teenagers in tenant households, which the guidelines explicitly name as an eligible cohort. Approved for drafting on 24 Jul by SF.",
+  criteria:[
+   {c:"Registered charity / CLG ≥ 2 years", v:"met", e:"Approved housing body, charitable status since 2009.", s:"Annual Report 2025"},
+   {c:"Serves disadvantaged communities", v:"met", e:"Tenant base is 100% social housing.", s:"carahousing.ie/about"},
+   {c:"Youth mental health &amp; wellbeing priority", v:"met", e:"Teen-tenant support strand delivered with school-completion partner.", s:"Project Template — Tenant Wellbeing"},
+   {c:"20% co-funding confirmed", v:"met", e:"Board-approved reserve allocation minuted March 2026.", s:"Meeting transcript, 21 Apr 2026"},
+   {c:"Measurable outcomes plan", v:"unclear", e:"Outcomes framework referenced but no baseline data located in held documents.", s:"Strategic Plan 2023–2026"}
+  ],
+  missing:["Baseline outcomes data — request from client before drafting KPIs."],
+  ma:{t:"09:15:55", b:"<b>Cara Housing evaluated</b> — 5 criteria assessed", m:"4 internal sources · 1 website source"}},
+
+ {id:5, client:"Suir Valley Community Farm", project:"Suggested — Youth Garden Programme", score:68, conf:"Low", tier:"lateral", status:"pending",
+  lateralNote:"No registered project matches this grant. The client’s website news page (crawled 22 Jul) announces a “youth garden and wellbeing programme” launching in September — it does not appear in the project spreadsheet or Teams folder. This is a machine-suggested opportunity: verify with the client before any further step.",
+  summary:"Speculative but well-aligned. A youth-focused therapeutic horticulture programme would sit inside the fund’s priorities, and the farm’s existing community-employment links support the disadvantage criterion. Everything project-level is unverified — this recommendation exists so the opportunity is not missed, not because it is application-ready.",
+  criteria:[
+   {c:"Registered charity / CLG ≥ 2 years", v:"met", e:"CLG since 2018, charitable status confirmed.", s:"Annual Report 2025"},
+   {c:"Serves disadvantaged communities", v:"unclear", e:"CE-scheme participation suggests eligibility; catchment designation unverified.", s:"suirvalleyfarm.ie/about"},
+   {c:"Youth mental health &amp; wellbeing priority", v:"met", e:"Announced programme explicitly targets teenage wellbeing through horticulture.", s:"suirvalleyfarm.ie/news — 18 Jul 2026"},
+   {c:"20% co-funding confirmed", v:"unclear", e:"No information held.", s:"—"},
+   {c:"Audited accounts, last 2 years", v:"unclear", e:"FY2024 on file; FY2025 status unknown.", s:"Teams · SuirValley/Financials"}
+  ],
+  missing:["Client conversation required — confirm the programme exists, its scope, cohort, and budget before qualification."],
+  ma:{t:"09:16:02", b:"<b>Suir Valley flagged by lateral scan</b> — website signal, no registered project", m:"source: suirvalleyfarm.ie/news · conservative confidence applied"}},
+
+ {id:6, client:"Bramblewood Age Action", project:"Intergenerational Companionship Scheme", score:61, conf:"Medium", tier:"gaps", status:"pending",
+  summary:"Weaker fit. Primary beneficiaries are older adults; the scheme qualifies only through its youth-volunteer strand (transition-year students). Fundable under the community wellbeing heading, but it will score poorly against the youth priority weighting compared with other candidates this cycle.",
+  criteria:[
+   {c:"Registered charity / CLG ≥ 2 years", v:"met", e:"Registered charity since 2012.", s:"Annual Report 2025"},
+   {c:"Youth mental health &amp; wellbeing priority", v:"gap", e:"Youth involvement is as volunteers, not primary beneficiaries.", s:"Project Template — Companionship Scheme"},
+   {c:"20% co-funding confirmed", v:"met", e:"Corporate sponsor covers 25% of programme costs.", s:"Meeting transcript, 2 Jul 2026"},
+   {c:"Audited accounts, last 2 years", v:"met", e:"On file.", s:"Teams · Bramblewood/Financials"}
+  ],
+  missing:[],
+  ma:{t:"09:15:56", b:"<b>Bramblewood evaluated</b> — 4 criteria assessed", m:"4 internal sources"}},
+
+ {id:7, client:"Inis Óg Island Co-operative", project:"Suggested — Teen Remote-Learning Support", score:57, conf:"Low", tier:"lateral", status:"pending",
+  lateralNote:"No registered project. The co-op’s 2024 annual report mentions piloting after-school study support for island teenagers. Island communities qualify as disadvantaged under the scheme’s geography annex. Machine-suggested — verify with the client.",
+  summary:"Long-shot lateral match. The study-support pilot mentioned in the 2024 annual report would need to be reframed around wellbeing rather than academic support to fit the fund. Flagged mainly because the geography annex gives island communities preferential eligibility.",
+  criteria:[
+   {c:"Registered charity / CLG ≥ 2 years", v:"unclear", e:"Co-operative structure; charitable status not confirmed in held documents.", s:"Annual Report 2024"},
+   {c:"Serves disadvantaged communities", v:"met", e:"Island community — qualifies under scheme geography annex, §A3.", s:"CRF-2026-Guidelines.pdf, p.11"},
+   {c:"Youth mental health &amp; wellbeing priority", v:"unclear", e:"Pilot is academic support; wellbeing framing would be required.", s:"Annual Report 2024, p.9"}
+  ],
+  missing:["Confirm legal form and charitable status.","Client conversation on whether the pilot continued into 2026."],
+  ma:{t:"09:16:02", b:"<b>Inis Óg flagged by lateral scan</b> — annual-report signal, no registered project", m:"source: Annual Report 2024 · conservative confidence applied"}},
+
+ {id:8, client:"Rathmoor Sports Partnership", project:"Clubhouse Mental Skills Workshops", score:34, conf:"High", tier:"inelig", status:"rejected",
+  summary:"Not eligible. Rathmoor is constituted as a company limited by shares with no charitable registration — this fails the fund’s first hard criterion, so remaining criteria were not evaluated. High confidence in the exclusion; no realistic restructuring path inside this funding cycle.",
+  criteria:[
+   {c:"Registered charity / CLG ≥ 2 years", v:"fail", e:"Public register lookup shows a company limited by shares; no charity registration found.", s:"Public register check, 24 Jul 2026"},
+   {c:"Remaining criteria", v:"unclear", e:"Not evaluated — hard eligibility failure short-circuits assessment to avoid spend.", s:"engine policy v1.3"}
+  ],
+  missing:[],
+  ma:{t:"09:15:57", b:"<b>Rathmoor excluded</b> — hard criterion failed, evaluation short-circuited", m:"1 public source · rejected 24 Jul by SF"}}
+];
+
+const TIER = {
+  eligible:{label:"Eligible", cls:"b-eligible"},
+  gaps:{label:"Has gaps", cls:"b-gaps"},
+  lateral:{label:"Lateral suggestion", cls:"b-lateral"},
+  inelig:{label:"Not eligible", cls:"b-inelig"}
+};
+const VERDICT = {met:{l:"Met",c:"v-met",i:"✓"}, gap:{l:"Gap",c:"v-gap",i:"!"}, unclear:{l:"Unclear",c:"v-unclear",i:"?"}, fail:{l:"Not met",c:"v-fail",i:"✕"}};
+
+let state = {sel:1, filter:"all", q:"", tab:"assess"};
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove("show"), 2600);
+}
+
+function chipDefs(){
+  const n = t => MATCHES.filter(m=>m.tier===t).length;
+  return [
+    {k:"all", label:"All " + MATCHES.length},
+    {k:"eligible", label:"Eligible " + n("eligible")},
+    {k:"gaps", label:"Gaps " + n("gaps")},
+    {k:"lateral", label:"Lateral " + n("lateral")},
+    {k:"decided", label:"Decided " + MATCHES.filter(m=>m.status!=="pending").length}
+  ];
+}
+
+function renderChips(){
+  document.getElementById("chips").innerHTML = chipDefs().map(c =>
+    `<button class="chip ${state.filter===c.k?"active":""}" onclick="setFilter('${c.k}')">${c.label}</button>`).join("");
+}
+
+function visible(){
+  return MATCHES.filter(m=>{
+    if(state.filter==="decided" && m.status==="pending") return false;
+    if(["eligible","gaps","lateral"].includes(state.filter) && m.tier!==state.filter) return false;
+    if(state.q && !(m.client+" "+m.project).toLowerCase().includes(state.q)) return false;
+    return true;
+  });
+}
+
+function statusBadge(m){
+  if(m.status==="approved") return `<span class="badge b-approved">Approved</span>`;
+  if(m.status==="rejected") return `<span class="badge b-rejected">Rejected</span>`;
+  return "";
+}
+
+function renderList(){
+  const list = visible();
+  document.getElementById("mlist").innerHTML = list.length ? list.map(m => `
+    <div class="mcard ${m.id===state.sel?"sel":""}" onclick="select(${m.id})">
+      <div class="row1"><span class="client">${m.client}</span><span class="score">${m.score}</span></div>
+      <div class="proj">${m.project}</div>
+      <div class="scorebar"><i style="width:${m.score}%"></i></div>
+      <div class="badges">
+        <span class="badge ${TIER[m.tier].cls}">${TIER[m.tier].label}</span>
+        <span class="badge b-conf">${m.conf} confidence</span>
+        ${statusBadge(m)}
+      </div>
+    </div>`).join("") : `<div style="color:var(--faint);font-size:13px;text-align:center;padding:30px 10px">No matches for this filter.</div>`;
+}
+
+function critRows(m){
+  return m.criteria.map(cr => {
+    const v = VERDICT[cr.v];
+    return `<tr>
+      <td style="width:34%;font-weight:550">${cr.c}</td>
+      <td style="width:14%"><span class="verdict ${v.c}"><span class="v-ico">${v.i}</span>${v.l}</span></td>
+      <td class="evidence">${cr.e}${cr.s && cr.s!=="—" ? `<br><span class="cite" onclick="event.stopPropagation();toast('Mockup — would open: ${cr.s.replace(/'/g,"")}')">⌕ ${cr.s}</span>`:""}</td>
+    </tr>`;
+  }).join("");
+}
+
+function renderDetail(){
+  const m = MATCHES.find(x=>x.id===state.sel);
+  if(!m){ document.getElementById("detail").innerHTML=""; return; }
+  const auditRows = [...RUN_AUDIT, m.ma].map(a =>
+    `<li><time>${a.t}</time><div class="a-body">${a.b}<div class="a-meta">${a.m}</div></div></li>`).join("");
+  const assess = `
+    <div class="card">
+      <h4>Criterion assessment <span class="count">${m.criteria.length} criteria · every claim cited to a source</span></h4>
+      <table><thead><tr><th>Criterion</th><th>Verdict</th><th>Evidence</th></tr></thead><tbody>${critRows(m)}</tbody></table>
+    </div>
+    ${m.missing.length ? `<div class="card"><h4>Missing before submission <span class="count">${m.missing.length}</span></h4><ul class="missing">${m.missing.map(x=>`<li>${x}</li>`).join("")}</ul></div>`:""}`;
+  const audit = `
+    <div class="card">
+      <h4>Decision audit trail <span class="count">run #3 · 24 Jul 2026 · fully replayable</span></h4>
+      <ul class="audit">${auditRows}
+        <li><time>—</time><div class="a-body">All steps stored with full inputs, outputs, model and prompt versions. Nothing reaches a client without human approval.<div class="a-meta">retention: 24 months · EU region</div></div></li>
+      </ul>
+    </div>`;
+  document.getElementById("detail").innerHTML = `
+    <div class="d-head">
+      <div class="d-top">
+        <div class="d-title">
+          <h3>${m.client}</h3>
+          <div class="sub">${m.project} · Community Resilience Fund 2026</div>
+          <div class="d-badges">
+            <span class="badge ${TIER[m.tier].cls}">${TIER[m.tier].label}</span>
+            <span class="badge b-conf">${m.conf} confidence</span>
+            ${statusBadge(m)}
+          </div>
+        </div>
+        <div class="scorering"><div class="ring" style="--p:${m.score}"><span>${m.score}</span></div><div class="lbl">Fit score</div></div>
+      </div>
+      ${m.lateralNote ? `<div class="lateral-note"><span>◈</span><div><b>Machine-suggested opportunity.</b> ${m.lateralNote}</div></div>`:""}
+      <div class="d-summary">${m.summary}</div>
+    </div>
+    <div class="tabs">
+      <div class="tab ${state.tab==="assess"?"active":""}" onclick="setTab('assess')">Assessment</div>
+      <div class="tab ${state.tab==="audit"?"active":""}" onclick="setTab('audit')">Audit trail</div>
+    </div>
+    ${state.tab==="assess" ? assess : audit}
+    <div class="actionbar">
+      <button class="btn btn-approve" onclick="decide(${m.id},'approved')">Approve for drafting</button>
+      <button class="btn" onclick="toast('Mockup — would generate a client-ready Word synopsis into the Teams folder')">Export Word synopsis</button>
+      <button class="btn" onclick="toast('Mockup — would open a templated info request to the client')">Request missing info</button>
+      <button class="btn btn-reject" onclick="decide(${m.id},'rejected')">Reject</button>
+      <span class="action-note">Decisions are logged to the audit trail${m.status!=="pending" ? " · currently <b>&nbsp;"+m.status+"</b>":""}</span>
+    </div>`;
+}
+
+function select(id){ state.sel=id; state.tab="assess"; renderList(); renderDetail(); }
+function setFilter(k){ state.filter=k; renderChips(); renderList(); }
+function setTab(t){ state.tab=t; renderDetail(); }
+function decide(id, s){
+  const m = MATCHES.find(x=>x.id===id);
+  m.status = (m.status===s) ? "pending" : s;
+  renderList(); renderChips(); renderDetail();
+  toast(m.status==="pending" ? "Decision cleared — logged to audit trail" : (s==="approved" ? m.client+" approved for drafting — logged to audit trail" : m.client+" rejected — logged to audit trail"));
+}
+document.getElementById("search").addEventListener("input", e=>{ state.q=e.target.value.toLowerCase(); renderList(); });
+
+renderChips(); renderList(); renderDetail();
+
+/* ── Grant Bible ─────────────────────────── */
+const BIBLE = [
+ {id:1, fund:"Community Resilience Fund 2026", funder:"The Meadowbrook Foundation", amount:"€25k–€75k", dl:"30 Sep 2026", left:"68 days", urg:"", ms:"int. review 14 Sep · client review 21 Sep",
+  stKey:"matching", stage:"Matching", note:"Run #3 complete — 8 recommendations awaiting review", warn:false,
+  clients:"8 candidates", reqs:{t:"8 criteria extracted ⚡", p:100}, owner:"SF",
+  notes:"New fund replacing YMH Capacity Fund — priorities shifted to youth wellbeing.", auto:true,
+  recur:"↺ successor to YMH Capacity Fund 2025 (declined) — guidelines diff available", grp:"active", link:"grants"},
+
+ {id:2, fund:"Teen Digital Wellbeing Fund", funder:"Claremont Trust", amount:"€10k–€30k", dl:"15 Aug 2026", left:"22 days", urg:"hot", ms:"int. review 28 Jul · client review 5 Aug",
+  stKey:"drafting", stage:"Drafting", note:"2 applications in draft — internal review due Mon", warn:true,
+  clients:"Harbourlight · Glenmara", reqs:{t:"7/7 evidenced", p:100}, owner:"SF",
+  notes:"Word limits are tight — 500 words per section.", auto:true, recur:null, grp:"action", link:null},
+
+ {id:3, fund:"Rural Youth Spaces Capital Grant", funder:"Ballinmore County Council", amount:"up to €120k", dl:"5 Sep 2026", left:"43 days", urg:"warn", ms:"int. review 22 Aug · client review 29 Aug",
+  stKey:"qualified", stage:"Qualified", note:"3 clients opted in — documentation complete", warn:false,
+  clients:"3 applying", reqs:{t:"9/11 evidenced", p:82}, owner:"LB",
+  notes:"Capital works quotes needed — engineer reports commissioned.", auto:true, recur:null, grp:"active", link:null},
+
+ {id:4, fund:"Recovery & Wellbeing Small Grants", funder:"Meitheal Health Partnership", amount:"€5k–€15k", dl:"30 Sep 2026", left:"Q3 window", urg:"", ms:"quarterly window · closes 30 Sep",
+  stKey:"matching", stage:"Matching", note:"Run queued behind CRF 2026 decisions", warn:false,
+  clients:"2 candidates", reqs:{t:"5 criteria extracted ⚡", p:100}, owner:"DM",
+  notes:"", auto:true, recur:null, grp:"active", link:null},
+
+ {id:5, fund:"Green Communities Fund 2026", funder:"Arden Energy Foundation", amount:"€20k–€50k", dl:"30 Oct 2026", left:"98 days", urg:"", ms:"auto-filled 2 h ago · matching runs tonight",
+  stKey:"intake", stage:"Intake", note:"Register row created from guidelines PDF — no manual entry", warn:false,
+  clients:"—", reqs:{t:"6 criteria extracted ⚡", p:100}, owner:"—",
+  notes:"", auto:true, recur:null, grp:"active", link:null},
+
+ {id:6, fund:"Family Support Innovation Fund", funder:"The Rowan Bequest", amount:"€40k fixed", dl:"12 Sep 2026", left:"50 days", urg:"", ms:"int. review 29 Aug · client review 5 Sep",
+  stKey:"clientreview", stage:"Client review", note:"Awaiting sign-off from 1 of 2 clients — response due 27 Jul", warn:true,
+  clients:"2 applying", reqs:{t:"10/10 evidenced", p:100}, owner:"LB",
+  notes:"Client board meets 25 Jul — expect sign-off after.", auto:true, recur:null, grp:"action", link:null},
+
+ {id:7, fund:"Sports Inclusion Micro-grants", funder:"Western Sports Alliance", amount:"€2k–€5k", dl:"submitted 10 Jul", left:"decision ~14 Aug", urg:"", ms:"2 applications lodged via funder portal",
+  stKey:"submitted", stage:"Submitted", note:"Decision expected 14 Aug — reminder scheduled", warn:false,
+  clients:"2 submitted", reqs:{t:"complete", p:100}, owner:"DM",
+  notes:"", auto:false, recur:null, grp:"submitted", link:null},
+
+ {id:8, fund:"Island & Coastal Resilience Fund", funder:"Atlantic Communities Trust", amount:"€55,000 awarded", dl:"closed 30 Jun", left:"", urg:"", ms:"1 of 2 applications successful",
+  stKey:"awarded", stage:"Awarded", note:"€55,000 · funder feedback logged for declined application", warn:false,
+  clients:"2 applied", reqs:{t:"—", p:0}, owner:"SF",
+  notes:"Feedback: stronger community-consultation evidence next cycle.", auto:false, recur:null, grp:"outcome", link:null},
+
+ {id:9, fund:"Youth Mental Health Capacity Fund 2025", funder:"The Meadowbrook Foundation", amount:"€60k sought", dl:"closed Nov 2025", left:"", urg:"", ms:"outcome recorded Jan 2026",
+  stKey:"declined", stage:"Declined", note:"Feedback: co-funding evidence weak — addressed in 2026 process", warn:false,
+  clients:"1 applied", reqs:{t:"—", p:0}, owner:"SF",
+  notes:"Learnings feed the 2026 CRF applications (see successor fund).", auto:false, recur:"↺ succeeded by Community Resilience Fund 2026", grp:"outcome", link:null}
+];
+
+state.bfilter = "all"; state.bq = "";
+
+const BCHIPS = [
+  {k:"all", label:()=>"All " + BIBLE.length},
+  {k:"active", label:()=>"Active " + BIBLE.filter(r=>r.grp==="active"||r.grp==="action").length},
+  {k:"action", label:()=>"Needs action " + BIBLE.filter(r=>r.grp==="action").length},
+  {k:"submitted", label:()=>"Submitted " + BIBLE.filter(r=>r.grp==="submitted").length},
+  {k:"outcome", label:()=>"Outcomes " + BIBLE.filter(r=>r.grp==="outcome").length}
+];
+
+function renderBChips(){
+  document.getElementById("bchips").innerHTML = BCHIPS.map(c =>
+    `<button class="chip ${state.bfilter===c.k?"active":""}" onclick="setBFilter('${c.k}')">${c.label()}</button>`).join("");
+}
+
+function bvisible(){
+  return BIBLE.filter(r=>{
+    if(state.bfilter==="active" && !(r.grp==="active"||r.grp==="action")) return false;
+    if(["action","submitted","outcome"].includes(state.bfilter) && r.grp!==state.bfilter) return false;
+    if(state.bq && !(r.fund+" "+r.funder+" "+r.clients).toLowerCase().includes(state.bq)) return false;
+    return true;
+  });
+}
+
+function renderBible(){
+  document.getElementById("btable-body").innerHTML = bvisible().map(r => `
+    <tr class="brow" onclick="bibleRow(${r.id})">
+      <td class="fundcell">
+        <b>${r.fund}</b>${r.auto?`<span class="autochip">⚡ auto</span>`:""}
+        <div class="funder">${r.funder}</div>
+        ${r.recur?`<div class="recur">${r.recur}</div>`:""}
+      </td>
+      <td style="font-weight:600;white-space:nowrap">${r.amount}</td>
+      <td>
+        <span style="font-weight:600;white-space:nowrap">${r.dl}</span>${r.left?`<span class="countd ${r.urg}">${r.left}</span>`:""}
+        <div class="mssub">${r.ms}</div>
+      </td>
+      <td>
+        <span class="stagechip st-${r.stKey}">${r.stage}</span>
+        <div class="stagenote ${r.warn?"warn":""}">${r.note}</div>
+      </td>
+      <td style="font-size:12.5px">${r.clients}</td>
+      <td>
+        <span style="font-size:12px">${r.reqs.t}</span>
+        ${r.reqs.p?`<div class="reqbar"><i style="width:${r.reqs.p}%"></i></div>`:""}
+      </td>
+      <td>${r.owner!=="—"?`<span class="own">${r.owner}</span>`:`<span style="color:var(--line-strong)">—</span>`}</td>
+      <td class="note-cell" contenteditable="true" spellcheck="false"
+          onclick="event.stopPropagation()"
+          onblur="toast('Note saved — synced to the grant record (mock)')">${r.notes}</td>
+    </tr>`).join("");
+}
+
+function setBFilter(k){ state.bfilter=k; renderBChips(); renderBible(); }
+function bibleRow(id){
+  const r = BIBLE.find(x=>x.id===id);
+  if(r.link==="grants"){ showPage("grants"); toast("Opening Community Resilience Fund 2026 — matching run #3"); }
+  else toast("Mockup — full grant record: history, documents, linked runs and communications");
+}
+
+const PAGES = {grants:["page-grants","flex"], bible:["page-bible","block"], dash:["page-dash","block"], clients:["page-clients","block"], reports:["page-reports","block"]};
+const NAVS = {grants:"nav-grants", bible:"nav-bible", dash:"nav-dash", clients:"nav-clients", reports:"nav-reports"};
+function showPage(p){
+  for(const k in PAGES) document.getElementById(PAGES[k][0]).style.display = (k===p ? PAGES[k][1] : "none");
+  for(const k in NAVS) document.getElementById(NAVS[k]).classList.toggle("active", k===p);
+}
+
+document.getElementById("bsearch").addEventListener("input", e=>{ state.bq=e.target.value.toLowerCase(); renderBible(); });
+
+renderBChips(); renderBible();
+</script>
+</body>
+</html>
