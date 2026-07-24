@@ -1,9 +1,9 @@
 ---
-import SARDemo from '../components/SARDemo.jsx';
+import RTBPrecedentDemo from '../components/RTBPrecedentDemo.jsx';
 
-const title = "SAR Processing Tool · Demo | What If Now";
-const description = "Live preview of a Subject Access Request processing tool — built by What If Now to show how AI can help small teams handle GDPR Article 15 requests within statutory deadlines without breaking the bank.";
-const canonical = "https://www.whatifnow.ie/threshold-sar-demo/";
+const title = "Stare Demo · Precedent Intelligence | What If Now";
+const description = "Live preview of Stare — search 25,000+ Residential Tenancies Board Tribunal decisions with vector embeddings, keyword filters, and citations. Built by What If Now for law firms and compliance teams doing housing work.";
+const canonical = "https://www.whatifnow.ie/stare-demo/";
 const ogImage = "https://www.whatifnow.ie/images/og-image.jpg";
 
 const jsonLd = {
@@ -19,9 +19,9 @@ const jsonLd = {
   },
   about: {
     "@type": "SoftwareApplication",
-    name: "SAR Processing Tool",
-    applicationCategory: "BusinessApplication",
-    description: "AI-assisted Subject Access Request handling for SMEs and charities."
+    name: "Stare",
+    applicationCategory: "LegalTechApplication",
+    description: "Precedent intelligence search across 25,000+ RTB Tribunal decisions. MCP-ready."
   }
 };
 ---
@@ -58,6 +58,6 @@ const jsonLd = {
     </style>
   </head>
   <body>
-    <SARDemo client:only="react" />
+    <RTBPrecedentDemo client:only="react" />
   </body>
 </html>

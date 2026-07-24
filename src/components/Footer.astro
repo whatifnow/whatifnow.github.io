@@ -3,26 +3,21 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="py-8 px-6 bg-navy border-t border-navy-light">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-    <p class="text-slate text-sm">
-      &copy; {currentYear} What If Now
+  <div class="max-w-6xl mx-auto flex flex-col gap-6">
+    <p class="text-slate text-sm text-center md:text-left">
+      What If Now Ltd · Registered in Dublin, Ireland · Data controller: <a href="mailto:privacy@whatifnow.ie" class="hover:text-white transition-colors">privacy@whatifnow.ie</a>
     </p>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-slate text-sm">
+        &copy; {currentYear} What If Now Ltd
+      </p>
 
     <div class="flex items-center gap-6">
+      <a href="/contact" class="text-slate hover:text-white transition-colors text-sm">
+        Contact
+      </a>
       <a href="/privacy" class="text-slate hover:text-white transition-colors text-sm">
         Privacy Policy
-      </a>
-      <!-- Substack -->
-      <a
-        href="https://whatifnow.substack.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-slate hover:text-white transition-colors"
-        aria-label="Substack"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-        </svg>
       </a>
 
       <!-- LinkedIn -->
@@ -40,14 +35,15 @@ const currentYear = new Date().getFullYear();
 
       <!-- Email -->
       <a
-        href="mailto:hello@whatifnow.ie"
+        href="mailto:paul@whatifnow.ie"
         class="text-slate hover:text-white transition-colors"
-        aria-label="Email"
+        aria-label="Email paul@whatifnow.ie"
       >
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       </a>
+      </div>
     </div>
   </div>
 </footer>
