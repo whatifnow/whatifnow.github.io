@@ -5,6 +5,8 @@
 // Held-Square palette (#1a2744 / #e8554a / #fbfaf7) is allowed INSIDE the
 // righttostay mock card frame; outside it stays WIN palette to avoid brand bleed
 // (audit Brand P0-04).
+// Below the grid: ReplyPack announcement strip — clearly labelled "in development"
+// so the "Both shipping" proof claim above stays honest.
 ---
 
 <section id="what-weve-built" class="py-20 px-6 bg-off-white">
@@ -132,5 +134,39 @@
         </div>
       </article>
     </div>
+
+    <!-- ReplyPack: next from WIN, in development -->
+    <article class="mt-8 bg-navy rounded-2xl border border-navy-light/40 overflow-hidden shadow-sm">
+      <div class="p-8 md:p-10 grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+        <div>
+          <div class="flex items-center gap-3 mb-4 flex-wrap">
+            <span class="text-xs font-ui font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 text-teal">In development</span>
+            <span class="text-xs font-ui font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-amber/20 text-amber">Launching Q4 2026</span>
+          </div>
+          <h3 class="text-2xl font-bold font-serif text-white mb-3">Next up: ReplyPack</h3>
+          <p class="text-slate-light leading-relaxed mb-3">
+            A tool for answering GDPR subject access requests properly. When someone asks for a copy of their personal data, a one-month clock starts — and most teams answer it by hand: mailbox searches, PDFs, and a highlighter. ReplyPack does the heavy lifting: AI proposes the redactions, your team reviews and decides every one, and the deadline clock, response letter, and audit trail come built in.
+          </p>
+          <p class="text-slate-light leading-relaxed">
+            Built for charities, SMEs, schools, and public bodies — the teams where a data request lands on top of someone's actual day job.
+          </p>
+        </div>
+        <div class="flex flex-row lg:flex-col flex-wrap gap-3">
+          <a
+            href="/solutions#replypack"
+            class="inline-flex items-center justify-center gap-2 bg-teal text-navy font-ui font-bold px-5 py-2.5 rounded-full text-sm hover:bg-white transition-colors"
+          >
+            Read more
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href="/contact?subject=ReplyPack+launch+updates"
+            class="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-ui font-bold px-5 py-2.5 rounded-full text-sm hover:bg-white hover:text-navy transition-colors"
+          >
+            Get launch updates
+          </a>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
