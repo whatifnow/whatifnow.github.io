@@ -6,8 +6,8 @@ import FinalCTA from '../components/FinalCTA.astro';
 ---
 
 <Layout
-  title="Solutions | What If Now — righttostay + Stare"
-  description="Two products WIN designed, built, and ships. righttostay: a free tenant rights tool in 14 languages, grounded in 25,000+ RTB Tribunal decisions. Stare: precedent intelligence for law firms and compliance teams on the same corpus."
+  title="Solutions | What If Now — righttostay, Stare + ReplyPack"
+  description="Two products WIN designed, built, and ships — and a third in development. righttostay: a free tenant rights tool in 14 languages, grounded in 25,000+ RTB Tribunal decisions. Stare: precedent intelligence for law firms and compliance teams. ReplyPack: GDPR subject access request responses done properly, launching Q4 2026."
 >
   <Navigation />
 
@@ -42,7 +42,7 @@ import FinalCTA from '../components/FinalCTA.astro';
         What WIN actually builds.
       </h1>
       <p class="text-slate text-lg md:text-xl leading-relaxed">
-        Two shipping products. One shared corpus. Two completely different audiences.
+        Two shipping products, and a third in development.
         This is the standard of work you get inside a Build engagement.
       </p>
     </section>
@@ -239,11 +239,109 @@ import FinalCTA from '../components/FinalCTA.astro';
     </div>
   </section>
 
+  <!-- ReplyPack deep section (in development) -->
+  <section id="replypack" class="bg-white py-20 px-6 border-t border-slate/10">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <div class="flex items-center gap-3 mb-4 flex-wrap">
+          <span class="text-xs font-ui font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate/10 text-slate">In development</span>
+          <span class="text-xs font-ui font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-amber/15 text-amber-dark">Launching Q4 2026</span>
+          <span class="text-xs font-ui font-bold uppercase tracking-wider text-slate">For the teams who answer data requests</span>
+        </div>
+        <h2 class="text-4xl font-bold text-navy mb-2 font-serif">ReplyPack</h2>
+        <p class="text-lg text-slate italic mb-6">Subject access requests, answered properly.</p>
+
+        <p class="text-slate leading-relaxed mb-5">
+          Under GDPR, anyone can ask your organisation for a copy of their personal data — and once they ask, a one-month clock starts. Answering means finding every relevant document, redacting other people's information page by page, writing a proper response letter, and keeping a record that shows you did it right.
+        </p>
+        <p class="text-slate leading-relaxed mb-8">
+          ReplyPack is the tool we're building to carry that load. You upload the documents. AI proposes the redactions. Your team reviews and decides every single one — nothing is redacted, or released, without a human saying so. The deadline clock, the response letter, and the audit trail come as part of the job, not as extra jobs.
+        </p>
+
+        <h3 class="text-sm font-ui font-bold uppercase tracking-widest text-teal-dark mb-3">The problem it will solve</h3>
+        <p class="text-slate leading-relaxed mb-8">
+          Most organisations handle a subject access request by hand: someone hunts through mailboxes and shared drives, prints everything to PDF, and squints at every page for names that aren't the requester's. It's slow, it's stressful, and it fails in both directions — miss a redaction and you've disclosed someone else's personal data; miss the deadline and the complaint goes to the regulator. For a small team, one request can eat a week.
+        </p>
+
+        <h3 class="text-sm font-ui font-bold uppercase tracking-widest text-teal-dark mb-3">What it will do</h3>
+        <ul class="space-y-3 text-slate leading-relaxed mb-8">
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">AI proposes, humans decide</strong> — the AI finds the personal data; your team accepts or rejects every proposal. AI-proposed and human-added redactions are labelled separately, on screen and in the export.</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">True redaction</strong> — redacted text is removed from the exported files, not hidden under a black box that copy-paste can lift straight off.</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">The statutory clock, watched</strong> — deadline tracking from the day the request lands, extensions included, with reminders before dates bite.</span></li>
+          <li class="flex gap-3"><span class="text-teal flex-shrink-0 mt-1" aria-hidden="true">→</span><span><strong class="text-navy">A record you can stand over</strong> — every decision logged, exportable as a redaction log and audit trail alongside the response bundle.</span></li>
+        </ul>
+
+        <h3 class="text-sm font-ui font-bold uppercase tracking-widest text-teal-dark mb-3">Who it's for</h3>
+        <p class="text-slate leading-relaxed mb-8">
+          The teams where a request lands on top of someone's actual day job. Charities, SMEs, schools, sports clubs, letting agencies, and public and semi-state bodies — plus the DPOs and data protection leads who look after several organisations at once. If your current process is a mailbox search and a highlighter, ReplyPack is being built for you.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="/contact?subject=ReplyPack+launch+updates"
+            class="inline-flex items-center gap-2 bg-teal text-navy font-ui font-bold px-6 py-3 rounded-full hover:bg-teal-dark hover:text-white transition-colors"
+          >
+            Get launch updates
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href="/contact?subject=ReplyPack+pilot"
+            class="inline-flex items-center gap-2 bg-navy text-white font-ui font-bold px-6 py-3 rounded-full hover:bg-navy-light transition-colors"
+          >
+            Talk to us about piloting it
+          </a>
+        </div>
+      </div>
+
+      <!-- Product mock (WIN palette; concept preview, not a screenshot) -->
+      <div class="lg:sticky lg:top-24">
+        <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate/15 bg-white">
+          <div class="bg-navy px-5 py-3 flex items-center gap-3">
+            <div class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-white/30"></span>
+            </div>
+            <span class="font-mono text-[11px] text-white/80 ml-2">replypack.com</span>
+            <span class="ml-auto font-mono text-[10px] text-amber">IN DEVELOPMENT</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-[11px] text-navy font-bold">SAR-2026-014</span>
+              <span class="font-mono text-[10px] text-slate">Day 9 of 31 · due 5 Nov</span>
+            </div>
+            <div class="bg-off-white rounded-lg border border-slate/15 p-4 mb-3">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-slate mb-2">hr-grievance-email.pdf · page 3</div>
+              <p class="text-[13px] text-navy leading-relaxed">
+                I spoke with <span class="bg-navy text-navy rounded-sm px-1 select-none" aria-hidden="true">██████████</span><span class="sr-only">[redacted]</span> on Tuesday and she confirmed the meeting with
+                <span class="bg-navy text-navy rounded-sm px-1 select-none" aria-hidden="true">████████</span><span class="sr-only">[redacted]</span> took place on 14 March.
+              </p>
+            </div>
+            <div class="bg-white rounded-lg border border-slate/15 p-3 mb-3">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-teal/10 text-teal-dark">AI proposed</span>
+                <span class="font-mono text-[10px] text-slate">Third-party name · 2 instances</span>
+              </div>
+              <div class="flex gap-2">
+                <span class="text-[11px] font-ui font-bold px-3 py-1 rounded-full bg-navy text-white">Accept</span>
+                <span class="text-[11px] font-ui font-bold px-3 py-1 rounded-full border border-slate/30 text-slate">Reject</span>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-dashed border-slate/15 font-mono text-[10px] text-slate text-center tracking-wider">
+              4 DOCUMENTS · 23 PROPOSED · 19 DECIDED · EVERY DECISION LOGGED
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate text-center mt-3 font-mono">Concept preview. In development. SAMPLE.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Bridge -->
-  <section class="bg-white py-16 px-6 border-t border-slate/10">
+  <section class="bg-off-white py-16 px-6 border-t border-slate/10">
     <div class="max-w-3xl mx-auto text-center">
       <p class="text-slate text-lg leading-relaxed">
-        Two products. One corpus. Two completely different audiences.<br />
+        Two products shipping. A third in development.<br />
         We build because we use it ourselves — the consulting work and the products feed each other.
       </p>
     </div>
