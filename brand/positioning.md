@@ -19,7 +19,7 @@ That's the homepage positioning headline — shipped in PR #26's batch. The inte
 - "**Teams**" — buyer-shaped. No geography in the headline (we serve Ireland and beyond; geography lives in feature pills as a trust signal, not the audience boundary).
 - "**Figuring out where it fits**" — the visitor's actual mental state when they land. Replaces analyst-speak like "emergent phase".
 
-Sub-headline (live on site): *"We're an AI consultancy. We find the manual, repetitive work eating your team's time, and build tools to handle it."*
+Sub-headline (live on site): *"We're an AI Product and Services Company. We find the manual, repetitive work eating your team's time, and build tools to handle it."*
 
 **Retired:** *"Enterprise-grade rigour without the enterprise overhead."* Wrong register for an emergent-phase SME — sounds like it's pitching big-company process to small teams who don't want it.
 

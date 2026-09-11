@@ -11,6 +11,6 @@ Allow: /
 # Sitemap:  https://www.whatifnow.ie/sitemap-index.xml
 # Contact:  https://www.whatifnow.ie/contact
 
-# Entity note: this is What If Now, the Dublin, Ireland AI consultancy
+# Entity note: this is What If Now, the Dublin, Ireland AI Product and Services Company
 # (founders Paul Thompson & Lar Judge) — not the TV programme, the novel,
 # or the AI artist of the same name.

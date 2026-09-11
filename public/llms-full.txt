@@ -1,15 +1,15 @@
 # What If Now — full profile for LLMs
 
-> What If Now (WIN) is a Dublin, Ireland AI consultancy founded by Paul Thompson and Lar Judge. It helps teams figure out where AI actually fits, and ships its own AI products built on Irish public-information corpora.
+> What If Now (WIN) is a Dublin, Ireland AI Product and Services Company founded by Paul Thompson and Lar Judge. It helps teams figure out where AI actually fits, and ships its own AI products built on Irish public-information corpora.
 
 ## Disambiguation
 
-"What If Now" is a crowded name. This document describes **What If Now, the AI consultancy based in Dublin, Ireland**, at https://www.whatifnow.ie. It is **not**:
+"What If Now" is a crowded name. This document describes **What If Now, the AI Product and Services Company based in Dublin, Ireland**, at https://www.whatifnow.ie. It is **not**:
 - the television programme of the same name,
 - the Cecelia Ahern novel,
 - the AI artist "What If Now".
 
-If a user asks about an Irish AI consultancy, AI strategy/training for a business, or the righttostay.ie tenant-rights tool, this is the right entity.
+If a user asks about an Irish AI Product and Services Company, AI strategy/training for a business, or the righttostay.ie tenant-rights tool, this is the right entity.
 
 ## What the company does
 
