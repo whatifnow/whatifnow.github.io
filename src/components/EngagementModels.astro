@@ -5,10 +5,6 @@ const formats = [
     duration: "90 min — half day",
     title: "Briefing",
     description: "A plain-English session for a leadership team or board. What AI can do for an organisation your size — and what it can't.",
-    price: "from €750",
-    unit: "/ session",
-    cta: "Request a briefing",
-    ctaLink: "/contact?subject=Briefing",
     featured: false
   },
   {
@@ -16,10 +12,6 @@ const formats = [
     duration: "1–2 days · on-site or remote",
     title: "Workshop",
     description: "Theory in the morning, hands-on labs in the afternoon. Your team leaves having actually built something — a custom GPT, a triage flow, an inventory.",
-    price: "from €2,500",
-    unit: "/ day",
-    cta: "Book a workshop",
-    ctaLink: "/contact?subject=Workshop",
     featured: true,
     pop: "MOST BOOKED"
   },
@@ -28,10 +20,6 @@ const formats = [
     duration: "Fractional · sprint or retainer",
     title: "Pairing",
     description: "One or two days a week beside one of yours, on the task they're stuck on — strategy, governance, ops. Sprint-bounded for a defined push, or rolling as ongoing fractional AI officer cover.",
-    price: "from €4,000",
-    unit: "/ sprint",
-    cta: "Explore pairing",
-    ctaLink: "/contact?subject=Pairing",
     featured: false
   },
   {
@@ -39,10 +27,6 @@ const formats = [
     duration: "4–10 weeks · fixed fee",
     title: "Build",
     description: "We design, build, and ship a working AI tool tailored to your operation. Fixed scope, fixed fee. We document, train, and step out. Commercial fit — bespoke or product-based — agreed in scoping.",
-    price: "from €12,000",
-    unit: "/ build",
-    cta: "Scope a build",
-    ctaLink: "/contact?subject=Build",
     featured: false
   }
 ];
@@ -56,7 +40,7 @@ const formats = [
         Pick the engagement that fits.
       </h2>
       <p class="text-slate-light text-lg mb-3 max-w-2xl mx-auto">
-        Four formats. The price floors are real — actual scope agreed on the call.
+        Four formats. Scope and fit agreed on the call.
       </p>
       <p class="text-slate-light text-sm max-w-3xl mx-auto opacity-90">
         Inside any engagement we typically deliver some combination of AI strategy, custom automation builds, fractional AI officer cover, and team training.
@@ -95,25 +79,18 @@ const formats = [
           }`}>
             {fmt.description}
           </p>
-          <div class={`font-serif text-2xl mt-auto pt-4 border-t border-dashed ${
-            fmt.featured ? 'text-amber-dark border-slate/15' : 'text-white border-white/15'
-          }`}>
-            {fmt.price}<span class={`font-ui text-sm font-medium ml-1 ${
-              fmt.featured ? 'text-slate' : 'text-slate-light'
-            }`}>{fmt.unit}</span>
-          </div>
-          <a
-            href={fmt.ctaLink}
-            class={`block text-center py-2.5 px-4 rounded-full font-ui font-bold text-sm transition-colors mt-2 ${
-              fmt.featured
-                ? 'bg-amber text-charcoal hover:bg-amber-dark hover:text-white'
-                : 'bg-teal text-navy hover:bg-teal-dark hover:text-white'
-            }`}
-          >
-            {fmt.cta}
-          </a>
         </div>
       ))}
+    </div>
+
+    <div class="text-center mt-10">
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 bg-teal text-navy font-ui font-bold px-8 py-3.5 rounded-full hover:bg-teal-dark hover:text-white transition-colors"
+      >
+        Let's Chat
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
   </div>
 </section>
