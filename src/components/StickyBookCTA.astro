@@ -39,7 +39,7 @@
       cta.remove();
     } else {
       const SHOW_AFTER_PX = 400;
-      let finalCtaInView = false;
+      const inView = new Set();
 
       const setVisible = (visible) => {
         if (visible) {
@@ -53,22 +53,28 @@
 
       const sync = () => {
         const scrolledEnough = window.scrollY > SHOW_AFTER_PX;
-        setVisible(scrolledEnough && !finalCtaInView);
+        setVisible(scrolledEnough && inView.size === 0);
       };
 
-      // FinalCTA section (id="contact" inside FinalCTA.astro) is the page's main
-      // conversion block — when it's on screen, hide the sticky to avoid two
-      // competing amber CTAs at once.
-      const finalCta = document.getElementById('contact');
-      if (finalCta && 'IntersectionObserver' in window) {
+      // Hide while any CTA-dense block is on screen: the FinalCTA conversion
+      // section (id="contact") and anything tagged data-sticky-hide. Two amber
+      // pills at once — or the sticky sitting on top of a section's own
+      // buttons — reads as broken.
+      const blockers = [
+        ...document.querySelectorAll('#contact, [data-sticky-hide]'),
+      ];
+      if (blockers.length && 'IntersectionObserver' in window) {
         const io = new IntersectionObserver(
           (entries) => {
-            finalCtaInView = entries[0].isIntersecting;
+            for (const entry of entries) {
+              if (entry.isIntersecting) inView.add(entry.target);
+              else inView.delete(entry.target);
+            }
             sync();
           },
-          { rootMargin: '0px 0px -20% 0px' }
+          { rootMargin: '0px 0px -15% 0px' }
         );
-        io.observe(finalCta);
+        blockers.forEach((el) => io.observe(el));
       }
 
       window.addEventListener('scroll', sync, { passive: true });
