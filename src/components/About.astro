@@ -33,13 +33,13 @@ const founders = [
 ];
 ---
 
-<section id="about" class="py-20 px-6">
+<section id="about" class="py-20 px-6 bg-off-white">
   <div class="max-w-6xl mx-auto">
     <div class="max-w-3xl mx-auto text-center mb-14">
-      <span class="inline-block text-teal font-ui font-bold text-xs tracking-widest uppercase mb-4">Who we are</span>
-      <h2 class="text-3xl md:text-4xl font-bold font-serif mb-6 text-white">Two co-founders. Decades of operations and engineering.</h2>
-      <p class="text-lg text-slate-light leading-relaxed">
-        We're <strong class="text-white">practical</strong>, <strong class="text-white">honest</strong>, and <strong class="text-white">capable</strong> — we build things that work, tell you what they cost, and don't sell you AI you don't need.
+      <span class="inline-block text-teal-dark font-ui font-bold text-xs tracking-widest uppercase mb-4">Who we are</span>
+      <h2 class="text-3xl md:text-4xl font-bold font-serif mb-6 text-navy">Two co-founders. Decades of operations and engineering.</h2>
+      <p class="text-lg text-slate leading-relaxed">
+        We're <strong class="text-navy">practical</strong>, <strong class="text-navy">honest</strong>, and <strong class="text-navy">capable</strong> — we build things that work, tell you what they cost, and don't sell you AI you don't need.
       </p>
     </div>
 
@@ -47,17 +47,17 @@ const founders = [
       {founders.map((f) => (
         <div class="flex flex-col">
           <div class="flex flex-col items-center md:items-start">
-            <div class="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden mb-5 border-2 border-teal/30">
-              <img src={f.photo} alt={`Portrait of ${f.name}`} width="288" height="288" class="w-full h-full object-cover" loading="lazy" />
+            <div class="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden mb-6 border-2 border-teal/40 shadow-lg">
+              <img src={f.photo} alt={`Portrait of ${f.name}`} width="416" height="416" class="w-full h-full object-cover" loading="lazy" />
             </div>
-            <h3 class="text-2xl font-bold font-serif text-amber">{f.name}</h3>
-            <p class="text-white font-ui font-bold text-sm mt-1">{f.title}</p>
+            <h3 class="text-2xl font-bold font-serif text-amber-dark">{f.name}</h3>
+            <p class="text-navy font-ui font-bold text-sm mt-1">{f.title}</p>
           </div>
           <ul class="space-y-4 mt-6">
             {f.bio.map((item) => (
-              <li class="text-slate-light text-sm leading-relaxed flex gap-3">
-                <span class="text-teal flex-shrink-0 mt-0.5" aria-hidden="true">→</span>
-                <span><strong class="text-white">{item.h}:</strong> {item.p}</span>
+              <li class="text-slate text-sm leading-relaxed flex gap-3">
+                <span class="text-teal-dark flex-shrink-0 mt-0.5" aria-hidden="true">→</span>
+                <span><strong class="text-navy">{item.h}:</strong> {item.p}</span>
               </li>
             ))}
           </ul>
@@ -66,7 +66,7 @@ const founders = [
     </div>
 
     <div class="text-center mt-14">
-      <a href="https://calendly.com/paul-whatifnow" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-teal font-ui font-bold hover:text-white transition-colors">
+      <a href="https://calendly.com/paul-whatifnow" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-teal-dark font-ui font-bold hover:text-navy transition-colors">
         Want to talk it through? Schedule a 30-min chat with Paul
         <span aria-hidden="true">→</span>
       </a>

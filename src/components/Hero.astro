@@ -29,12 +29,12 @@
         </div>
       </div>
 
-      <!-- AI Readiness Audit preview video (src set via script so phones, where
-           it's hidden anyway, never download the file) -->
-      <div class="hidden lg:block">
+      <!-- AI Readiness Audit preview: video on desktop (src set via script so
+           phones never download the 5.5MB file), still frame on smaller screens -->
+      <div>
         <video
           id="hero-audit-video"
-          class="w-full aspect-video object-cover rounded-2xl shadow-2xl border border-slate/10"
+          class="hidden lg:block w-full aspect-video object-cover rounded-2xl shadow-2xl border border-slate/10"
           autoplay
           muted
           loop
@@ -42,6 +42,13 @@
           preload="none"
           aria-label="Preview of the What If Now AI Readiness Audit"
         ></video>
+        <img
+          src="/images/hero-audit-still.jpg"
+          alt="The AI Readiness Audit — 18 questions, 3 minutes, free"
+          width="1920"
+          height="1080"
+          class="lg:hidden w-full aspect-video object-cover rounded-2xl shadow-2xl border border-slate/10"
+        />
       </div>
       <script is:inline>
         (function () {
