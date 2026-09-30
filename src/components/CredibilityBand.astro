@@ -1,0 +1,19 @@
+---
+// Founder-experience band (design review #3). Text wordmarks only — these are
+// places the founders built and led teams, not client logos, and the label
+// says so. Keep the framing honest.
+const names = ["Google", "LinkedIn", "Canva", "Sage"];
+---
+
+<section class="bg-white py-12 px-6 border-b border-slate/10">
+  <div class="max-w-6xl mx-auto text-center">
+    <p class="text-teal-dark font-ui font-bold text-xs tracking-widest uppercase mb-6">
+      Founder experience from
+    </p>
+    <ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
+      {names.map((n) => (
+        <li class="font-ui font-bold text-2xl md:text-3xl text-slate/50 tracking-tight">{n}</li>
+      ))}
+    </ul>
+  </div>
+</section>
