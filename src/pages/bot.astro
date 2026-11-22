@@ -1,0 +1,126 @@
+---
+// Public documentation for What If Now's crawlers, cited by the Cloudflare
+// Verified Bots application. Every statement here must be true of the code as
+// deployed: the claim-to-evidence table lives in the GrantWatch repo at
+// docs/bot.md. Change the code and this page together, never one alone.
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const BOT = 'WhatIfNowBot-Grants';
+const FAMILY = 'WhatIfNowBot';
+const UA = `${BOT}/1.0 (+https://www.whatifnow.ie/bot)`;
+const FORMER_UA = 'GrantWatch/0.1';
+const SIGNATURE_AGENT = 'https://bot.whatifnow.ie';
+const KEY_DIRECTORY = `${SIGNATURE_AGENT}/.well-known/http-message-signatures-directory`;
+const CONTACT = 'bot@whatifnow.ie';
+const UPDATED = '2026-11-22';
+---
+
+<Layout
+  title="Our crawlers | What If Now"
+  description="What What If Now's crawlers fetch, how to recognise them, how they behave, and how to slow them down or opt out."
+>
+  <Navigation />
+
+  <section class="bg-navy pt-32 pb-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <span class="inline-block text-teal font-semibold text-sm tracking-widest uppercase mb-4">Our crawlers</span>
+      <h1 class="text-4xl md:text-5xl font-bold text-white font-serif leading-tight mb-4">
+        {BOT}
+      </h1>
+      <p class="text-slate-light text-lg leading-relaxed max-w-2xl">
+        A crawler run by What If Now Limited (Dublin, Ireland) that reads public grant and funding announcements on Irish funders' websites, so that Irish charities and community groups can see which grant calls are open and when they close.
+      </p>
+      <p class="text-slate-light text-sm mt-6 opacity-70">Last updated: {UPDATED}</p>
+    </div>
+  </section>
+
+  <main id="main-content" class="bg-off-white py-16 px-6">
+    <div class="max-w-3xl mx-auto space-y-12">
+
+      <section>
+        <h2 class="text-2xl font-bold text-navy font-serif mb-4">What it does</h2>
+        <ul class="space-y-2 text-slate leading-relaxed list-disc pl-6">
+          <li>Once a day, early in the morning Irish time, it reads the grants and funding pages of about 100 Irish government, local authority, foundation and grant-aggregator websites, because some funds open for only a fortnight. We choose these sites by hand; the list is available on request. It does not follow links off those sites or crawl the wider web. It also queries the European Commission's public Funding &amp; Tenders search service for calls open to Irish applicants.</li>
+          <li>At most once a week it also requests the address of each website in our register of about 1,600 Irish funders, once per address, to check that it still works.</li>
+          <li>From each grant page it records the grant's name, the funder, a short eligibility label (such as "registered charities"), the closing date and the sentence that states that date, with a link back to the page. A customer that helps Irish nonprofits find funding sees these records and follows the link to the funder's own page to read the details and apply. We do not republish page text, and the records are not public.</li>
+          <li>It reads public pages only. It does not sign in, fill in forms or submit applications.</li>
+          <li>It does not look for personal data. Staff contact details that appear on a page remain only in our private copy of it.</li>
+          <li>To pick out those fields it passes page text to an AI model (Google Gemini on Vertex AI, in the EU). Under Content Signals that counts as <code>ai-input</code>. Google does not train its models on that text, and we do not use your pages to train any model.</li>
+          <li>We keep a private copy of each page so we can check our records against it. After two years we delete all but the three most recent copies of each page. Nothing we fetch is stored or processed outside the EU.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-navy font-serif mb-4">How to recognise it</h2>
+        <p class="text-slate leading-relaxed mb-3">Every request sends this user agent:</p>
+        <pre class="bg-white text-navy font-mono border border-slate/20 rounded p-4 text-sm leading-relaxed whitespace-pre-wrap break-words"><code>{UA}</code></pre>
+        <p class="text-slate leading-relaxed mt-4 mb-3">
+          Every request is also signed with <a href="https://developers.cloudflare.com/bots/reference/bot-verification/web-bot-auth/" class="text-teal font-semibold hover:underline">Web Bot Auth</a> (HTTP Message Signatures, Ed25519) and carries this header:
+        </p>
+        <pre class="bg-white text-navy font-mono border border-slate/20 rounded p-4 text-sm leading-relaxed whitespace-pre-wrap break-words"><code>Signature-Agent: "{SIGNATURE_AGENT}"</code></pre>
+        <p class="text-slate leading-relaxed mt-4 mb-3">Our public keys are published at:</p>
+        <pre class="bg-white text-navy font-mono border border-slate/20 rounded p-4 text-sm leading-relaxed whitespace-pre-wrap break-words"><code>{KEY_DIRECTORY}</code></pre>
+        <p class="text-slate leading-relaxed mt-4">
+          A request with this user agent and no valid signature is not ours. Please report it to <a href={`mailto:${CONTACT}`} class="text-teal font-semibold hover:underline">{CONTACT}</a>. Earlier versions of this crawler sent a user agent beginning <code>{FORMER_UA}</code>, so older entries in your logs may show that.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-navy font-serif mb-4">How it follows robots.txt</h2>
+        <ul class="space-y-2 text-slate leading-relaxed list-disc pl-6">
+          <li>It follows <code>robots.txt</code> as set out in RFC 9309. Exactly one group applies, matched case-insensitively: a group for <code>{BOT}</code> if you have one, otherwise a group for <code>{FAMILY}</code> (which covers every crawler we run), otherwise your <code>*</code> group. Groups naming the same token are merged.</li>
+          <li>It reads <code>robots.txt</code> before fetching anything else from a site and keeps it for no more than 24 hours. It follows up to five redirects to reach it.</li>
+          <li>If <code>robots.txt</code> returns 404 or another 4xx, it treats the site as having no rules. If it cannot read it because of a 5xx, a timeout or a connection error, it fetches nothing from the site that run.</li>
+          <li>Every redirect target is checked against the target site's <code>robots.txt</code> before it is fetched.</li>
+          <li>It honours <code>Crawl-delay</code>. Without one, it waits at least one second between requests to a site and fetches one page at a time from it.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-navy font-serif mb-4">How it follows Content Signals</h2>
+        <p class="text-slate leading-relaxed mb-3">It reads <a href="https://contentsignals.org/" class="text-teal font-semibold hover:underline">Content Signals</a> in the group of your <code>robots.txt</code> that applies to it:</p>
+        <ul class="space-y-2 text-slate leading-relaxed list-disc pl-6">
+          <li><code>ai-input=no</code>: it does not pass your pages to an AI model. A person reads them instead.</li>
+          <li><code>search=no</code>: it does not record your grants.</li>
+          <li><code>use=immediate</code>: we are alerted, and within two working days we stop keeping copies of your pages.</li>
+          <li><code>ai-train</code>: it never uses your pages for training, whatever this is set to.</li>
+          <li>With no signal, it works as described on this page, which is <code>use=reference</code>.</li>
+        </ul>
+        <pre class="bg-white text-navy font-mono border border-slate/20 rounded p-4 text-sm leading-relaxed whitespace-pre-wrap break-words mt-4"><code>User-agent: {BOT}
+Content-Signal: ai-input=no
+Allow: /</code></pre>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-navy font-serif mb-4">When a site refuses it</h2>
+        <ul class="space-y-2 text-slate leading-relaxed list-disc pl-6">
+          <li>If your site answers with 401, 403, 429, 503 or a browser check, it stops fetching from your site for the rest of that run. It waits at least as long as any <code>Retry-After</code> you send, and it does not try another way in.</li>
+          <li>For a few sites whose pages only render with JavaScript it uses a headless browser. We choose that per site, in advance, and never because a site has refused us. The browser sends the same user agent and signature, follows the same rules, and loads nothing from other websites. It loads one page at a time, though that page's own scripts and styles may load in parallel.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-navy font-serif mb-4">Slowing it down or opting out</h2>
+        <p class="text-slate leading-relaxed mb-3">To block it, add this to your <code>robots.txt</code>:</p>
+        <pre class="bg-white text-navy font-mono border border-slate/20 rounded p-4 text-sm leading-relaxed whitespace-pre-wrap break-words"><code>User-agent: {BOT}
+Disallow: /</code></pre>
+        <p class="text-slate leading-relaxed mt-4 mb-3">To slow it down instead, add for example <code>Crawl-delay: 10</code> under the same line. To block every What If Now crawler, use <code>User-agent: {FAMILY}</code>.</p>
+        <p class="text-slate leading-relaxed">
+          A change to <code>robots.txt</code> takes effect at the next run. For anything faster, or to ask us to remove your site, email <a href={`mailto:${CONTACT}`} class="text-teal font-semibold hover:underline">{CONTACT}</a>. We act on requests within two working days.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-navy font-serif mb-4">Contact</h2>
+        <p class="text-slate leading-relaxed">
+          What If Now Limited, Dublin, Ireland (company number 808469, Companies Registration Office). Email <a href={`mailto:${CONTACT}`} class="text-teal font-semibold hover:underline">{CONTACT}</a> about questions, crawl rate, opt-outs or misuse.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
