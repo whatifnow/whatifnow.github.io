@@ -14,7 +14,7 @@ const FORMER_UA = 'GrantWatch/0.1';
 const SIGNATURE_AGENT = 'https://bot.whatifnow.ie';
 const KEY_DIRECTORY = `${SIGNATURE_AGENT}/.well-known/http-message-signatures-directory`;
 const CONTACT = 'bot@whatifnow.ie';
-const UPDATED = '2026-11-22';
+const UPDATED = '2026-11-25';
 ---
 
 <Layout
@@ -82,7 +82,7 @@ const UPDATED = '2026-11-22';
         <h2 class="text-2xl font-bold text-navy font-serif mb-4">How it follows Content Signals</h2>
         <p class="text-slate leading-relaxed mb-3">It reads <a href="https://contentsignals.org/" class="text-teal font-semibold hover:underline">Content Signals</a> in the group of your <code>robots.txt</code> that applies to it:</p>
         <ul class="space-y-2 text-slate leading-relaxed list-disc pl-6">
-          <li><code>ai-input=no</code>: it does not pass your pages to an AI model. A person reads them instead.</li>
+          <li><code>ai-input=no</code>: it does not pass your pages to an AI model. A person reads them instead. One gap remains, which we are fixing: if another site redirects us to one of your pages, your <code>ai-input</code> signal is not yet read for that page.</li>
           <li><code>search=no</code>: it does not record your grants.</li>
           <li><code>use=immediate</code>: we are alerted, and within two working days we stop keeping copies of your pages.</li>
           <li><code>ai-train</code>: it never uses your pages for training, whatever this is set to.</li>
